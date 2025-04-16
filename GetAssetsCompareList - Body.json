@@ -1,0 +1,1354 @@
+[
+  {
+    "status": "ACTIVE",
+    "createdDate": "2024-12-20T18:34:45.081",
+    "createdBy": "can.vu@vietory.vn",
+    "lastModifiedDate": "2024-12-25T15:30:25.46",
+    "lastModifiedBy": "can.vu@vietory.vn",
+    "id": {
+      "timestamp": 1734694485,
+      "date": "2024-12-20T11:34:45.000+00:00"
+    },
+    "assetsCompareListId": "28",
+    "assetsCompareManagements": [
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-20T18:34:44.957",
+        "createdBy": "can.vu@vietory.vn",
+        "lastModifiedDate": "2024-12-25T15:30:25.296",
+        "lastModifiedBy": "can.vu@vietory.vn",
+        "id": {
+          "timestamp": 1734694485,
+          "date": "2024-12-20T11:34:45.000+00:00"
+        },
+        "profileId": "15/12/24",
+        "assetsCompareId": "132",
+        "assetsManagement": {
+          "status": "PRELIMINARY_CLOSE",
+          "createdDate": "2024-12-20T08:28:03.486",
+          "createdBy": "ngoctrinh@vietory.vn",
+          "lastModifiedDate": "2024-12-25T15:30:25.798",
+          "lastModifiedBy": "can.vu@vietory.vn",
+          "id": {
+            "timestamp": 1734658083,
+            "date": "2024-12-20T01:28:03.000+00:00"
+          },
+          "profileId": "15/12/24",
+          "valuationDocumentId": "15/12/24",
+          "assetsId": "13038",
+          "geoJsonPoint": {
+            "x": 105.73841420706748,
+            "y": 10.043372276083264,
+            "type": "Point",
+            "coordinates": [105.73841420706748, 10.043372276083264]
+          },
+          "basicAssetsInfo": {
+            "status": "ACTIVE",
+            "createdDate": "2024-12-20T08:28:03.486",
+            "createdBy": "ngoctrinh@vietory.vn",
+            "lastModifiedDate": "2024-12-25T15:30:25.798",
+            "lastModifiedBy": "can.vu@vietory.vn",
+            "basicAddressInfo": {
+              "cityCode": "01",
+              "cityName": "Thành phố Hà Nội",
+              "districtCode": "003",
+              "districtName": "Quận Tây Hồ",
+              "wardCode": "00094",
+              "wardName": "Phường Nhật Tân",
+              "fullAddress": "Phường Nhật Tân - Quận Tây Hồ - Thành phố Hà Nội"
+            },
+            "totalPrice": "43649000000",
+            "valuationTotalPrice": "500",
+            "landUsePurposeInfo": [
+              {
+                "name": "Cal",
+                "area": "1233",
+                "usePurpose": "EF",
+                "unitPriceMin": "12311",
+                "unitPriceMax": "12311",
+                "totalPriceMin": "15179463",
+                "totalPriceMax": "15179463",
+                "lupName": "Cal"
+              }
+            ],
+            "valuationLandUsePurposeInfo": [
+              {
+                "name": "Cây lâu năm",
+                "area": "500",
+                "unitPriceMax": "1",
+                "totalPriceMin": "0",
+                "totalPriceMax": "500",
+                "lupName": "Cây lâu năm"
+              },
+              {
+                "name": "DGT",
+                "area": "208.7",
+                "usePurpose": "DGT",
+                "totalPriceMin": "0",
+                "totalPriceMax": "0",
+                "lupName": "DGT"
+              }
+            ],
+            "bankLandUsePurposeInfo": [{}],
+            "listMovableItem": [{}],
+            "area": 0.0,
+            "width": 10.1,
+            "height": 99.05,
+            "percentQuality": 75.0,
+            "newConstructionUnitPrice": 0.0,
+            "constructionValue": 0.0,
+            "sellingPrice": 0.0,
+            "negotiablePrice": 0.0,
+            "landConversionODTCost": 0.0,
+            "landConversionHNKCost": 0.0,
+            "landRoadBoundary": 0.0,
+            "landValue": 0.0,
+            "landPrice": 0.0
+          },
+          "basicLocationInfo": {
+            "lat": 0.0,
+            "lon": 0.0
+          },
+          "fileAttachments": {},
+          "profileType": "VALUATION"
+        },
+        "legalStatus": {
+          "description": "Có GCNQSDĐ",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "location": {
+          "description": "Đường nhánh cách đường vào sân bay Bình Thuận khoảng 600m, cách đường Võ Nguyên Giáp khoảng 1,1km",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "traffic": {
+          "description": "Đường đất rộng khoảng 4m",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "area": {
+          "description": "1000",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "width": {
+          "description": "10.10",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "height": {
+          "description": "99.05",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "population": {
+          "description": "Dân cư, kinh doanh",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "shape": {
+          "description": "Tương đối vuông vức",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "other": {
+          "description": "QH đất TMDV",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "externalProperty": {},
+        "indicativePrice": 0.0,
+        "avgIndicativePrice": 0.0,
+        "avgPercentIndicativePrice": 0.0,
+        "totalAdjustedGrossValue": 0.0,
+        "totalAdjustmentNumber": 0.0,
+        "totalNetAdjustedValue": 0.0,
+        "isCompare": false
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:09:25.307",
+        "createdBy": "can.vu@vietory.vn",
+        "lastModifiedDate": "2024-12-25T15:30:25.349",
+        "lastModifiedBy": "can.vu@vietory.vn",
+        "id": {
+          "timestamp": 1735114165,
+          "date": "2024-12-25T08:09:25.000+00:00"
+        },
+        "profileId": "15/12/24",
+        "assetsCompareId": "286",
+        "assetsManagement": {
+          "status": "REFER",
+          "createdDate": "2024-09-06T18:50:23.235",
+          "createdBy": "tinh.pham",
+          "lastModifiedDate": "2024-12-25T15:30:25.327",
+          "lastModifiedBy": "can.vu@vietory.vn",
+          "id": {
+            "timestamp": 1725623423,
+            "date": "2024-09-06T11:50:23.000+00:00"
+          },
+          "assetsId": "4988",
+          "geoJsonPoint": {
+            "x": 105.721779,
+            "y": 10.04794,
+            "type": "Point",
+            "coordinates": [105.721779, 10.04794]
+          },
+          "basicAssetsInfo": {
+            "status": "ACTIVE",
+            "createdDate": "2024-09-06T18:50:23.235",
+            "createdBy": "tinh.pham",
+            "lastModifiedDate": "2024-12-25T15:30:25.327",
+            "lastModifiedBy": "can.vu@vietory.vn",
+            "basicAddressInfo": {
+              "fullAddress": "Thửa đất số 1082, tờ bản đồ số 9, đường Bùi Hữu Nghĩa (Tỉnh 918), khu vực Bình Dương, phường Long Hòa, Quận Bình Thủy, Thành phố Cần Thơ"
+            },
+            "otherInfo": "Q:\\03. APPRAISAL\\03. REAL ESTATE\\03. PROJECT\\09. IMM\\03. BAO GIA\\01. IMM_VV\\2024\\THANG 6\\00. HDBANK\\13. LE TRONG NGHIA_BINH THUY, CAN THO",
+            "area": 0.0,
+            "width": 23.09,
+            "height": 113.6,
+            "percentQuality": 85.0,
+            "newConstructionUnitPrice": 8775872.0,
+            "constructionValue": 0.0,
+            "sellingPrice": 1.02096e10,
+            "negotiablePrice": 8.17e9,
+            "landConversionODTCost": 0.0,
+            "landConversionHNKCost": 0.0,
+            "landRoadBoundary": 0.0,
+            "landValue": 8.17e9,
+            "landPrice": 3200909.0
+          },
+          "basicLocationInfo": {
+            "markerName": "24060.13-nhua 6-194.7/14.79-o37/16.5-c/13.7",
+            "lat": 0.0,
+            "lon": 0.0
+          }
+        },
+        "legalStatus": {
+          "description": "Có GCNQSDĐ",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "location": {
+          "description": "Đường nhánh cách đường vào sân bay Bình Thuận khoảng 600m, cách đường Võ Nguyên Giáp khoảng 1,1km",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "traffic": {
+          "description": "Đường đất rộng khoảng 4m",
+          "percent": 0.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "area": {
+          "description": "2552.4",
+          "percent": 95.0,
+          "percentAdjust": 5.26,
+          "valueAdjust": 168469.0
+        },
+        "width": {
+          "description": "23.09",
+          "percent": 108.0,
+          "percentAdjust": -7.41,
+          "valueAdjust": -237104.0
+        },
+        "height": {
+          "description": "113.60",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "population": {
+          "description": "Dân cư tương đối",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "shape": {
+          "description": "Tương đối vuông vức",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "other": {
+          "description": "QH đất TMDV",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "externalProperty": {},
+        "indicativePrice": 3132274.0,
+        "avgIndicativePrice": 2707324.0,
+        "avgPercentIndicativePrice": 15.7,
+        "totalAdjustedGrossValue": 405573.0,
+        "totalAdjustmentNumber": 3.0,
+        "adjustmentMargin": "0% - 7.41%",
+        "totalNetAdjustedValue": -68635.0,
+        "marketPrice": 3200909.0,
+        "isCompare": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:09:25.389",
+        "createdBy": "can.vu@vietory.vn",
+        "lastModifiedDate": "2024-12-25T15:30:25.385",
+        "lastModifiedBy": "can.vu@vietory.vn",
+        "id": {
+          "timestamp": 1735114165,
+          "date": "2024-12-25T08:09:25.000+00:00"
+        },
+        "profileId": "15/12/24",
+        "assetsCompareId": "287",
+        "assetsManagement": {
+          "status": "REFER",
+          "createdDate": "2024-09-06T18:50:23.204",
+          "createdBy": "tinh.pham",
+          "lastModifiedDate": "2024-12-25T15:30:25.361",
+          "lastModifiedBy": "can.vu@vietory.vn",
+          "id": {
+            "timestamp": 1725623423,
+            "date": "2024-09-06T11:50:23.000+00:00"
+          },
+          "assetsId": "4931",
+          "geoJsonPoint": {
+            "x": 105.72246620000001,
+            "y": 10.028328270456091,
+            "type": "Point",
+            "coordinates": [105.72246620000001, 10.028328270456091]
+          },
+          "basicAssetsInfo": {
+            "status": "ACTIVE",
+            "createdDate": "2024-09-06T18:50:23.204",
+            "createdBy": "tinh.pham",
+            "lastModifiedDate": "2024-12-25T15:30:25.361",
+            "lastModifiedBy": "can.vu@vietory.vn",
+            "basicAddressInfo": {
+              "fullAddress": "Thửa đất số 839; 846, TBĐ số 13 - KV Bình Dương B, phường Long Tuyền, quận Bình Thủy, Tp. Cần Thơ"
+            },
+            "otherInfo": "Q:\\03. APPRAISAL\\03. REAL ESTATE\\03. PROJECT\\09. IMM\\03. BAO GIA\\01. IMM_VV\\2024\\THANG 5\\00. HDBANK\\10. A. PHUC HDB CAN THO_BINH THUY, CAN THO\n",
+            "area": 0.0,
+            "width": 25.0,
+            "height": 88.0,
+            "percentQuality": 80.0,
+            "newConstructionUnitPrice": 5661544.0,
+            "constructionValue": 0.0,
+            "sellingPrice": 5.81e9,
+            "negotiablePrice": 5.23e9,
+            "landConversionODTCost": 0.0,
+            "landConversionHNKCost": 0.0,
+            "landRoadBoundary": 0.0,
+            "landValue": 5.23e9,
+            "landPrice": 2432615.0
+          },
+          "basicLocationInfo": {
+            "markerName": "24050.10-nhua 8-493/8.51-o310.3/13.2-c/2.395",
+            "lat": 0.0,
+            "lon": 0.0
+          }
+        },
+        "legalStatus": {
+          "description": "Có GCNQSDĐ",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "location": {
+          "description": "Đường nhánh cách đường vào sân bay Bình Thuận khoảng 2km, cách đường Võ Nguyên Giáp khoảng 800m",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "traffic": {
+          "description": "Đường đất rộng khoảng 8m",
+          "percent": 0.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "area": {
+          "description": "2153.2",
+          "percent": 95.0,
+          "percentAdjust": 5.26,
+          "valueAdjust": 128032.0
+        },
+        "width": {
+          "description": "25.00",
+          "percent": 108.0,
+          "percentAdjust": -7.41,
+          "valueAdjust": -180194.0
+        },
+        "height": {
+          "description": "88.00",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "population": {
+          "description": "Dân cư tương đối",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "shape": {
+          "description": "Tương đối vuông vức",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "other": {
+          "description": "QH đất CLN",
+          "percent": 90.0,
+          "percentAdjust": 11.11,
+          "valueAdjust": 270291.0
+        },
+        "externalProperty": {},
+        "indicativePrice": 2650744.0,
+        "avgIndicativePrice": 2707324.0,
+        "avgPercentIndicativePrice": -2.09,
+        "totalAdjustedGrossValue": 578517.0,
+        "totalAdjustmentNumber": 4.0,
+        "adjustmentMargin": "0% - 11.11%",
+        "totalNetAdjustedValue": 218129.0,
+        "marketPrice": 2432615.0,
+        "isCompare": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:09:25.571",
+        "createdBy": "can.vu@vietory.vn",
+        "lastModifiedDate": "2024-12-25T15:30:25.449",
+        "lastModifiedBy": "can.vu@vietory.vn",
+        "id": {
+          "timestamp": 1735114165,
+          "date": "2024-12-25T08:09:25.000+00:00"
+        },
+        "profileId": "15/12/24",
+        "assetsCompareId": "288",
+        "assetsManagement": {
+          "status": "REFER",
+          "createdDate": "2024-09-06T18:50:23.215",
+          "createdBy": "tinh.pham",
+          "lastModifiedDate": "2024-12-25T15:30:25.405",
+          "lastModifiedBy": "can.vu@vietory.vn",
+          "id": {
+            "timestamp": 1725623423,
+            "date": "2024-09-06T11:50:23.000+00:00"
+          },
+          "assetsId": "4946",
+          "geoJsonPoint": {
+            "x": 105.73148841781276,
+            "y": 10.044863561715719,
+            "type": "Point",
+            "coordinates": [105.73148841781276, 10.044863561715719]
+          },
+          "basicAssetsInfo": {
+            "status": "ACTIVE",
+            "createdDate": "2024-09-06T18:50:23.215",
+            "createdBy": "tinh.pham",
+            "lastModifiedDate": "2024-12-25T15:30:25.405",
+            "lastModifiedBy": "can.vu@vietory.vn",
+            "basicAddressInfo": {
+              "fullAddress": "Thửa đất số 100; 1001, tờ bản đồ số 04, KV Bình Phó A, phường Long Tuyền, quận Bình Thủy, TP Cần Thơ"
+            },
+            "otherInfo": "Q:\\03. APPRAISAL\\03. REAL ESTATE\\03. PROJECT\\09. IMM\\03. BAO GIA\\01. IMM_VV\\2024\\THANG 5\\00. HDBANK\\49. TRAM NGOC CHAU_ BINH THUY, CAN THO",
+            "area": 0.0,
+            "width": 61.99,
+            "height": 100.35,
+            "percentQuality": 80.0,
+            "newConstructionUnitPrice": 8775872.0,
+            "constructionValue": 0.0,
+            "sellingPrice": 3.5e9,
+            "negotiablePrice": 2.98e9,
+            "landConversionODTCost": 0.0,
+            "landConversionHNKCost": 0.0,
+            "landRoadBoundary": 0.0,
+            "landValue": 2.98e9,
+            "landPrice": 2980000.0
+          },
+          "basicLocationInfo": {
+            "markerName": "24050.49-bt 5-581.2/19.5-c181.2/10.295-o/11.055",
+            "lat": 0.0,
+            "lon": 0.0
+          }
+        },
+        "legalStatus": {
+          "description": "Có GCN QSDĐ",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "location": {
+          "description": "Đường nhánh cách đường vào sân bay Bình Thuận khoảng 700m, cách đường Võ Nguyên Giáp khoảng 1,3km",
+          "percent": 90.0,
+          "percentAdjust": 11.11,
+          "valueAdjust": 331111.0
+        },
+        "traffic": {
+          "description": "Đường đất rộng khoảng 8m",
+          "percent": 0.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "area": {
+          "description": "5164.00",
+          "percent": 115.0,
+          "percentAdjust": -13.04,
+          "valueAdjust": -388696.0
+        },
+        "width": {
+          "description": "61.99",
+          "percent": 103.0,
+          "percentAdjust": -2.91,
+          "valueAdjust": -86796.0
+        },
+        "height": {
+          "description": "100.35",
+          "percent": 120.0,
+          "percentAdjust": -16.67,
+          "valueAdjust": -496667.0
+        },
+        "population": {
+          "description": "Dân cư tương đối",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "shape": {
+          "description": "Tương đối vuông vức",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "other": {
+          "description": "Bình thường",
+          "percent": 100.0,
+          "percentAdjust": 0.0,
+          "valueAdjust": 0.0
+        },
+        "externalProperty": {},
+        "indicativePrice": 2338953.0,
+        "avgIndicativePrice": 2707324.0,
+        "avgPercentIndicativePrice": -13.61,
+        "totalAdjustedGrossValue": 1303270.0,
+        "totalAdjustmentNumber": 5.0,
+        "adjustmentMargin": "0% - 16.67%",
+        "totalNetAdjustedValue": -641047.0,
+        "marketPrice": 2980000.0,
+        "isCompare": true
+      }
+    ],
+    "assetsBuildingProperties": [
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "note": "undefined - Cây lâu năm",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "note": "DGT - DGT",
+        "mainStructuresRatio": {
+          "foundation": 13.0,
+          "wall": 12.0,
+          "floor": 12.0,
+          "roof": 12.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 80.0,
+          "wall": 80.0,
+          "floor": 80.0,
+          "roof": 80.0
+        },
+        "mainStructuresMain": {
+          "foundation": 10.4,
+          "wall": 9.6,
+          "floor": 9.6,
+          "roof": 9.6
+        },
+        "mainStructuresRatioTotal": 49.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 39.2,
+        "remainingQuality": 80.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "note": "undefined - undefined",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "note": "undefined - undefined",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      },
+      {
+        "status": "ACTIVE",
+        "createdDate": "2024-12-25T15:31:34.4929885",
+        "lastModifiedDate": "2024-12-25T15:31:34.4929885",
+        "mainStructuresRatio": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRemaining": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresMain": {
+          "foundation": 0.0,
+          "wall": 0.0,
+          "floor": 0.0,
+          "roof": 0.0
+        },
+        "mainStructuresRatioTotal": 0.0,
+        "mainStructuresRemainingTotal": 0.0,
+        "mainStructuresMainTotal": 0.0,
+        "remainingQuality": 0.0,
+        "hidden": true
+      }
+    ],
+    "customerName": "Người đại diện",
+    "propertyOrder": [
+      "legalStatus",
+      "location",
+      "traffic",
+      "area",
+      "width",
+      "height",
+      "population",
+      "shape",
+      "other"
+    ]
+  }
+]
