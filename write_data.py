@@ -139,6 +139,7 @@ for file_path in excel_paths:
                     ord_val = pct_table[col_name].fillna(np.nan)
                     return dict(zip(ord_key, ord_val))
 
+
                 # Dynamically extract all TSSS columns
                 main_raw = extract_col_raw("TSTDG")
                 ref_raws = [
@@ -201,18 +202,24 @@ for file_path in excel_paths:
                 for ref_pct in ref_pcts:
                     pct_price = get_land_price_pct(ref_pct)
                     
-                    # Compare against all ref_raws that haven't been used
-                    valid_refs = [
-                        (i, get_land_price_raw(ref_raw))
+                    # # Compare against all ref_raws that haven't been used
+                    # valid_refs = [
+                    #     (i, get_land_price_raw(ref_raw))
+                    #     for i, ref_raw in enumerate(ref_raws)
+                    #     if i not in used_indices and get_land_price_raw(ref_raw) is not None
+                    # ]
+
+                    # if not valid_refs:
+                    #     raise ValueError(f"No usable reference properties found to match with comparison price: {pct_price}")
+                    # diffs = [abs(raw_price - pct_price) for _, raw_price in valid_refs]
+                    # best_idx = valid_refs[int(np.argmin(diffs))][0]
+
+                    diffs = [
+                        abs(get_land_price_raw(ref_raw) - pct_price)
+                        if i not in used_indices and get_land_price_raw(ref_raw) is not None else np.inf
                         for i, ref_raw in enumerate(ref_raws)
-                        if i not in used_indices and get_land_price_raw(ref_raw) is not None
                     ]
 
-                    if not valid_refs:
-                        raise ValueError(f"No usable reference properties found to match with comparison price: {pct_price}")
-
-                    diffs = [abs(raw_price - pct_price) for _, raw_price in valid_refs]
-                    best_idx = valid_refs[int(np.argmin(diffs))][0]
                     best_idx = int(np.argmin(diffs))
                     matched_idx.append(best_idx)
                     used_indices.add(best_idx)

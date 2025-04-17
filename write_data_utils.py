@@ -92,10 +92,13 @@ def normalize_att(attr):
 
 # Get the value of landPrice from raw data table
 def get_land_price_raw(d):
-    return d.get("Giá đất (đồng/m²)", None)
+    val = smart_parse_float(d.get("Giá đất (đồng/m²)", None))
+    if val is None:
+        val = smart_parse_float(d.get("Giá đất ODT (đồng/m²)", None))
+    return val
 
 # Get the value of landPrice from comparison data table
 def get_land_price_pct(d):
-    return d[('A', normalize_att('Giá thị trường (Giá trước điều chỉnh) (đồng/m²)'))]
+    return smart_parse_float(d[('A', normalize_att('Giá thị trường (Giá trước điều chỉnh) (đồng/m²)'))])
 
 
