@@ -7,7 +7,8 @@ from datetime import datetime
 import numpy as np
 import json
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
-    find_comparison_table_start, get_land_price_raw, get_land_price_pct 
+        find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, \
+        find_meta_data, find_comparison_table_end, find_raw_table_end
 import os
 import re
 from pymongo import MongoClient
@@ -29,44 +30,71 @@ pct_col_length = 6
 year = 2025
 month = "01"
 
-
-# ---- LOAD EXCEL ----
 # Read list of Excel paths
-with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
-    excel_paths = [line.strip() for line in f if line.strip()]
+# with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
+#     excel_paths = [line.strip() for line in f if line.strip()]
+# open(f"reading_logs_{month}_{year}.txt", "w", encoding="utf-8").close()
+# total_sheets = 0
 
-open(f"reading_logs_{month}_{year}.txt", "w", encoding="utf-8").close()
 
-total_sheets = 0
+# ---- LOAD EXCEL PATHS AND SHEETS ----
+comparison_file_path = f"comparison_files_{month}_{year}.txt"
+sheet_map = {}
 
-for file_path in excel_paths:
-    if not os.path.isfile(file_path):
-        print(f"⭕️ File not found: {file_path}")
-        with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
-            log_file.write(f"⭕️ File not found: {file_path}\n")
-            log_file.write("----------------------------------------------------------------------------------------------\n")
-        continue
-    
-    try: 
-        # --- Insert your full parsing/writing logic here ---
-        print(f"⏳ Processing {file_path}")
-        xls = pd.ExcelFile(file_path)
-        # sheet = xls.sheet_names[sheet_idx]
-        sheet_names = xls.sheet_names
+with open(comparison_file_path, "r", encoding="utf-8") as f:
+    for line in f:
+        if ">>>" in line:
+            path, sheets = line.rstrip("\n").split(" >>> ")
+            # sheet_map[path.strip()] = [s.strip() for s in sheets.split(",") if s.strip()]
+            sheet_map[path.strip()] = [s for s in sheets.split("&&")]
+
+# ---- LOG FILE ----
+log_file_path = f"reading_logs_{month}_{year}.txt"
+open(log_file_path, "w", encoding="utf-8").close()
+
+# ---- PROCESS EACH FILE AND SHEET ----
+for file_path, sheet_list in sheet_map.items():
+    try:
+        if not os.path.isfile(file_path):
+            print(f"⭕️ File not found: {file_path}")
+            with open(log_file_path, "a", encoding="utf-8") as log_file:
+                log_file.write(f"⭕️ File not found: {file_path}\n")
+                log_file.write("----------------------------------------------------------------------------------------------\n")
+            continue
         
-        total_sheets += len(sheet_names)
+        with open(log_file_path, "a", encoding="utf-8") as log_file:
+            log_file.write(f"sheet_list: {sheet_list}\n")
+        xls = pd.ExcelFile(file_path)
+        sheet_names = xls.sheet_names
+        with open(log_file_path, "a", encoding="utf-8") as log_file:
+            log_file.write(f"sheet_names: {sheet_names}\n")
 
-        for sheet in sheet_names:
-            try:
+        for sheet in sheet_list:
+            try: 
+                if sheet not in xls.sheet_names:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
+                        log_file.write(f"❌ Sheet '{sheet}' not found in {file_path}\n")
+                        log_file.write("----------------------------------------------------------------------------------------------\n") 
+                    continue
+
+                # --- Insert your full parsing/writing logic here ---
+                print(f"⏳ Processing {file_path}")
+                # xls = pd.ExcelFile(file_path)
+                # sheet = xls.sheet_names[sheet_idx]
+
                 df = pd.read_excel(xls, sheet_name=sheet, header=None)
-
 
                 # ---- DETECT RAW DATA TABLE AND COMPARISON TABLE ---- 
                 raw_start_idx = find_row_index_containing(df, "HẠNG MỤC") + 1
                 pct_start_idx = find_comparison_table_start(df)
 
-                raw_end_idx = int(df[df[1] == 29].index[0])
-                pct_end_idx = df[df[1] == "E4"].index[0]
+                indicator_indices = find_meta_data(df, indicator_text="thời điểm")
+                if len(indicator_indices) < 2:
+                    raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
+                
+                raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
+                
+                pct_end_idx = find_comparison_table_end(df)
 
                 raw_col_start = 2
                 raw_col_end = raw_col_start + raw_col_length
@@ -89,6 +117,7 @@ for file_path in excel_paths:
 
                 raw_col_names = ["attribute", "TSTDG"] + [f"TSSS{i}" for i in range(1, num_raw_cols - 1)]
                 raw_table.columns = raw_col_names
+                raw_table['attribute'] = raw_table['attribute'].apply(normalize_att)
 
 
                 # Bottom table has % comparison values (C1, C2...)
@@ -98,10 +127,11 @@ for file_path in excel_paths:
                 pct_table['ord'] = pct_table['ord'].ffill()
                 # pct_table['ord'] = pct_table['ord'].astype(str).str.strip()
                 pct_table['attribute'] = pct_table['attribute'].apply(normalize_att)
-
+                # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"pct_table: {pct_table[["ord", "attribute"]]}\n")
                 
 
-                # Match attributes with corresponding field names: fieldName -> attribute
+                # Match attributes with corresponding field names: DB fieldName -> attribute
                 att_en_vn = {
                     "legalStatus": normalize_att("Tình trạng pháp lý"),
                     "location": normalize_att("Vị trí "),
@@ -118,12 +148,12 @@ for file_path in excel_paths:
                 # Match attributes with corresponding "ord" values: attribute -> ord C1, C2, ...
                 skip_attrs = [normalize_att(i) for i in ["Tỷ lệ", "Tỷ lệ điều chỉnh", "Mức điều chỉnh"]]
                 main_rows = pct_table[~pct_table["attribute"].isin(skip_attrs)] 
-                main_rows = main_rows.drop_duplicates(subset="ord", keep="first")
+                main_rows = main_rows.drop_duplicates(subset=["ord","attribute"], keep="first")
                 main_rows['attribute'] = main_rows['attribute'].apply(normalize_att)
                 att_to_ord = dict(zip(main_rows["attribute"], main_rows["ord"]))
-                # print("att_to_ord:", att_to_ord)
-                # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
-                #         log_file.write(f"att_to_ord: {att_to_ord}\n")
+                print("att_to_ord:", att_to_ord)
+                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        log_file.write(f"att_to_ord: {att_to_ord}\n")
                 
 
 
@@ -268,17 +298,7 @@ for file_path in excel_paths:
 
 
 
-                # Function to get the coordinates from the info string
-                def get_info_location(info):
-                    res = {}
-                    if pd.isna(info) or info is None or str(info).strip() == "":
-                        return None
-                    else:
-                        res["x"] = float(str(info).split(",")[1])
-                        res["y"] = float(str(info).split(",")[0])
-                        res["type"] = "Point"
-                        res["coordinates"] = [res["x"], res["y"]]
-                        return res
+                
 
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
@@ -286,32 +306,32 @@ for file_path in excel_paths:
                     # location_info = get_info_location(entry.get("Tọa độ vị trí", 0))
                     # print(location_info)
                     return {
-                        "geoJsonPoint": get_info_location(entry.get("Tọa độ vị trí", 0)),
+                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"), 0)),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
-                                "fullAddress": str(entry.get("Địa chỉ tài sản", "")),
+                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "")),
                             },
-                            "totalPrice": smart_parse_float(entry.get("Giá đất (đồng/m²)", 0)),
-                            "landUsePurposeInfo": get_info_purpose(str(entry.get("Mục đích sử dụng đất ", ""))),
-                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get("Mục đích sử dụng đất ", ""))),
-                            "area": smart_parse_float(entry.get("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)", 0)),
-                            "width": smart_parse_float(entry.get("Chiều rộng (m)", 0)),
-                            "height": smart_parse_float(entry.get("Chiều dài (m)", 0)),
-                            "percentQuality": float(entry.get("Chất lượng còn lại (%)", 0)),
-                            "newConstructionUnitPrice": float(entry.get("Đơn giá xây dựng mới (đồng/m²)", 0)),
-                            "constructionValue": float(entry.get("Giá trị công trình xây dựng (đồng)", 0)),
-                            "sellingPrice": float(entry.get("Giá rao bán (đồng)", 0)),
-                            "negotiablePrice": float(entry.get("Giá thương lượng (đồng)", 0)),
-                            "landConversion": float(entry.get("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)", 0)),
-                            "landRoadBoundary": float(entry.get("Giá trị phần đất thuộc lộ giới (đồng)", 0)),
-                            "landValue": float(entry.get("Giá trị đất (đồng)", 0)),
-                            "landPrice": float(entry.get("Giá đất (đồng/m²)", 0)),
+                            "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"), 0)),
+                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất "), ""))),
+                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất "), ""))),
+                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"), 0)),
+                            "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"), 0)),
+                            "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"), 0)),
+                            "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if entry.get(normalize_att("Chất lượng còn lại (%)"), 0) != "" else np.nan,
+                            "newConstructionUnitPrice": float(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0)),
+                            "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
+                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"), 0)),
+                            "negotiablePrice": float(entry.get(normalize_att("Giá thương lượng (đồng)"), 0)),
+                            "landConversion": float(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
+                            "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), 0)),
+                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), 0)),
+                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"), 0)),
                         },
                         
                     }
 
                 # Function to build the comparison/percentage fields structure
-                def build_compare_fields(entry):
+                # def build_compare_fields(entry):
                     res = {
                         "legalStatus": {
                             "description": str(entry.get((att_to_ord[normalize_att("Tình trạng pháp lý")], normalize_att("Tình trạng pháp lý")), "")),
@@ -345,6 +365,26 @@ for file_path in excel_paths:
                     for key in res.keys():
                         res[key].update(add_pct(entry, att_en_vn[key]))
                     return res
+                def build_compare_fields(entry):
+                    res = {}
+                    for key, att in att_en_vn.items():
+                        norm_att = normalize_att(att)
+                        if norm_att in att_to_ord:
+                            try:
+                                ord_val = att_to_ord[norm_att]
+                                # Add base description field
+                                res[key] = {
+                                    "description": str(entry.get((ord_val, norm_att), ""))
+                                }
+                                # Add the percentage adjustments
+                                res[key].update(add_pct(entry, att))
+                            except Exception as e:
+                                print(f"⚠️ Skipping attribute {key} due to error: {e}")
+                                continue
+                        else:
+                            print(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord")
+                    return res
+
 
                 # Function to add percentage values to the comparison fields
                 def add_pct(entry, att):
@@ -417,16 +457,15 @@ for file_path in excel_paths:
                     log_file.write(f"✅ Inserted excel data with ID: {insert_id}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
 
-            
+                    
             except Exception as e:
                 error_message = traceback.format_exc()
-                print(f"❌ Failed to process sheet {sheet_names.index(sheet)+1} in {file_path}:\n{error_message}")
+                print(f"❌ Failed to process sheet {sheet} in {file_path}:\n{error_message}")
                 with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
-                    log_file.write(f"❌ Failed to process sheet {sheet_names.index(sheet)+1} in {file_path}:\n{error_message}\n")
+                    log_file.write(f"❌ Failed to process sheet {sheet} in {file_path}:\n{error_message}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
                 continue
         
-
 
     except Exception as e:
         error_message = traceback.format_exc()
@@ -443,5 +482,6 @@ for file_path in excel_paths:
 #         processed_files = [line.strip() for line in f if line.strip()]
 # print("Total number of processed files:", len(processed_files))
 
-print("Total number of files:", len(excel_paths))
+print("Total number of files:", len(sheet_map))
+total_sheets = sum(len(sheets) for sheets in sheet_map.values())
 print(f"Total number of sheets: {total_sheets}")
