@@ -7,8 +7,8 @@ from datetime import datetime
 import numpy as np
 import json
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
-        find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, \
-        find_meta_data, find_comparison_table_end, find_raw_table_end
+        find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
+        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number
 import os
 import re
 from pymongo import MongoClient
@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2025
-month = "01"
+month = "02"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -52,11 +52,15 @@ with open(comparison_file_path, "r", encoding="utf-8") as f:
 log_file_path = f"reading_logs_{month}_{year}.txt"
 open(log_file_path, "w", encoding="utf-8").close()
 
+found = 0
+missing = 0
+
 # ---- PROCESS EACH FILE AND SHEET ----
 for file_path, sheet_list in sheet_map.items():
     try:
         if not os.path.isfile(file_path):
             print(f"⭕️ File not found: {file_path}")
+            missing += 1
             with open(log_file_path, "a", encoding="utf-8") as log_file:
                 log_file.write(f"⭕️ File not found: {file_path}\n")
                 log_file.write("----------------------------------------------------------------------------------------------\n")
@@ -79,27 +83,59 @@ for file_path, sheet_list in sheet_map.items():
 
                 # --- Insert your full parsing/writing logic here ---
                 print(f"⏳ Processing {file_path}")
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"⏳ Processing sheet: {sheet}, {file_path}\n")
+
                 # xls = pd.ExcelFile(file_path)
                 # sheet = xls.sheet_names[sheet_idx]
 
                 df = pd.read_excel(xls, sheet_name=sheet, header=None)
+                df = df.dropna(axis=1, how='all')
+                
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"df:\n {df}")
+
+                non_empty_cols = df.columns[df.notna().any()].tolist()
+                first_valid_col_idx = df.columns.get_loc(non_empty_cols[0])
+
+                # Now dynamically set the column start indices based on the actual data
+                raw_col_start = first_valid_col_idx + 1  # TSTDG usually comes after attributes
+                pct_col_start = first_valid_col_idx + 0  # attributes (e.g., "Giá thị trường") are in this column
 
                 # ---- DETECT RAW DATA TABLE AND COMPARISON TABLE ---- 
                 raw_start_idx = find_row_index_containing(df, "HẠNG MỤC") + 1
                 pct_start_idx = find_comparison_table_start(df)
 
+                df_pct = df.iloc[pct_start_idx:]
+                df_pct = df_pct.dropna(axis=1, how='all')
+
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"df_pct:\n {df_pct}")
+
                 indicator_indices = find_meta_data(df, indicator_text="thời điểm")
                 if len(indicator_indices) < 2:
-                    raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
-                
-                raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
-                
-                pct_end_idx = find_comparison_table_end(df)
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
+                        log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")
+                        log_file.write(f"indicator_indices: {indicator_indices}\n")
+                    indicator_indices = find_meta_data(df, indicator_text="STT")
+                    # raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
 
-                raw_col_start = 2
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"indicator_indices: {indicator_indices}\n")
+
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"indicator_indices[1]: {indicator_indices[1]}\n")
+                #     log_file.write(f"find_raw_table_end: {find_raw_table_end(df, second_eval_row=indicator_indices[1])}\n")
+                #     log_file.write(f"df_pct index: {df_pct.index}")
+                #     log_file.write(f"find_comparison_table_end: {find_comparison_table_end(df_pct)}\n")
+                    
+                raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
+                pct_end_idx = find_comparison_table_end(df_pct)
+
+                # raw_col_start = 2
                 raw_col_end = raw_col_start + raw_col_length
 
-                pct_col_start = 1
+                # pct_col_start = 1
                 pct_col_end = pct_col_start + pct_col_length
 
 
@@ -118,6 +154,11 @@ for file_path, sheet_list in sheet_map.items():
                 raw_col_names = ["attribute", "TSTDG"] + [f"TSSS{i}" for i in range(1, num_raw_cols - 1)]
                 raw_table.columns = raw_col_names
                 raw_table['attribute'] = raw_table['attribute'].apply(normalize_att)
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"raw_table:\n {raw_table}")
+                #     # log_file.write()                    
+                #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+
 
 
                 # Bottom table has % comparison values (C1, C2...)
@@ -129,6 +170,10 @@ for file_path, sheet_list in sheet_map.items():
                 pct_table['attribute'] = pct_table['attribute'].apply(normalize_att)
                 # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"pct_table: {pct_table[["ord", "attribute"]]}\n")
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"pct_table:\n {pct_table}")
+                #     # log_file.write(pct_table)
+                #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
                 
 
                 # Match attributes with corresponding field names: DB fieldName -> attribute
@@ -175,11 +220,11 @@ for file_path, sheet_list in sheet_map.items():
                 ref_raws = [
                     extract_col_raw(col)
                     for col in raw_col_names
-                    if col.startswith("TSSS")
+                    if col.startswith("TSSS") or col.startswith("TSCM")
                 ]
 
                 # Filter out very empty reference columns
-                ref_raws = [ref for ref in ref_raws if sum(pd.isna(v) for v in ref.values()) <= 10]
+                ref_raws = [ref for ref in ref_raws if sum(pd.notna(v) for v in ref.values()) >= 10]
 
 
                 # Dynamically extract all TSSS columns from the comparison table
@@ -192,7 +237,7 @@ for file_path, sheet_list in sheet_map.items():
                 pct_table.columns = pct_col_names
 
                 # Extract TSSS* columns dynamically from pct_table
-                ref_pcts = [extract_col_pct(col) for col in pct_col_names if col.startswith("TSSS")]
+                ref_pcts = [extract_col_pct(col) for col in pct_col_names if col.startswith("TSSS") or col.startswith("TSCM")]
 
 
 
@@ -226,79 +271,51 @@ for file_path, sheet_list in sheet_map.items():
 
 
                 # Match the index of reference properties from comparison tables to raw tables
-                matched_idx = []  # indices in ref_raws that match each ref_pct in order
+                # def match_idx(ref_pcts, ref_raws):
+                matched_idx = []  
                 used_indices = set()
 
                 for ref_pct in ref_pcts:
                     pct_price = get_land_price_pct(ref_pct)
-                    
-                    # # Compare against all ref_raws that haven't been used
-                    # valid_refs = [
-                    #     (i, get_land_price_raw(ref_raw))
+                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        log_file.write(f"ref: ref{ref_pcts.index(ref_pct)+1}_pct, pct_price: {pct_price}\n")
+                        # log_file.write(f"ref_raws: {ref_raws}\n")
+                    diffs = []
+                    # diffs = [
+                    #     abs(get_land_price_raw(ref_raw) - pct_price)
+                    #     if i not in used_indices and pd.notna(get_land_price_raw(ref_raw)) else np.inf
                     #     for i, ref_raw in enumerate(ref_raws)
-                    #     if i not in used_indices and get_land_price_raw(ref_raw) is not None
                     # ]
+                    for i, ref_raw in enumerate(ref_raws):
+                        raw_price = get_land_price_raw(ref_raw)
+                        with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                            log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
+                        
+                        if i not in used_indices and pd.notna(raw_price):
+                            diffs.append(abs(raw_price - pct_price))
+                        else:
+                            diffs.append(np.inf)
 
-                    # if not valid_refs:
-                    #     raise ValueError(f"No usable reference properties found to match with comparison price: {pct_price}")
-                    # diffs = [abs(raw_price - pct_price) for _, raw_price in valid_refs]
-                    # best_idx = valid_refs[int(np.argmin(diffs))][0]
-
-                    diffs = [
-                        abs(get_land_price_raw(ref_raw) - pct_price)
-                        if i not in used_indices and get_land_price_raw(ref_raw) is not None else np.inf
-                        for i, ref_raw in enumerate(ref_raws)
-                    ]
+                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        log_file.write(f"ref: ref{ref_pcts.index(ref_pct)+1}_pct, diffs: {diffs}\n")
 
                     best_idx = int(np.argmin(diffs))
                     matched_idx.append(best_idx)
                     used_indices.add(best_idx)
+                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        log_file.write(f"used_indices: {used_indices}\n")
+                        log_file.write(f"best_idx: {best_idx}\n")
 
                 for i, idx in enumerate(matched_idx):
                     print(f"ref_pcts[{i}] matched with ref_raws[{idx}]")
+                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        log_file.write(f"ref_pcts[{i}] matched with ref_raws[{idx}]\n")
 
                 idx_matches = dict(enumerate(matched_idx))
+                # return idx_matches
 
 
                 # ---- STEP 3: BUILD DATA STRUCTURES ----
-
-                # Function to get the purpose and area from the info string
-                def get_info_purpose(info):
-                    if not isinstance(info, str) or not info.strip():
-                        return info, np.nan
-                    res = []
-                    
-                    # Split by newline or semicolon
-                    parts = re.split(r"[\n;]", info)
-
-                    for part in parts:
-                        if ":" in part:
-                            try:
-                                name, area = part.split(":", 1)
-                                area_clean = area.strip().lower().replace("m²", "").replace("m2", "")
-
-                                # Fix number formatting
-                                area_clean = area_clean.replace(".", "").replace(",", ".")  # remove thousand sep, fix decimal
-
-                                match = re.search(r"[\d.]+", area_clean)
-                                area_val = float(match.group()) if match else np.nan
-
-                                res.append({
-                                    "name": name.strip(),
-                                    "area": area_val
-                                })
-                            except Exception as e:
-                                print(f"⚠️ Could not parse part '{part}' in purpose field: {e}")
-                        else:
-                            res.append({
-                                "name": part.strip(),
-                                "area": np.nan
-                            })
-                    return res
-
-
-
-                
 
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
@@ -317,18 +334,20 @@ for file_path, sheet_list in sheet_map.items():
                             "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"), 0)),
                             "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"), 0)),
                             "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"), 0)),
-                            "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if entry.get(normalize_att("Chất lượng còn lại (%)"), 0) != "" else np.nan,
-                            "newConstructionUnitPrice": float(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0)),
+                            # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
+                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else np.nan,
+                            "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
                             "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
                             "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"), 0)),
-                            "negotiablePrice": float(entry.get(normalize_att("Giá thương lượng (đồng)"), 0)),
-                            "landConversion": float(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
+                            "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"), 0)),
+                            "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
                             "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), 0)),
                             "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), 0)),
                             "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"), 0)),
                         },
                         
                     }
+                
 
                 # Function to build the comparison/percentage fields structure
                 # def build_compare_fields(entry):
@@ -380,11 +399,14 @@ for file_path, sheet_list in sheet_map.items():
                                 res[key].update(add_pct(entry, att))
                             except Exception as e:
                                 print(f"⚠️ Skipping attribute {key} due to error: {e}")
+                                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                                    log_file.write(f"⚠️ Skipping attribute {key} due to error: {e}\n")
                                 continue
                         else:
                             print(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord")
+                            with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                                log_file.write(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord\n")
                     return res
-
 
                 # Function to add percentage values to the comparison fields
                 def add_pct(entry, att):
@@ -474,7 +496,8 @@ for file_path, sheet_list in sheet_map.items():
             log_file.write(f"❌ Failed to process {file_path}:\n{error_message}\n")
             log_file.write("----------------------------------------------------------------------------------------------\n")
         continue
-
+    
+    found += len(sheet_list)
     # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
     #     log_file.write("----------------------------------------------------------------------------------------------\n")
 
@@ -484,4 +507,6 @@ for file_path, sheet_list in sheet_map.items():
 
 print("Total number of files:", len(sheet_map))
 total_sheets = sum(len(sheets) for sheets in sheet_map.values())
-print(f"Total number of sheets: {total_sheets}")
+# print(f"Total number of sheets: {total_sheets}")
+print(f"Total number of sheets: {found + missing}")
+# print("x:", x)
