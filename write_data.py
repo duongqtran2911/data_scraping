@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2025
-month = "02"
+month = "03"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -91,33 +91,52 @@ for file_path, sheet_list in sheet_map.items():
 
                 df = pd.read_excel(xls, sheet_name=sheet, header=None)
                 df = df.dropna(axis=1, how='all')
-                
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"df:\n {df}")
+                min_valid_cells = 5
+                df = df.loc[:, df.notna().sum() >= min_valid_cells].reset_index(drop=True)
 
                 non_empty_cols = df.columns[df.notna().any()].tolist()
                 first_valid_col_idx = df.columns.get_loc(non_empty_cols[0])
 
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"df:\n {df}")
+
                 # Now dynamically set the column start indices based on the actual data
                 raw_col_start = first_valid_col_idx + 1  # TSTDG usually comes after attributes
-                pct_col_start = first_valid_col_idx + 0  # attributes (e.g., "Giá thị trường") are in this column
 
                 # ---- DETECT RAW DATA TABLE AND COMPARISON TABLE ---- 
                 raw_start_idx = find_row_index_containing(df, "HẠNG MỤC") + 1
                 pct_start_idx = find_comparison_table_start(df)
 
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"raw_start_idx: {raw_start_idx}\n")
+                #     log_file.write(f"pct_start_idx: {pct_start_idx}\n")
+
                 df_pct = df.iloc[pct_start_idx:]
                 df_pct = df_pct.dropna(axis=1, how='all')
+                min_valid_cells = 10
+                df_pct = df_pct.loc[:, df_pct.notna().sum() >= min_valid_cells].reset_index(drop=True)
+
+                non_empty_cols_cmp = df_pct.columns[df_pct.notna().any()].tolist()
+                first_valid_cmp_col_idx = df_pct.columns.get_loc(non_empty_cols_cmp[0])
+
+                pct_col_start = first_valid_cmp_col_idx + 0  # attributes (e.g., "Giá thị trường") are in this column
+                
+                pct_start_idx = find_comparison_table_start(df_pct)
+
 
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"df_pct:\n {df_pct}")
+                #     log_file.write(f"raw_col_start: {raw_col_start}\n")
+                #     log_file.write(f"pct_col_start: {pct_col_start}\n")
+
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"df_pct:\n {df_pct}\n")
 
                 indicator_indices = find_meta_data(df, indicator_text="thời điểm")
                 if len(indicator_indices) < 2:
                     with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")
                         log_file.write(f"indicator_indices: {indicator_indices}\n")
-                    indicator_indices = find_meta_data(df, indicator_text="STT")
+                    indicator_indices = find_meta_data(df, indicator_text="stt")
                     # raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
 
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
@@ -126,7 +145,7 @@ for file_path, sheet_list in sheet_map.items():
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"indicator_indices[1]: {indicator_indices[1]}\n")
                 #     log_file.write(f"find_raw_table_end: {find_raw_table_end(df, second_eval_row=indicator_indices[1])}\n")
-                #     log_file.write(f"df_pct index: {df_pct.index}")
+                    # log_file.write(f"df_pct index: {df_pct.index}\n")
                 #     log_file.write(f"find_comparison_table_end: {find_comparison_table_end(df_pct)}\n")
                     
                 raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
@@ -155,14 +174,13 @@ for file_path, sheet_list in sheet_map.items():
                 raw_table.columns = raw_col_names
                 raw_table['attribute'] = raw_table['attribute'].apply(normalize_att)
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"raw_table:\n {raw_table}")
-                #     # log_file.write()                    
+                #     log_file.write(f"raw_table:\n {raw_table}\n") 
                 #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
 
 
                 # Bottom table has % comparison values (C1, C2...)
-                pct_table = df.iloc[pct_start_idx:pct_end_idx+1, pct_col_start:pct_col_end].dropna(how="all")
+                pct_table = df_pct.iloc[pct_start_idx:pct_end_idx+1, pct_col_start:pct_col_end].dropna(how="all")
                 pct_table.columns = ["ord", "attribute", "TSTDG", "TSSS1", "TSSS2", "TSSS3"]
                 pct_table.reset_index(drop=True, inplace=True)
                 pct_table['ord'] = pct_table['ord'].ffill()
@@ -171,8 +189,7 @@ for file_path, sheet_list in sheet_map.items():
                 # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"pct_table: {pct_table[["ord", "attribute"]]}\n")
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"pct_table:\n {pct_table}")
-                #     # log_file.write(pct_table)
+                #     log_file.write(f"pct_table:\n {pct_table}\n")
                 #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
                 
 
@@ -290,6 +307,7 @@ for file_path, sheet_list in sheet_map.items():
                         raw_price = get_land_price_raw(ref_raw)
                         with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
                             log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
+                            log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
                         
                         if i not in used_indices and pd.notna(raw_price):
                             diffs.append(abs(raw_price - pct_price))
@@ -484,7 +502,7 @@ for file_path, sheet_list in sheet_map.items():
                 error_message = traceback.format_exc()
                 print(f"❌ Failed to process sheet {sheet} in {file_path}:\n{error_message}")
                 with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
-                    log_file.write(f"❌ Failed to process sheet {sheet} in {file_path}:\n{error_message}\n")
+                    log_file.write(f"❌ Failed to process sheet {sheet} in {file_path}\n{error_message}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
                 continue
         
@@ -493,7 +511,7 @@ for file_path, sheet_list in sheet_map.items():
         error_message = traceback.format_exc()
         print(f"❌ Failed to process {file_path}:\n{error_message}")
         with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
-            log_file.write(f"❌ Failed to process {file_path}:\n{error_message}\n")
+            log_file.write(f"❌ Failed to process {file_path}\n{error_message}\n")
             log_file.write("----------------------------------------------------------------------------------------------\n")
         continue
     

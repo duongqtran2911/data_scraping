@@ -93,7 +93,7 @@ def find_comparison_table_end(df):
 
     for i in reversed(df.index):
         ord_val = df.at[i, ord_col]
-        row_values = df.loc[i, 1:]  # skip STT + ord column
+        row_values = df.iloc[i, 1:]  # skip STT + ord column
         if is_valid_ord(ord_val):
             # Check if the row contains any numeric value in other columns
             if row_values.apply(lambda x: isinstance(x, (int, float)) or str(x).replace(',', '').replace('.', '').isdigit()).any():
@@ -296,17 +296,28 @@ def normalize_att(attr):
         "yếu tố khác (nếu có)": "yếu tố khác",
         "yếu tố khác": "yếu tố khác",  
         'giá thị trường (giá trước điều chỉnh) (đồng/m²/năm)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+        'giá thị trường \n(giá trước điều chỉnh) (đồng/m²)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'dân cư, kinh doanh': "dân cư",
         "chiều dài (m)": "chiều dài",
         "chiều rộng (m)": "chiều rộng",
         # raw table
-        "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
+        "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất ont(đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất cln(đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất luc(đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
 
