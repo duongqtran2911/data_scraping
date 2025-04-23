@@ -33,7 +33,7 @@ month = "03"
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
 #     excel_paths = [line.strip() for line in f if line.strip()]
-# open(f"reading_logs_{month}_{year}.txt", "w", encoding="utf-8").close()
+# open(log_file_path", "w", encoding="utf-8").close()
 # total_sheets = 0
 
 
@@ -49,7 +49,12 @@ with open(comparison_file_path, "r", encoding="utf-8") as f:
             sheet_map[path.strip()] = [s for s in sheets.split("&&")]
 
 # ---- LOG FILE ----
-log_file_path = f"reading_logs_{month}_{year}.txt"
+log_folder = os.path.join(os.getcwd(), f"reading_logs_{year}")
+os.makedirs(log_folder, exist_ok=True)
+
+# log_file_path = f"reading_logs_{month}_{year}.txt"
+# 📄 Create log file path inside the year-based folder
+log_file_path = os.path.join(log_folder, f"reading_logs_{month}_{year}.txt")
 open(log_file_path, "w", encoding="utf-8").close()
 
 found = 0
@@ -94,14 +99,11 @@ for file_path, sheet_list in sheet_map.items():
                 min_valid_cells = 5
                 df = df.loc[:, df.notna().sum() >= min_valid_cells].reset_index(drop=True)
 
-                non_empty_cols = df.columns[df.notna().any()].tolist()
-                first_valid_col_idx = df.columns.get_loc(non_empty_cols[0])
-
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"df:\n {df}")
 
                 # Now dynamically set the column start indices based on the actual data
-                raw_col_start = first_valid_col_idx + 1  # TSTDG usually comes after attributes
+                
 
                 # ---- DETECT RAW DATA TABLE AND COMPARISON TABLE ---- 
                 raw_start_idx = find_row_index_containing(df, "HẠNG MỤC") + 1
@@ -111,6 +113,21 @@ for file_path, sheet_list in sheet_map.items():
                 #     log_file.write(f"raw_start_idx: {raw_start_idx}\n")
                 #     log_file.write(f"pct_start_idx: {pct_start_idx}\n")
 
+
+                # Slice the first half of the file
+                df_raw = df.iloc[:pct_start_idx]
+                df_raw = df_raw.dropna(axis=1, how='all')
+                min_valid_cells = 10
+                df_raw = df_raw.loc[:, df_raw.notna().sum() >= min_valid_cells].reset_index(drop=True)
+
+                non_empty_cols_raw = df_raw.columns[df_raw.notna().any()].tolist()
+                first_valid_raw_col_idx = df_raw.columns.get_loc(non_empty_cols_raw[0])
+
+                raw_col_start = first_valid_raw_col_idx + 1  # TSTDG usually comes after attributes
+
+
+
+                # Slice the second half of the file
                 df_pct = df.iloc[pct_start_idx:]
                 df_pct = df_pct.dropna(axis=1, how='all')
                 min_valid_cells = 10
@@ -162,7 +179,7 @@ for file_path, sheet_list in sheet_map.items():
                 # Assume the top table starts around row 5 and has 4 columns: Attribute | TSDG | TSSS1 | TSSS2 | TSSS3
 
                 # Extract the raw table
-                raw_table = df.iloc[raw_start_idx:raw_end_idx+1, raw_col_start:raw_col_end].dropna(how="all")
+                raw_table = df_raw.iloc[raw_start_idx:raw_end_idx+1, raw_col_start:raw_col_end].dropna(how="all")
                 raw_table.reset_index(drop=True, inplace=True)
 
                 # Dynamically assign column names based on actual number of columns
@@ -186,7 +203,7 @@ for file_path, sheet_list in sheet_map.items():
                 pct_table['ord'] = pct_table['ord'].ffill()
                 # pct_table['ord'] = pct_table['ord'].astype(str).str.strip()
                 pct_table['attribute'] = pct_table['attribute'].apply(normalize_att)
-                # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"pct_table: {pct_table[["ord", "attribute"]]}\n")
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"pct_table:\n {pct_table}\n")
@@ -214,7 +231,7 @@ for file_path, sheet_list in sheet_map.items():
                 main_rows['attribute'] = main_rows['attribute'].apply(normalize_att)
                 att_to_ord = dict(zip(main_rows["attribute"], main_rows["ord"]))
                 print("att_to_ord:", att_to_ord)
-                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"att_to_ord: {att_to_ord}\n")
                 
 
@@ -294,7 +311,7 @@ for file_path, sheet_list in sheet_map.items():
 
                 for ref_pct in ref_pcts:
                     pct_price = get_land_price_pct(ref_pct)
-                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"ref: ref{ref_pcts.index(ref_pct)+1}_pct, pct_price: {pct_price}\n")
                         # log_file.write(f"ref_raws: {ref_raws}\n")
                     diffs = []
@@ -305,7 +322,7 @@ for file_path, sheet_list in sheet_map.items():
                     # ]
                     for i, ref_raw in enumerate(ref_raws):
                         raw_price = get_land_price_raw(ref_raw)
-                        with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                        with open(log_file_path, "a", encoding="utf-8") as log_file:
                             log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
                             log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
                         
@@ -314,19 +331,19 @@ for file_path, sheet_list in sheet_map.items():
                         else:
                             diffs.append(np.inf)
 
-                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"ref: ref{ref_pcts.index(ref_pct)+1}_pct, diffs: {diffs}\n")
 
                     best_idx = int(np.argmin(diffs))
                     matched_idx.append(best_idx)
                     used_indices.add(best_idx)
-                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"used_indices: {used_indices}\n")
                         log_file.write(f"best_idx: {best_idx}\n")
 
                 for i, idx in enumerate(matched_idx):
                     print(f"ref_pcts[{i}] matched with ref_raws[{idx}]")
-                    with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"ref_pcts[{i}] matched with ref_raws[{idx}]\n")
 
                 idx_matches = dict(enumerate(matched_idx))
@@ -417,12 +434,12 @@ for file_path, sheet_list in sheet_map.items():
                                 res[key].update(add_pct(entry, att))
                             except Exception as e:
                                 print(f"⚠️ Skipping attribute {key} due to error: {e}")
-                                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                                with open(log_file_path, "a", encoding="utf-8") as log_file:
                                     log_file.write(f"⚠️ Skipping attribute {key} due to error: {e}\n")
                                 continue
                         else:
                             print(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord")
-                            with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                            with open(log_file_path, "a", encoding="utf-8") as log_file:
                                 log_file.write(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord\n")
                     return res
 
@@ -493,7 +510,7 @@ for file_path, sheet_list in sheet_map.items():
                 insert_excel_data = collection.insert_one(new_data)
                 insert_id = insert_excel_data.inserted_id
                 # print(f"✅ Inserted excel data with ID: {insert_id}")
-                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
                     log_file.write(f"✅ Inserted excel data with ID: {insert_id}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
 
@@ -501,7 +518,7 @@ for file_path, sheet_list in sheet_map.items():
             except Exception as e:
                 error_message = traceback.format_exc()
                 print(f"❌ Failed to process sheet {sheet} in {file_path}:\n{error_message}")
-                with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
                     log_file.write(f"❌ Failed to process sheet {sheet} in {file_path}\n{error_message}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
                 continue
@@ -510,16 +527,16 @@ for file_path, sheet_list in sheet_map.items():
     except Exception as e:
         error_message = traceback.format_exc()
         print(f"❌ Failed to process {file_path}:\n{error_message}")
-        with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+        with open(log_file_path, "a", encoding="utf-8") as log_file:
             log_file.write(f"❌ Failed to process {file_path}\n{error_message}\n")
             log_file.write("----------------------------------------------------------------------------------------------\n")
         continue
     
     found += len(sheet_list)
-    # with open(f"reading_logs_{month}_{year}.txt", "a", encoding="utf-8") as log_file:
+    # with open(log_file_path, "a", encoding="utf-8") as log_file:
     #     log_file.write("----------------------------------------------------------------------------------------------\n")
 
-# with open(f"reading_logs_{month}_{year}.txt", "r", encoding="utf-8") as f:
+# with open(log_file_path, "r", encoding="utf-8") as f:
 #         processed_files = [line.strip() for line in f if line.strip()]
 # print("Total number of processed files:", len(processed_files))
 

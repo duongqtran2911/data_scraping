@@ -2,18 +2,21 @@ import os
 import pandas as pd
 
 # 🔧 CONFIGURATION
-year = 2025
-month = "04"
+year = 2024
+month = "01"
 month = month.zfill(2)
 
 root_dir = rf"\\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\{year}\THANG {month}"
 
-# 📁 Log paths
 base_path = r"D:\Project\data_scraping"
-comparison_log = os.path.join(base_path, f"comparison_files_{month}_{year}.txt")
-irrelevant_log = os.path.join(base_path, f"irrelevant_files_{month}_{year}.txt")
-unclassified_log = os.path.join(base_path, f"unclassified_files_{month}_{year}.txt")
-full_log_file = os.path.join(base_path, f"all_checked_files_{month}_{year}.txt")
+log_dir =  os.path.join(base_path, f"file_detection_{year}")
+os.makedirs(log_dir, exist_ok=True)  # Create year folder if not exists
+
+# 📁 Log paths
+comparison_log = os.path.join(log_dir, f"comparison_files_{month}_{year}.txt")
+irrelevant_log = os.path.join(log_dir, f"irrelevant_files_{month}_{year}.txt")
+unclassified_log = os.path.join(log_dir, f"unclassified_files_{month}_{year}.txt")
+full_log_file = os.path.join(log_dir, f"all_checked_files_{month}_{year}.txt")
 
 # 🔍 Keywords to search
 comparison_keywords = [

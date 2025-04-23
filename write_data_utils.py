@@ -318,6 +318,7 @@ def normalize_att(attr):
         "đơn giá đất ont(đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất cln(đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất luc(đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
 
