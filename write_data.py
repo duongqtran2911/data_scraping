@@ -27,8 +27,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2025
-month = "03"
+year = 2024
+month = "1"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -41,7 +41,10 @@ month = "03"
 comparison_file_path = f"comparison_files_{month}_{year}.txt"
 sheet_map = {}
 
-with open(comparison_file_path, "r", encoding="utf-8") as f:
+detect_folder = os.path.join(os.getcwd(), f"file_detection_{year}")
+comparison_file = os.path.join(detect_folder, comparison_file_path)
+
+with open(comparison_file, "r", encoding="utf-8") as f:
     for line in f:
         if ">>>" in line:
             path, sheets = line.rstrip("\n").split(" >>> ")
@@ -94,6 +97,7 @@ for file_path, sheet_list in sheet_map.items():
                 # xls = pd.ExcelFile(file_path)
                 # sheet = xls.sheet_names[sheet_idx]
 
+                
                 df = pd.read_excel(xls, sheet_name=sheet, header=None)
                 df = df.dropna(axis=1, how='all')
                 min_valid_cells = 5

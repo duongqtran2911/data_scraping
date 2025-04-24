@@ -3,8 +3,8 @@ import pandas as pd
 
 # 🔧 CONFIGURATION
 year = 2024
-month = "01"
-month = month.zfill(2)
+month = "7"
+# month = month.zfill(2)
 
 root_dir = rf"\\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\{year}\THANG {month}"
 
@@ -45,6 +45,7 @@ def sheet_has_comparison_section(df):
 # 🚀 Start scanning
 for dirpath, _, filenames in os.walk(root_dir):
     for filename in filenames:
+        # print(f"⏳Reading file: {filename}\n")
         if filename.lower().endswith(excel_extensions):
             file_path = os.path.join(dirpath, filename)
             all_files_checked += 1
@@ -63,10 +64,13 @@ for dirpath, _, filenames in os.walk(root_dir):
 
                 if matched_sheets:
                     comparison_matches[file_path] = matched_sheets
+                    print(f"✅ Added file to comparison files list\n")
                 else:
                     irrelevant_files.append(file_path)
+                    print(f"❌ Added file to irrelevant files list\n")
             except Exception as e:
                 unclassified_files.append(file_path)
+                print(f"⭕️ Added file to unclassified files list\n")
 
 # 💾 Save logs
 def save_list(path, data, label):
@@ -74,7 +78,7 @@ def save_list(path, data, label):
         with open(path, "w", encoding="utf-8") as f:
             if isinstance(data, dict):
                 for file, sheets in data.items():
-                    f.write(f"{file} >>> {'&&'.join(sheets)}")
+                    f.write(f"{file} >>> {'&&'.join(sheets)}\n")
             else:
                 for file in data:
                     f.write(file + "\n")
