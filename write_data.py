@@ -27,8 +27,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "1"
+year = 2025
+month = "03"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -390,39 +390,40 @@ for file_path, sheet_list in sheet_map.items():
 
                 # Function to build the comparison/percentage fields structure
                 # def build_compare_fields(entry):
-                    res = {
-                        "legalStatus": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Tình trạng pháp lý")], normalize_att("Tình trạng pháp lý")), "")),
-                        },
-                        "location":{
-                            "description": str(entry.get((att_to_ord[normalize_att("Vị trí ")],normalize_att("Vị trí ")), "")),
-                        },
-                        "traffic": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Giao thông")], normalize_att("Giao thông")), "")),
-                        },
-                        "area": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Quy mô diện tích (m²)")], normalize_att("Quy mô diện tích (m²)")), "")),
-                        },
-                        "width": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Chiều rộng")], normalize_att("Chiều rộng")), "")),
-                        }, 
-                        "height": { 
-                            "description": str(entry.get((att_to_ord[normalize_att("Chiều dài")], normalize_att("Chiều dài")), "")),
-                        },
-                        "population": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Dân cư")],normalize_att("Dân cư")), "")),
-                        },
-                        "shape": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Hình dáng")], normalize_att("Hình dáng")), "")),
-                        },
-                        "other": {
-                            "description": str(entry.get((att_to_ord[normalize_att("Yếu tố khác (nếu có)")], normalize_att("Yếu tố khác (nếu có)")), "")),
-                        }
+                    # res = {
+                    #     "legalStatus": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Tình trạng pháp lý")], normalize_att("Tình trạng pháp lý")), "")),
+                    #     },
+                    #     "location":{
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Vị trí ")],normalize_att("Vị trí ")), "")),
+                    #     },
+                    #     "traffic": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Giao thông")], normalize_att("Giao thông")), "")),
+                    #     },
+                    #     "area": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Quy mô diện tích (m²)")], normalize_att("Quy mô diện tích (m²)")), "")),
+                    #     },
+                    #     "width": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Chiều rộng")], normalize_att("Chiều rộng")), "")),
+                    #     }, 
+                    #     "height": { 
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Chiều dài")], normalize_att("Chiều dài")), "")),
+                    #     },
+                    #     "population": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Dân cư")],normalize_att("Dân cư")), "")),
+                    #     },
+                    #     "shape": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Hình dáng")], normalize_att("Hình dáng")), "")),
+                    #     },
+                    #     "other": {
+                    #         "description": str(entry.get((att_to_ord[normalize_att("Yếu tố khác (nếu có)")], normalize_att("Yếu tố khác (nếu có)")), "")),
+                    #     }
 
-                    }
-                    for key in res.keys():
-                        res[key].update(add_pct(entry, att_en_vn[key]))
-                    return res
+                    # }
+                    # for key in res.keys():
+                    #     res[key].update(add_pct(entry, att_en_vn[key]))
+                    # return res
+
                 def build_compare_fields(entry):
                     res = {}
                     for key, att in att_en_vn.items():
