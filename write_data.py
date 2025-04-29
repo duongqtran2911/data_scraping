@@ -27,8 +27,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2025
-month = "03"
+year = 2024
+month = "12"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -48,15 +48,15 @@ with open(comparison_file, "r", encoding="utf-8") as f:
     for line in f:
         if ">>>" in line:
             path, sheets = line.rstrip("\n").split(" >>> ")
-            # sheet_map[path.strip()] = [s.strip() for s in sheets.split(",") if s.strip()]
             sheet_map[path.strip()] = [s for s in sheets.split("&&")]
 
 # ---- LOG FILE ----
 log_folder = os.path.join(os.getcwd(), f"reading_logs_{year}")
 os.makedirs(log_folder, exist_ok=True)
 
-# log_file_path = f"reading_logs_{month}_{year}.txt"
+
 # 📄 Create log file path inside the year-based folder
+# log_file_path = f"reading_logs_{month}_{year}.txt"
 log_file_path = os.path.join(log_folder, f"reading_logs_{month}_{year}.txt")
 open(log_file_path, "w", encoding="utf-8").close()
 
@@ -106,7 +106,6 @@ for file_path, sheet_list in sheet_map.items():
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"df:\n {df}")
 
-                # Now dynamically set the column start indices based on the actual data
                 
 
                 # ---- DETECT RAW DATA TABLE AND COMPARISON TABLE ---- 
@@ -116,7 +115,6 @@ for file_path, sheet_list in sheet_map.items():
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"raw_start_idx: {raw_start_idx}\n")
                 #     log_file.write(f"pct_start_idx: {pct_start_idx}\n")
-
 
                 # Slice the first half of the file
                 df_raw = df.iloc[:pct_start_idx]
@@ -134,7 +132,7 @@ for file_path, sheet_list in sheet_map.items():
                 # Slice the second half of the file
                 df_pct = df.iloc[pct_start_idx:]
                 df_pct = df_pct.dropna(axis=1, how='all')
-                min_valid_cells = 10
+                min_valid_cells = 5
                 df_pct = df_pct.loc[:, df_pct.notna().sum() >= min_valid_cells].reset_index(drop=True)
 
                 non_empty_cols_cmp = df_pct.columns[df_pct.notna().any()].tolist()
@@ -149,9 +147,10 @@ for file_path, sheet_list in sheet_map.items():
                 #     log_file.write(f"raw_col_start: {raw_col_start}\n")
                 #     log_file.write(f"pct_col_start: {pct_col_start}\n")
 
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"df_pct:\n {df_pct}\n")
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"df_pct:\n {df_pct}\n")
 
+                # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
                 indicator_indices = find_meta_data(df, indicator_text="thời điểm")
                 if len(indicator_indices) < 2:
                     with open(log_file_path, "a", encoding="utf-8") as log_file:
@@ -172,15 +171,12 @@ for file_path, sheet_list in sheet_map.items():
                 raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
                 pct_end_idx = find_comparison_table_end(df_pct)
 
-                # raw_col_start = 2
-                raw_col_end = raw_col_start + raw_col_length
 
-                # pct_col_start = 1
+                raw_col_end = raw_col_start + raw_col_length
                 pct_col_end = pct_col_start + pct_col_length
 
 
                 # ---- FIND AND PARSE TABLES FROM EXCEL FILES ----
-                # Assume the top table starts around row 5 and has 4 columns: Attribute | TSDG | TSSS1 | TSSS2 | TSSS3
 
                 # Extract the raw table
                 raw_table = df_raw.iloc[raw_start_idx:raw_end_idx+1, raw_col_start:raw_col_end].dropna(how="all")
@@ -194,24 +190,22 @@ for file_path, sheet_list in sheet_map.items():
                 raw_col_names = ["attribute", "TSTDG"] + [f"TSSS{i}" for i in range(1, num_raw_cols - 1)]
                 raw_table.columns = raw_col_names
                 raw_table['attribute'] = raw_table['attribute'].apply(normalize_att)
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"raw_table:\n {raw_table}\n") 
-                #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"raw_table:\n {raw_table}\n") 
+                    log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
 
 
-                # Bottom table has % comparison values (C1, C2...)
+                # Bottom table has percentage comparison values (C1, C2...)
                 pct_table = df_pct.iloc[pct_start_idx:pct_end_idx+1, pct_col_start:pct_col_end].dropna(how="all")
                 pct_table.columns = ["ord", "attribute", "TSTDG", "TSSS1", "TSSS2", "TSSS3"]
                 pct_table.reset_index(drop=True, inplace=True)
                 pct_table['ord'] = pct_table['ord'].ffill()
                 # pct_table['ord'] = pct_table['ord'].astype(str).str.strip()
                 pct_table['attribute'] = pct_table['attribute'].apply(normalize_att)
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"pct_table: {pct_table[["ord", "attribute"]]}\n")
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"pct_table:\n {pct_table}\n")
-                #     log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"pct_table:\n {pct_table}\n")
+                    log_file.write(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
                 
 
                 # Match attributes with corresponding field names: DB fieldName -> attribute
@@ -277,37 +271,7 @@ for file_path, sheet_list in sheet_map.items():
                 # Extract TSSS* columns dynamically from pct_table
                 ref_pcts = [extract_col_pct(col) for col in pct_col_names if col.startswith("TSSS") or col.startswith("TSCM")]
 
-
-
-                # Extract the raw and comparison tables
-                # main_raw = extract_col_raw("TSTDG")
-                # ref1_raw = extract_col_raw("TSSS1")
-                # ref2_raw = extract_col_raw("TSSS2")
-                # ref3_raw = extract_col_raw("TSSS3")
-                # ref4_raw = extract_col_raw("TSSS4")
-                # ref5_raw = extract_col_raw("TSSS5")
-                # ref6_raw = extract_col_raw("TSSS6")
-                # ref7_raw = extract_col_raw("TSSS7")
-                # ref8_raw = extract_col_raw("TSSS8")
-                # ref9_raw = extract_col_raw("TSSS9")
-
-
-                # main_pct = extract_col_pct("TSTDG")
-                # ref1_pct = extract_col_pct("TSSS1")
-                # ref2_pct = extract_col_pct("TSSS2")
-                # ref3_pct = extract_col_pct("TSSS3")
-
-
-                # # Save all reference tables data in lists 
-                # ref_raws = [ref1_raw, ref2_raw, ref3_raw, ref4_raw, ref5_raw, \
-                #             ref6_raw, ref7_raw, ref8_raw, ref9_raw]
-                            # , ref10_raw, ref11_raw]
-                # print(len(ref_raws))
-
-                # ref_raws = [ref for ref in ref_raws if sum(pd.isna(v) for v in ref.values()) <= 10]
-                # ref_pcts = [ref1_pct, ref2_pct, ref3_pct]
-
-
+                
                 # Match the index of reference properties from comparison tables to raw tables
                 # def match_idx(ref_pcts, ref_raws):
                 matched_idx = []  
@@ -358,72 +322,34 @@ for file_path, sheet_list in sheet_map.items():
 
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
-                    # print(entry.get("Tọa độ vị trí", 0))
-                    # location_info = get_info_location(entry.get("Tọa độ vị trí", 0))
-                    # print(location_info)
                     return {
-                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"), 0)),
+                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"))),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
                                 "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "")),
                             },
-                            "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"), 0)),
-                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất "), ""))),
-                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất "), ""))),
-                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"), 0)),
-                            "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"), 0)),
-                            "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"), 0)),
+                            "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
+                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
+                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
+                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
+                            "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"))),
+                            "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"))),
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
-                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else np.nan,
+                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
                             "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
                             "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
-                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"), 0)),
-                            "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"), 0)),
+                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"))),
+                            "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"))),
                             "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
-                            "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), 0)),
-                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), 0)),
-                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"), 0)),
+                            "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
+                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), np.nan)),
+                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                         },
                         
                     }
                 
 
                 # Function to build the comparison/percentage fields structure
-                # def build_compare_fields(entry):
-                    # res = {
-                    #     "legalStatus": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Tình trạng pháp lý")], normalize_att("Tình trạng pháp lý")), "")),
-                    #     },
-                    #     "location":{
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Vị trí ")],normalize_att("Vị trí ")), "")),
-                    #     },
-                    #     "traffic": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Giao thông")], normalize_att("Giao thông")), "")),
-                    #     },
-                    #     "area": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Quy mô diện tích (m²)")], normalize_att("Quy mô diện tích (m²)")), "")),
-                    #     },
-                    #     "width": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Chiều rộng")], normalize_att("Chiều rộng")), "")),
-                    #     }, 
-                    #     "height": { 
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Chiều dài")], normalize_att("Chiều dài")), "")),
-                    #     },
-                    #     "population": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Dân cư")],normalize_att("Dân cư")), "")),
-                    #     },
-                    #     "shape": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Hình dáng")], normalize_att("Hình dáng")), "")),
-                    #     },
-                    #     "other": {
-                    #         "description": str(entry.get((att_to_ord[normalize_att("Yếu tố khác (nếu có)")], normalize_att("Yếu tố khác (nếu có)")), "")),
-                    #     }
-
-                    # }
-                    # for key in res.keys():
-                    #     res[key].update(add_pct(entry, att_en_vn[key]))
-                    # return res
-
                 def build_compare_fields(entry):
                     res = {}
                     for key, att in att_en_vn.items():
@@ -549,4 +475,6 @@ print("Total number of files:", len(sheet_map))
 total_sheets = sum(len(sheets) for sheets in sheet_map.values())
 # print(f"Total number of sheets: {total_sheets}")
 print(f"Total number of sheets: {found + missing}")
+with open(log_file_path, "a", encoding="utf-8") as log_file:
+    log_file.write(f"Total number of sheets: {found + missing}\n")
 # print("x:", x)

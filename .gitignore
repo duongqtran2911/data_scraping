@@ -1,6 +1,6 @@
-/202*/comparison_files_*.txt
-/202*/irrelevant_files_*.txt
-/202*/unclassified_files_*.txt
-/202*/all_checked_files_*.txt
+/file_detection_202*/comparison_files_*.txt
+/file_detection_202*/irrelevant_files_*.txt
+/file_detection_202*/unclassified_files_*.txt
+/file_detection_202*/all_checked_files_*.txt
 /misc
 /reading_logs_*

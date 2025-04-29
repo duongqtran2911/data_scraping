@@ -77,6 +77,7 @@ def is_valid_ord(value):
     return bool(re.match(r"^[A-E]\d{0,1}$", value)) or value in ["A", "B", "C", "D"]
 
 
+# Check if a value is numeric
 def is_numeric_like(x):
     try:
         return isinstance(x, (int, float)) or str(x).replace(',', '').replace('.', '').replace('-', '').isdigit()
@@ -99,57 +100,6 @@ def find_comparison_table_end(df):
             if row_values.apply(lambda x: isinstance(x, (int, float)) or str(x).replace(',', '').replace('.', '').isdigit()).any():
                 return i
     raise ValueError("Comparison table end not found.")
-
-# def find_comparison_table_end(df):
-#     """
-#     Find the last row of the comparison table in the DataFrame by detecting 
-#     numeric values in the row starting from column index 2.
-#     """
-#     ord_col = df.columns[0]  # usually the 'STT' or ID column
-    
-#     for i in range(len(df) - 1, -1, -1):  # iterate using integer positions
-#         ord_val = df.iloc[i, 0]  # get ordinal like 'E4'
-#         row_values = df.iloc[i, 2:]  # skip STT and ord_col
-        
-#         if is_valid_ord(ord_val):  # your custom check
-#             if row_values.apply(lambda x: isinstance(x, (int, float)) or (
-#                 isinstance(x, str) and str(x).replace(',', '').replace('.', '').isdigit())
-#             ).any():
-#                 return i
-    
-#     raise ValueError("Comparison table end not found.")
-
-
-
-# def find_comparison_table_end(df, max_empty_rows=2):
-#     """
-#     Returns the index of the last row that is part of the comparison table.
-#     Includes valid ord rows and continuation rows with content.
-#     Stops after `max_empty_rows` fully-empty rows.
-#     """
-#     last_valid_idx = None
-#     empty_count = 0
-
-#     for i in range(len(df)):
-#         row = df.iloc[i]
-#         ord_val = row.iloc[0]
-#         attribute_val = row.iloc[1]
-#         data_values = row.iloc[2:]
-
-#         is_ord = is_valid_ord(ord_val)
-#         has_data = pd.notna(attribute_val) or data_values.apply(lambda x: is_numeric_like(x)).any()
-
-#         if is_ord or has_data:
-#             last_valid_idx = i
-#             empty_count = 0  # reset counter
-#         else:
-#             empty_count += 1
-#             if empty_count >= max_empty_rows:
-#                 break  # assume end of table
-
-#     if last_valid_idx is not None:
-#         return last_valid_idx
-#     raise ValueError("Comparison table end not found.")
 
 
 # Function that detects human notations and converts them to numbers
@@ -192,46 +142,6 @@ def parse_human_number(text):
 
 
 # Convert a string to a float, handling various formats
-# def smart_parse_float(s):
-#     """
-#     Convert a string like "1.234,56" or "1,234.56" or "203,5" to float.
-#     Handles both European and US-style formats dynamically.
-#     """
-#     if not isinstance(s, str):
-#         return s  # Already a number or None
-
-#     s = s.strip().lower()
-#     s = re.sub(r"[^\d.,-]", "", s)  # Remove everything except digits, commas, dots
-
-#     # Case 1: Only one separator → assume it's the decimal
-#     if s.count(",") == 1 and s.count(".") == 0:
-#         return float(s.replace(",", "."))
-
-#     if s.count(".") == 1 and s.count(",") == 0:
-#         return float(s)
-
-#     # Case 2: Both separators → guess decimal from position
-#     if "," in s and "." in s:
-#         last_dot = s.rfind(".")
-#         last_comma = s.rfind(",")
-
-#         if last_comma > last_dot:
-#             # Assume European format: 1.234,56 → 1234.56
-#             s = s.replace(".", "").replace(",", ".")
-#         else:
-#             # Assume US format: 1,234.56 → 1234.56
-#             s = s.replace(",", "")
-
-#         return float(s)
-
-#     # Case 3: More than one comma → likely thousand separator
-#     if s.count(",") > 1:
-#         s = s.replace(",", "")
-#         return float(s)
-
-#     # Case 4: Just digits
-#     return float(s)
-
 def smart_parse_float(s):
     """
     Extract and convert the first numeric value found in a string to float.
@@ -285,6 +195,7 @@ def normalize_string(s):
     s = ''.join(c for c in s if not unicodedata.combining(c))
     s = re.sub(r"\s+", " ", s)  # collapse all whitespace
     return s.strip().lower()
+
 
 # Re-import necessary module after state reset
 def normalize_att(attr):
