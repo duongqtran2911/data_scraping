@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2024
-month = "12"
+month = "8"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -38,17 +38,30 @@ month = "12"
 
 
 # ---- LOAD EXCEL PATHS AND SHEETS ----
-comparison_file_path = f"comparison_files_{month}_{year}.txt"
+# comparison_file_path = f"comparison_files_{month}_{year}.txt"
+# sheet_map = {}
+#
+# detect_folder = os.path.join(os.getcwd(), f"file_detection_{year}")
+# comparison_file = os.path.join(detect_folder, comparison_file_path)
+#
+# with open(comparison_file, "r", encoding="utf-8") as f:
+#     for line in f:
+#         if ">>>" in line:
+#             path, sheets = line.rstrip("\n").split(" >>> ")
+#             sheet_map[path.strip()] = [s for s in sheets.split("&&")]
+
+folder_path = r"D:/excel"
 sheet_map = {}
 
-detect_folder = os.path.join(os.getcwd(), f"file_detection_{year}")
-comparison_file = os.path.join(detect_folder, comparison_file_path)
-
-with open(comparison_file, "r", encoding="utf-8") as f:
-    for line in f:
-        if ">>>" in line:
-            path, sheets = line.rstrip("\n").split(" >>> ")
-            sheet_map[path.strip()] = [s for s in sheets.split("&&")]
+# Quét toàn bộ file Excel trong thư mục
+for filename in os.listdir(folder_path):
+    if filename.endswith(".xlsx") or filename.endswith(".xls"):
+        full_path = os.path.join(folder_path, filename)
+        try:
+            xls = pd.ExcelFile(full_path)
+            sheet_map[full_path] = xls.sheet_names  # Lấy danh sách sheet
+        except Exception as e:
+            print(f"⚠️ Lỗi đọc file {full_path}: {e}")
 
 # ---- LOG FILE ----
 log_folder = os.path.join(os.getcwd(), f"reading_logs_{year}")
@@ -226,10 +239,10 @@ for file_path, sheet_list in sheet_map.items():
 
                 # Match attributes with corresponding "ord" values: attribute -> ord C1, C2, ...
                 skip_attrs = [normalize_att(i) for i in ["Tỷ lệ", "Tỷ lệ điều chỉnh", "Mức điều chỉnh"]]            # Loại bỏ những thuộc tính không cần ánh xạ (ví dụ như tỷ lệ).
-                main_rows = pct_table[~pct_table["attribute"].isin(skip_attrs)]                                     # Bỏ trùng lặp và ánh xạ attribute → ord (VD: "Chiều dài" → "C2").
-                main_rows = main_rows.drop_duplicates(subset=["ord","attribute"], keep="first")
-                main_rows['attribute'] = main_rows['attribute'].apply(normalize_att)
-                att_to_ord = dict(zip(main_rows["attribute"], main_rows["ord"]))
+                main_rows = pct_table[~pct_table["attribute"].isin(skip_attrs)]                                     # Lọc ra các dòng trong pct_table có cột "attribute" không nằm trong skip_attrs.
+                main_rows = main_rows.drop_duplicates(subset=["ord","attribute"], keep="first")                     # Xử lý dữ liệu bị trùng lặp trong bảng pct_table. Giữ lại dòng đầu tiên cho mỗi cặp (ord, attribute). Tránh việc một thuộc tính được ánh xạ nhiều lần sang cùng một ord.
+                main_rows['attribute'] = main_rows['attribute'].apply(normalize_att)                                # Áp dụng chuẩn hóa cho từng giá trị trong cột "attribute" (vì một số có thể chưa được chuẩn hóa trước đó).
+                att_to_ord = dict(zip(main_rows["attribute"], main_rows["ord"]))                                    # Mục đích: Tạo ánh xạ từ thuộc tính (đã chuẩn hóa) → mã ord tương ứng (C1, C2, ...). Ví dụ: "vị trí" → "C2", "tình trạng pháp lý → "C1"
                 print("att_to_ord:", att_to_ord)
                 with open(log_file_path, "a", encoding="utf-8") as log_file:
                         log_file.write(f"att_to_ord: {att_to_ord}\n")                                               # Sau đó ghi kết quả ánh xạ vào file log.
@@ -354,24 +367,26 @@ for file_path, sheet_list in sheet_map.items():
                 # Function to build the comparison/percentage fields structure
                 def build_compare_fields(entry):
                     res = {}                                # Tạo các trường dùng để so sánh (adjustment fields) giữa tài sản chính và tài sản tham chiếu, bao gồm mô tả + phần trăm điều chỉnh.
-                    for key, att in att_en_vn.items():
-                        norm_att = normalize_att(att)
-                        if norm_att in att_to_ord:
+                    for key, att in att_en_vn.items():      # Tạo dictionary res để chứa kết quả cuối cùng. Mỗi trường dữ liệu (vd: legalStatus, location) sẽ là 1 key trong res.
+                        norm_att = normalize_att(att)       # Chuẩn hóa lại tên thuộc tính một lần nữa để đảm bảo đồng nhất khi tra cứu trong các dict như att_to_ord.
+                        if norm_att in att_to_ord:          # Kiểm tra xem tên thuộc tính đã chuẩn hóa có tồn tại trong ánh xạ att_to_ord hay không. att_to_ord ánh xạ từ tên thuộc tính chuẩn hóa sang một số thứ tự (ordinal),
                             try:
                                 ord_val = att_to_ord[norm_att]
                                 # Add base description field
-                                res[key] = {
+                                res[key] = {                # Từ entry, lấy giá trị mô tả tại vị trí (ord_val, norm_att) Vì dữ liệu được lưu trong entry là kiểu MultiIndex (tuple key), nên truy cập bằng (ord_val, norm_att)
                                     "description": str(entry.get((ord_val, norm_att), ""))
                                 }
                                 # Add the percentage adjustments
-                                res[key].update(add_pct(entry, att))
+                                res[key].update(add_pct(entry, att))        # Gọi hàm add_pct() để thêm các giá trị:percent: tỷ lệ gốc, percentAdjust: tỷ lệ điều chỉnh, valueAdjust: mức điều chỉnh (giá trị quy đổi)
+
+
                             except Exception as e:
                                 print(f"⚠️ Skipping attribute {key} due to error: {e}")
                                 with open(log_file_path, "a", encoding="utf-8") as log_file:
-                                    log_file.write(f"⚠️ Skipping attribute {key} due to error: {e}\n")
+                                    log_file.write(f"⚠️ Skipping attribute {key} due to error: {e}\n")      # Ghi log lỗi vào file nếu có lỗi truy cập entry, tránh chương trình bị crash.
                                 continue
                         else:
-                            print(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord")
+                            print(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord")      # Ghi log cảnh báo rằng thuộc tính này không thể xử lý vì chưa có ánh xạ thứ tự.
                             with open(log_file_path, "a", encoding="utf-8") as log_file:
                                 log_file.write(f"⚠️ Skipping attribute '{key}' because it's missing in att_to_ord\n")
                     return res
@@ -382,7 +397,7 @@ for file_path, sheet_list in sheet_map.items():
                     # print("Tỷ lệ", float(entry.get((att_to_ord[att], "Tỷ lệ"), 0)))
                     # print("Tỷ lệ điều chỉnh", float(entry.get((att_to_ord[att], "Tỷ lệ điều chỉnh"), 0)))
                     # print("Mức điều chỉnh", float(entry.get((att_to_ord[att], "Mức điều chỉnh"), 0)))
-                    return {                                                                           # Chức năng thêm giá trị phần trăm vào các trường so sánh
+                    return {                                                                           # Hàm thêm các giá trị tỷ lệ điều chỉnh
                         "percent": float(entry.get((att_to_ord[att], normalize_att("Tỷ lệ")), 0)),
                         "percentAdjust": float(entry.get((att_to_ord[att], normalize_att("Tỷ lệ điều chỉnh")), 0)),
                         "valueAdjust": float(entry.get((att_to_ord[att], normalize_att("Mức điều chỉnh")), 0)),
@@ -437,7 +452,7 @@ for file_path, sheet_list in sheet_map.items():
                 client = MongoClient(MONGO_URI)
                 # Use the correct database and collection
                 db = client["assets-valuemind"]
-                collection = db["test"]
+                collection = db["Danh"]
 
                 # Insert data into MongoDB
                 insert_excel_data = collection.insert_one(new_data)
