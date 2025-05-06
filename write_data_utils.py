@@ -208,6 +208,8 @@ def normalize_att(attr):
         "yếu tố khác": "yếu tố khác",  
         'giá thị trường (giá trước điều chỉnh) (đồng/m²/năm)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường \n(giá trước điều chỉnh) (đồng/m²)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+        'giá thị trường \n(giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+        'giá thị trường \n(giá trước điều chỉnh) \n(đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'dân cư, kinh doanh': "dân cư",
         "chiều dài (m)": "chiều dài",
@@ -232,7 +234,7 @@ def normalize_att(attr):
         "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-
+        "Giá rao bán (đồng) (không có VAT):":"Giá rao bán (đồng)",
     }
     return replacements.get(attr, attr)
 

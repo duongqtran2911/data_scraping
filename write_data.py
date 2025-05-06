@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2024
-month = "8"
+month = "4"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -38,30 +38,17 @@ month = "8"
 
 
 # ---- LOAD EXCEL PATHS AND SHEETS ----
-# comparison_file_path = f"comparison_files_{month}_{year}.txt"
-# sheet_map = {}
-#
-# detect_folder = os.path.join(os.getcwd(), f"file_detection_{year}")
-# comparison_file = os.path.join(detect_folder, comparison_file_path)
-#
-# with open(comparison_file, "r", encoding="utf-8") as f:
-#     for line in f:
-#         if ">>>" in line:
-#             path, sheets = line.rstrip("\n").split(" >>> ")
-#             sheet_map[path.strip()] = [s for s in sheets.split("&&")]
-
-folder_path = r"D:/excel"
+comparison_file_path = f"comparison_files_{month}_{year}.txt"
 sheet_map = {}
 
-# Quét toàn bộ file Excel trong thư mục
-for filename in os.listdir(folder_path):
-    if filename.endswith(".xlsx") or filename.endswith(".xls"):
-        full_path = os.path.join(folder_path, filename)
-        try:
-            xls = pd.ExcelFile(full_path)
-            sheet_map[full_path] = xls.sheet_names  # Lấy danh sách sheet
-        except Exception as e:
-            print(f"⚠️ Lỗi đọc file {full_path}: {e}")
+detect_folder = os.path.join(os.getcwd(), f"file_detection_{year}")
+comparison_file = os.path.join(detect_folder, comparison_file_path)
+
+with open(comparison_file, "r", encoding="utf-8") as f:
+    for line in f:
+        if ">>>" in line:
+            path, sheets = line.rstrip("\n").split(" >>> ")
+            sheet_map[path.strip()] = [s for s in sheets.split("&&")]
 
 # ---- LOG FILE ----
 log_folder = os.path.join(os.getcwd(), f"reading_logs_{year}")
@@ -164,10 +151,10 @@ for file_path, sheet_list in sheet_map.items():
                     log_file.write(f"df_pct:\n {df_pct}\n")                                                         # Ghi nội dung bảng so sánh (df_pct) vào file log để tiện debug nếu cần.
 
                 # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
-                indicator_indices = find_meta_data(df, indicator_text="thời điểm")                               # Tìm các dòng chứa từ khóa "thời điểm" — thường dùng làm dấu mốc cuối bảng dữ liệu gốc.
+                indicator_indices = find_meta_data(df, indicator_text="thời điểm")                               # Tìm các dòng chứa từ khóa "thời điểm" — thường dùng làm dấu mốc đầu bảng dữ liệu gốc.
                 if len(indicator_indices) < 2:
                     with open(log_file_path, "a", encoding="utf-8") as log_file:
-                        log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")       # Nếu không đủ dữ kiện để xác định điểm kết thúc, chuyển sang tìm "stt" làm chỉ mục thay thế.
+                        log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")       # Nếu không đủ dữ kiện để xác định điểm bắt đầu, chuyển sang tìm "stt" làm chỉ mục thay thế.
                         log_file.write(f"indicator_indices: {indicator_indices}\n")
                     indicator_indices = find_meta_data(df, indicator_text="stt")
                     # raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
