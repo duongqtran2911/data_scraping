@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2024
-month = "4"
+month = "12"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -147,17 +147,17 @@ for file_path, sheet_list in sheet_map.items():
                 #     log_file.write(f"raw_col_start: {raw_col_start}\n")
                 #     log_file.write(f"pct_col_start: {pct_col_start}\n")
 
-                with open(log_file_path, "a", encoding="utf-8") as log_file:
-                    log_file.write(f"df_pct:\n {df_pct}\n")                                                         # Ghi nội dung bảng so sánh (df_pct) vào file log để tiện debug nếu cần.
-
-                # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
-                indicator_indices = find_meta_data(df, indicator_text="thời điểm")                               # Tìm các dòng chứa từ khóa "thời điểm" — thường dùng làm dấu mốc đầu bảng dữ liệu gốc.
-                if len(indicator_indices) < 2:
-                    with open(log_file_path, "a", encoding="utf-8") as log_file:
-                        log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")       # Nếu không đủ dữ kiện để xác định điểm bắt đầu, chuyển sang tìm "stt" làm chỉ mục thay thế.
-                        log_file.write(f"indicator_indices: {indicator_indices}\n")
-                    indicator_indices = find_meta_data(df, indicator_text="stt")
-                    # raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #     log_file.write(f"df_pct:\n {df_pct}\n")                                                         # Ghi nội dung bảng so sánh (df_pct) vào file log để tiện debug nếu cần.
+                #
+                # # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
+                # indicator_indices = find_meta_data(df, indicator_text="thời điểm")                               # Tìm các dòng chứa từ khóa "thời điểm" — thường dùng làm dấu mốc đầu bảng dữ liệu gốc.
+                # if len(indicator_indices) < 2:
+                #     with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #         log_file.write("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")       # Nếu không đủ dữ kiện để xác định điểm bắt đầu, chuyển sang tìm "stt" làm chỉ mục thay thế.
+                #         log_file.write(f"indicator_indices: {indicator_indices}\n")
+                #     indicator_indices = find_meta_data(df, indicator_text="stt")
+                #     # raise ValueError("⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx")
 
                 # with open(log_file_path, "a", encoding="utf-8") as log_file:
                 #     log_file.write(f"indicator_indices: {indicator_indices}\n")
@@ -167,8 +167,28 @@ for file_path, sheet_list in sheet_map.items():
                 #     log_file.write(f"find_raw_table_end: {find_raw_table_end(df, second_eval_row=indicator_indices[1])}\n")
                     # log_file.write(f"df_pct index: {df_pct.index}\n")
                 #     log_file.write(f"find_comparison_table_end: {find_comparison_table_end(df_pct)}\n")
-                    
-                raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])              # raw_end_idx: Vị trí dòng cuối cùng của bảng dữ liệu gốc (df_raw)
+
+                # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
+                indicator_indices = find_meta_data(df, indicator_text="thời điểm")                  # kiểm tra danh sách indicator_indices có đủ phần tử trước khi cố gắng truy cập vào chúng
+                if len(indicator_indices) < 2:
+                    with open(log_file_path, "a", encoding="utf-8") as log_file:
+                        log_file.write(
+                            "⚠️ Could not find the second 'Thời điểm ...' to determine raw_end_idx, switching to 'STT'\n")
+                        log_file.write(f"indicator_indices: {indicator_indices}\n")
+                    indicator_indices = find_meta_data(df, indicator_text="stt")
+
+                    # Kiểm tra lại sau khi tìm "stt"
+                    if len(indicator_indices) < 2:
+                        with open(log_file_path, "a", encoding="utf-8") as log_file:
+                            log_file.write("⚠️ Could not find enough 'STT' indicators either. Using fallback method.\n")
+                        # Sử dụng một phương pháp dự phòng, như lấy giá trị mặc định hoặc tìm từ khóa khác
+                        # Ví dụ:
+                        raw_end_idx = find_raw_table_end(
+                            df)  # Giả sử hàm này có thể hoạt động mà không cần second_eval_row
+                    else:
+                        raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])
+                else:
+                    raw_end_idx = find_raw_table_end(df, second_eval_row=indicator_indices[1])             # raw_end_idx: Vị trí dòng cuối cùng của bảng dữ liệu gốc (df_raw)
                 pct_end_idx = find_comparison_table_end(df_pct)                                        # pct_end_idx: Vị trí kết thúc bảng so sánh (df_pct)
 
 
@@ -292,9 +312,9 @@ for file_path, sheet_list in sheet_map.items():
                     # ]
                     for i, ref_raw in enumerate(ref_raws):                                                          # Với mỗi ref_raw (một bảng dữ liệu thô):
                         raw_price = get_land_price_raw(ref_raw)                                                         # Tính giá trị định giá đất của nó (raw_price)
-                        with open(log_file_path, "a", encoding="utf-8") as log_file:
-                            log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
-                            log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
+                        # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                        #     log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
+                        #     log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
                         
                         if i not in used_indices and pd.notna(raw_price):                                               # Nếu chưa được ghép (không nằm trong used_indices) và không bị thiếu, tính |raw_price - pct_price|
                             diffs.append(abs(raw_price - pct_price))
@@ -337,15 +357,15 @@ for file_path, sheet_list in sheet_map.items():
                             "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"))),
                             "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"))),
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
-                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,        # Các giá trị liên quan đến giá trị xây dựng, thương lượng, chuyển đổi, v.v.
+                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" and re.sub(r'[^\d.]', '', str(val)) != "" else 1.0, #fix dư dấu chấm
                             "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
-                            "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
-                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"))),
+                            "constructionValue": smart_parse_float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
+                            "sellingPrice": smart_parse_float(entry.get(normalize_att("Giá rao bán (đồng)"))),
                             "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"))),
                             "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
                             "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
-                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), np.nan)),
-                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
+                            "landValue": smart_parse_float(str(entry.get(normalize_att("Giá trị đất (đồng)"), "")).strip()),
+                            "landPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                         },
                         
                     }
