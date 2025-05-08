@@ -27,8 +27,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "12"
+year = 2023
+month = "10"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
