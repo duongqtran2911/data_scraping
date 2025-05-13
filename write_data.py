@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2023
-month = "10"
+month = "9"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -143,13 +143,13 @@ for file_path, sheet_list in sheet_map.items():
                 pct_start_idx = find_comparison_table_start(df_pct)         # Gọi lại hàm để định vị lại (nếu cần) vị trí bảng so sánh trong phần đã cắt df_pct.
 
 
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"raw_col_start: {raw_col_start}\n")
-                #     log_file.write(f"pct_col_start: {pct_col_start}\n")
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"raw_col_start: {raw_col_start}\n")
+                    log_file.write(f"pct_col_start: {pct_col_start}\n")
 
-                # with open(log_file_path, "a", encoding="utf-8") as log_file:
-                #     log_file.write(f"df_pct:\n {df_pct}\n")                                                         # Ghi nội dung bảng so sánh (df_pct) vào file log để tiện debug nếu cần.
-                #
+                with open(log_file_path, "a", encoding="utf-8") as log_file:
+                    log_file.write(f"df_pct:\n {df_pct}\n")                                                         # Ghi nội dung bảng so sánh (df_pct) vào file log để tiện debug nếu cần.
+
                 # # Indices of subtext in the excel file => Helper function for finding the end of the raw data table
                 # indicator_indices = find_meta_data(df, indicator_text="thời điểm")                               # Tìm các dòng chứa từ khóa "thời điểm" — thường dùng làm dấu mốc đầu bảng dữ liệu gốc.
                 # if len(indicator_indices) < 2:
