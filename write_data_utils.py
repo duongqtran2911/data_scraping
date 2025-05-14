@@ -215,8 +215,18 @@ def normalize_att(attr):
         'dân cư, kinh doanh': "dân cư",
         "chiều dài (m)": "chiều dài",
         "chiều rộng (m)": "chiều rộng",
+        "chiều rộng giáp mặt tiền đường (m)":"chiều rộng (m)",
+        "chiều rộng tiếp giáp mặt tiền đường (m)": "chiều rộng (m)",
         # raw table
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới và quy hoạch cây xanh)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trử lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới đất nn)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
@@ -236,7 +246,7 @@ def normalize_att(attr):
         "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-        "Giá rao bán (đồng) (không có VAT):":"Giá rao bán (đồng)",
+        "giá rao bán (đồng) (không có vat):":"giá rao bán (đồng)",
     }
     return replacements.get(attr, attr)
 
@@ -374,3 +384,29 @@ def get_info_unit_price(info):
         except ValueError:
             return np.nan
     return np.nan
+
+
+def get_max_width(width):
+    if not isinstance(width, str):
+        return float(width)  # nếu là số thì trả về luôn
+
+    # Loại bỏ dấu phẩy kiểu '24,33' thành '24.33'
+    width = width.replace(',', '.')
+
+    # Regex để tìm giá trị sau cụm "nở hậu"
+    match = re.search(r"nở hậu\s*([0-9.]+)", width, flags=re.IGNORECASE)
+    if match:
+        try:
+            return float(match.group(1))
+        except ValueError:
+            return None
+
+    # Nếu không có "nở hậu", cố gắng lấy giá trị đầu tiên làm max_width luôn
+    match_fallback = re.search(r"([0-9.]+)", width)
+    if match_fallback:
+        try:
+            return float(match_fallback.group(1))
+        except ValueError:
+            return None
+
+    return None

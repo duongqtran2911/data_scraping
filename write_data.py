@@ -6,6 +6,8 @@ import uuid
 from datetime import datetime
 import numpy as np
 import json
+
+from data_scraping.write_data_utils import get_max_width
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number
@@ -27,8 +29,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "1"
+year = 2025
+month = "04"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -229,8 +231,8 @@ for file_path, sheet_list in sheet_map.items():
                 main_rows['attribute'] = main_rows['attribute'].apply(normalize_att)
                 att_to_ord = dict(zip(main_rows["attribute"], main_rows["ord"]))
                 print("att_to_ord:", att_to_ord)
-                with open(log_file_path, "a", encoding="utf-8") as log_file:
-                        log_file.write(f"att_to_ord: {att_to_ord}\n")
+                # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                #         log_file.write(f"att_to_ord: {att_to_ord}\n")
                 
 
 
@@ -333,6 +335,7 @@ for file_path, sheet_list in sheet_map.items():
                             "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
                             "area": float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
                             "width": float(entry.get(normalize_att("Chiều rộng (m)"))),
+                            "max_width": get_max_width(float(entry.get(normalize_att("Chiều rộng (m)")))),
                             "height": float(entry.get(normalize_att("Chiều dài (m)"))),
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
                             "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
@@ -436,7 +439,7 @@ for file_path, sheet_list in sheet_map.items():
                 client = MongoClient(MONGO_URI)
                 # Use the correct database and collection
                 db = client["assets-valuemind"]
-                collection = db["test"]
+                collection = db["Danh"]
 
                 # Insert data into MongoDB
                 insert_excel_data = collection.insert_one(new_data)

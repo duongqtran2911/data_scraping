@@ -22,14 +22,14 @@ def setup_driver(headless=True):
 
 def open_guland_page(driver):
     driver.get("https://guland.vn/ban-do-gia")
-
-
-def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
-    # mở lại form tờ thửa
     WebDriverWait(driver, 1).until(
         EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a'))
     ).click()
     time.sleep(1)
+
+def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
+    # mở lại form tờ thửa
+
 
     wait = WebDriverWait(driver, 1)
 
