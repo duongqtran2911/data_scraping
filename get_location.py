@@ -9,139 +9,145 @@ import requests
 import io
 import gzip
 
-so_thua = "2"
-so_to = "14"
-tinh = "Long An"
-huyen = "Huyện Cần Giuộc"
-xa = "Xã Long Hậu"
+i = 0
 
-# Khởi tạo trình duyệt
-options = webdriver.ChromeOptions()
-options.add_argument("--headless")  # Nếu muốn chạy ẩn
-driver = webdriver.Chrome(options=options)  # Cần có chromedriver đúng version
-
-# Bước 1: Truy cập Guland.vn
-driver.get("https://guland.vn/ban-do-gia")
-
-driver.maximize_window()
-
-wait = WebDriverWait(driver, 10)
-
-# Nhấn nút "Tờ Thửa"
-to_thua_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a')))
-to_thua_button.click()
-
-time.sleep(3)  # Chờ trang load
-
-# Điền thông tin
-# Nhập số tờ
-driver.find_element(By.XPATH, '//*[@id="form-to-thua"]/div[1]/div/div/div/div[2]/div/div/input[1]').send_keys(so_thua)
-
-# Nhập số thửa
-driver.find_element(By.XPATH, '//*[@id="form-to-thua"]/div[1]/div/div/div/div[2]/div/div/input[2]').send_keys(so_to)
-
-# Chọn tỉnh
-driver.find_element(By.XPATH, '//*[@id="select2-province_id_4-container"]').click()
-time.sleep(1)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(tinh)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(Keys.ENTER)
-
-# Chọn huyện
-time.sleep(1)
-driver.find_element(By.XPATH, '//*[@id="select2-district_id_4-container"]').click()
-time.sleep(1)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(huyen)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(Keys.ENTER)
-
-# Chọn xã
-time.sleep(1)
-driver.find_element(By.XPATH, '//*[@id="select2-ward_id_4-container"]').click()
-time.sleep(1)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(xa)
-driver.find_element(By.CLASS_NAME, 'select2-search__field').send_keys(Keys.ENTER)
-
-# Nhấn nút Tìm kiếm
-time.sleep(1)
-driver.find_element(By.XPATH, '//*[@id="TabContent-SqhSearch-3"]/div/div[2]/button').click()
-
-# Đợi dữ liệu phản hồi
-time.sleep(5)
+def setup_driver(headless=True):
+    options = webdriver.ChromeOptions()
+    if headless:
+        options.add_argument("--headless")
+    driver = webdriver.Chrome(options=options)
+    driver.maximize_window()
+    return driver
 
 
-time.sleep(2)  # Chờ trang tải
+def open_guland_page(driver):
+    driver.get("https://guland.vn/ban-do-gia")
 
-# print("Tiêu đề trang:", driver.title)
 
-# if "Bảng giá" in driver.title:
-#     print("✅ Truy cập trang Guland thành công!")
-# else:
-#     print("❌ Không truy cập được trang Guland.")
+def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
+    # mở lại form tờ thửa
+    WebDriverWait(driver, 1).until(
+        EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a'))
+    ).click()
+    time.sleep(1)
+
+    wait = WebDriverWait(driver, 1)
+
+    # 1. Xóa số thửa và số tờ cũ (nếu có) rồi nhập mới
+    input_thua = driver.find_element(By.XPATH, '//*[@id="form-to-thua"]/div[1]/div/div/div/div[2]/div/div/input[1]')
+    input_to = driver.find_element(By.XPATH, '//*[@id="form-to-thua"]/div[1]/div/div/div/div[2]/div/div/input[2]')
+    input_thua.clear()
+    input_to.clear()
+    input_thua.send_keys(so_thua)
+    input_to.send_keys(so_to)
+
+    # 2. Reset và chọn lại Tỉnh
+    driver.find_element(By.ID, "select2-province_id_4-container").click()
+    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "select2-search__field")))
+    search = driver.find_element(By.CLASS_NAME, "select2-search__field")
+    search.send_keys(Keys.CONTROL + "a")
+    search.send_keys(Keys.BACKSPACE)
+    search.send_keys(tinh)
+    search.send_keys(Keys.ENTER)
+
+    # 3. Reset và chọn lại Huyện
+    time.sleep(0.5)
+    driver.find_element(By.ID, "select2-district_id_4-container").click()
+    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "select2-search__field")))
+    search = driver.find_element(By.CLASS_NAME, "select2-search__field")
+    search.send_keys(Keys.CONTROL + "a")
+    search.send_keys(Keys.BACKSPACE)
+    search.send_keys(huyen)
+    search.send_keys(Keys.ENTER)
+
+    # 4. Reset và chọn lại Xã
+    time.sleep(0.5)
+    driver.find_element(By.ID, "select2-ward_id_4-container").click()
+    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "select2-search__field")))
+    search = driver.find_element(By.CLASS_NAME, "select2-search__field")
+    search.send_keys(Keys.CONTROL + "a")
+    search.send_keys(Keys.BACKSPACE)
+    search.send_keys(xa)
+    search.send_keys(Keys.ENTER)
+
+    # 5. Nhấn tìm kiếm
+    time.sleep(1)
+    driver.find_element(By.XPATH, '//*[@id="TabContent-SqhSearch-3"]/div/div[2]/button').click()
+    time.sleep(3)
 
 
 
-# # Gửi request lấy dữ liệu tọa độ
+def extract_coordinates_from_requests(driver):
+    correct_url = "https://guland.vn/post/check-plan?screen=ban-do-gia"
+    lat, lng = None, None
 
-# # Duyệt các request mà trình duyệt đã gửi
-# check_plan_url = None
-# for request in driver.requests:
-#     if "check-plan" in request.url and request.response:
-#         check_plan_url = request.url
-#         break
-
-# # Nếu có URL rồi thì fetch như bình thường
-# if check_plan_url:
-#     print("✅ Tìm thấy URL:", check_plan_url)
-
-#     response = requests.get(check_plan_url)
-#     if response.status_code == 200:
-#         data = response.json()
-#         if data["status"] == 1:
-#             for i, item in enumerate(data["data"]):
-#                 print(f"\n🏷️ Mảnh đất {i+1}: {item['title']}")
-#                 print(f"  📍 Tọa độ: lat = {item['lat']}, lng = {item['lng']}")
-#         else:
-#             print("❌ API lỗi: status != 1")
-#     else:
-#         print("❌ Request lỗi:", response.status_code)
-# else:
-#     print("❌ Không tìm thấy request check-plan.")
-
-# # Đóng trình duyệt
-# driver.quit()
-
-
-# === Step 5: Intercept check-plan POST request ===
-lat, lng = None, None
-correct_url = "https://guland.vn/post/check-plan?screen=ban-do-gia"
-
-for request in driver.requests:
-    if request.method == "POST" and correct_url in request.url and request.response:
-        try:
-            raw = request.response.body
+    for request in driver.requests:
+        if request.method == "POST" and correct_url in request.url and request.response:
             try:
-                # Try decompressing with gzip (most likely)
-                decompressed = gzip.GzipFile(fileobj=io.BytesIO(raw)).read().decode("utf-8")
-            except OSError:
-                # Fallback: assume it's not gzipped
-                decompressed = raw.decode("utf-8")
+                raw = request.response.body
+                try:
+                    decompressed = gzip.GzipFile(fileobj=io.BytesIO(raw)).read().decode("utf-8")
+                except OSError:
+                    decompressed = raw.decode("utf-8")
 
-            response_data = json.loads(decompressed)
-            lat = response_data["data"]["lat"]
-            lng = response_data["data"]["lng"]
+                response_data = json.loads(decompressed)
+                lat = response_data["data"]["lat"]
+                lng = response_data["data"]["lng"]
 
-            print(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
+                print(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
 
-            if "points" in response_data["data"]:
-                print("🧭 Polygon boundary:")
-                for pt in response_data["data"]["points"]:
-                    print(f"  {pt}")
+                if "points" in response_data["data"]:
+                    print("🧭 Polygon boundary:")
+                    for pt in response_data["data"]["points"]:
+                        print(f"  {pt}")
+
+            except Exception as e:
+                print("❌ Failed to parse JSON:", e)
+            break
+
+    if lat is None or lng is None:
+        print("❌ Could not find coordinates.")
+    return lat, lng
+
+
+def interactive_loop(driver):
+    while True:
+        print("\n👉 Nhập thông tin để tìm kiếm (gõ 'exit' ở bất kỳ đâu để thoát):")
+
+        so_thua = input("  Nhập số thửa: ")
+        if so_thua.lower() == 'exit': break
+
+        so_to = input("  Nhập số tờ: ")
+        if so_to.lower() == 'exit': break
+
+        tinh = input("  Nhập tỉnh: ")
+        if tinh.lower() == 'exit': break
+
+        huyen = input("  Nhập huyện: ")
+        if huyen.lower() == 'exit': break
+
+        xa = input("  Nhập xã: ")
+        if xa.lower() == 'exit': break
+
+        try:
+            fill_form(driver, so_thua, so_to, tinh, huyen, xa)
+            extract_coordinates_from_requests(driver)
 
         except Exception as e:
-            print("❌ Failed to parse JSON:", e)
-        break
+            print(f"❌ Lỗi: {e}")
 
-if lat is None or lng is None:
-    print("❌ Could not find coordinates.")
+def main():
+    # === Actions ===
+    driver = setup_driver(headless=True)
+    try:
+        open_guland_page(driver)
+        print("✅ Trang Guland đã sẵn sàng.")
 
-# === Step 6: Clean up ===
-driver.quit()
+        interactive_loop(driver)
+
+    finally:
+        driver.quit()
+
+
+if __name__ == "__main__":
+    main()
