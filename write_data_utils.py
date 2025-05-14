@@ -184,6 +184,7 @@ def smart_parse_float(s):
     try:
         return float(number_str)
     except:
+        # raise ValueError(f"Cannot convert '{s}' to float.")
         return None
 
 
@@ -215,6 +216,7 @@ def normalize_att(attr):
         "chiều dài (m)": "chiều dài",
         "chiều rộng (m)": "chiều rộng",
         # raw table
+        "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
