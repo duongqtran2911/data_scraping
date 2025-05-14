@@ -28,7 +28,7 @@ sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
 year = 2024
-month = "12"
+month = "1"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -331,9 +331,9 @@ for file_path, sheet_list in sheet_map.items():
                             "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                             "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
                             "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
-                            "width": smart_parse_float(entry.get(normalize_att("Chiều rộng (m)"))),
-                            "height": smart_parse_float(entry.get(normalize_att("Chiều dài (m)"))),
+                            "area": float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
+                            "width": float(entry.get(normalize_att("Chiều rộng (m)"))),
+                            "height": float(entry.get(normalize_att("Chiều dài (m)"))),
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
                             "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
                             "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
@@ -424,6 +424,7 @@ for file_path, sheet_list in sheet_map.items():
                 new_data = {
                     "createdDate": created_date_str,
                     "assetsCompareManagements": assets_compare_managements,
+                    "fileRepo": sheet + "||" + file_path,
                 }
                 for i in range(4):
                     if new_data["assetsCompareManagements"][i]["assetsManagement"]["geoJsonPoint"] == None:
