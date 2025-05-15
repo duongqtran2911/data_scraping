@@ -7,7 +7,7 @@ from datetime import datetime
 import numpy as np
 import json
 
-from data_scraping.write_data_utils import get_max_width
+from data_scraping.write_data_utils import get_max_width, get_facade_info
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number
@@ -334,8 +334,13 @@ for file_path, sheet_list in sheet_map.items():
                             "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
                             "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
                             "area": float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
+                            "location": str(entry.get(normalize_att("Vị trí"), "")),
                             "width": float(entry.get(normalize_att("Chiều rộng (m)"))),
                             "max_width": get_max_width(float(entry.get(normalize_att("Chiều rộng (m)")))),
+                            "facade": get_facade_info(
+                                        entry.get(normalize_att("Chiều rộng (m)")),
+                                        entry.get(normalize_att("Vị trí"))
+                                    ),
                             "height": float(entry.get(normalize_att("Chiều dài (m)"))),
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
                             "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,

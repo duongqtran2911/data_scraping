@@ -241,6 +241,18 @@ def normalize_att(attr):
         "quy mô diện tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ lộ giới quy hoạch)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
 
+        "quy mô diện tích (m²) \n(đã trừ lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(theo diện tích thực tế)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (đã trừ lộ giới) (m²)\n(đã trừ quy hoạch lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích thông thuỷ (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích thông thủy(m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn (thông thủy) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
 
     "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
@@ -425,3 +437,51 @@ def get_max_width(width):
             return None
 
     return None
+
+import re
+import numpy as np
+
+import numpy as np
+import re
+
+def get_facade_info(width_raw, location_info):
+    width_str = str(width_raw).strip().lower()
+    location_str = str(location_info).strip().lower()
+
+    # Các trường hợp không có mặt tiền
+    if any(kw in width_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]):
+        return {"has_facade": False, "value": np.nan}
+    if any(kw in location_str for kw in ["hẻm", "mặt hậu", "không có mặt tiền", "không tiếp giáp"]):
+        return {"has_facade": False, "value": np.nan}
+
+    # Ưu tiên: nếu trong vị trí có từ "mặt tiền", thì coi là có mặt tiền
+    if "mặt tiền" in location_str:
+        try:
+            width_val = float(width_str.replace(',', '.'))
+            return {"has_facade": True, "value": width_val}
+        except ValueError:
+            pass  # fallback sang parsing regex nếu fail
+
+    # Nếu không có "mặt tiền" trong vị trí, cố gắng bóc mặt tiền từ width_str
+    # Ưu tiên các đoạn như "1,96m mặt tiền"
+    match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
+    if match:
+        try:
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
+        except ValueError:
+            pass
+
+    # Nếu không có match đặc biệt, lấy số đầu tiên (nếu có)
+    match = re.search(r'([\d,\.]+)\s*m', width_str)
+    if match:
+        try:
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
+        except ValueError:
+            pass
+
+    # Không xác định được mặt tiền
+    return {"has_facade": False, "value": np.nan}
+
+
