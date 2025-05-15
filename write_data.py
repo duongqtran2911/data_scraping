@@ -29,8 +29,8 @@ MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSe
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2025
-month = "04"
+year = 2024
+month = "9"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -292,9 +292,9 @@ for file_path, sheet_list in sheet_map.items():
                     # ]
                     for i, ref_raw in enumerate(ref_raws):
                         raw_price = get_land_price_raw(ref_raw)
-                        with open(log_file_path, "a", encoding="utf-8") as log_file:
-                            log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
-                            log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
+                        # with open(log_file_path, "a", encoding="utf-8") as log_file:
+                        #     log_file.write(f"ref_raw: ref{ref_raws.index(ref_raw)+1}_raw, raw_price: {raw_price}\n")
+                        #     log_file.write(f"ref{ref_raws.index(ref_raw)+1}_raw:\n {ref_raw}\n")
                         
                         if i not in used_indices and pd.notna(raw_price):
                             diffs.append(abs(raw_price - pct_price))

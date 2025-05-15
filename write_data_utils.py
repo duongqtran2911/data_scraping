@@ -217,6 +217,10 @@ def normalize_att(attr):
         "chiều rộng (m)": "chiều rộng",
         "chiều rộng giáp mặt tiền đường (m)":"chiều rộng (m)",
         "chiều rộng tiếp giáp mặt tiền đường (m)": "chiều rộng (m)",
+        "chiều rộng mặt tiền tiếp giáp đường(m)":"chiều rộng (m)" ,
+        "chiều rộng mặt tiền tiếp giáp đường (m)":"chiều rộng (m)",
+
+        "chiều rộng giáp mặt đường (m)":"chiều rộng (m)",
         # raw table
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
@@ -224,8 +228,15 @@ def normalize_att(attr):
         "quy mô diên tích (m²)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới và quy hoạch cây xanh)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trử lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
         "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới đất nn)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "quy mô diên tích (m²)\n(trong gcn qsdđ)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ qhlg)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²) (đã trừ lộ giới)" :"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích(m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích cln (m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
 
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
