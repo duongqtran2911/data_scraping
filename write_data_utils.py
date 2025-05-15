@@ -209,12 +209,51 @@ def normalize_att(attr):
         "yếu tố khác": "yếu tố khác",  
         'giá thị trường (giá trước điều chỉnh) (đồng/m²/năm)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường \n(giá trước điều chỉnh) (đồng/m²)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+        'giá thị trường \n(giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+        'giá thị trường \n(giá trước điều chỉnh) \n(đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'dân cư, kinh doanh': "dân cư",
         "chiều dài (m)": "chiều dài",
         "chiều rộng (m)": "chiều rộng",
+        "chiều rộng giáp mặt tiền đường (m)":"chiều rộng (m)",
+        "chiều rộng tiếp giáp mặt tiền đường (m)": "chiều rộng (m)",
+        "chiều rộng mặt tiền tiếp giáp đường(m)":"chiều rộng (m)" ,
+        "chiều rộng mặt tiền tiếp giáp đường (m)":"chiều rộng (m)",
+
+        "chiều rộng giáp mặt đường (m)":"chiều rộng (m)",
         # raw table
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới và quy hoạch cây xanh)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trử lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới đất nn)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "quy mô diên tích (m²)\n(trong gcn qsdđ)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ qhlg)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²) (đã trừ lộ giới)" :"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích(m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích cln (m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "quy mô diện tích (m²)\n(chưa trừ đất thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ lộ giới quy hoạch)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "quy mô diện tích (m²) \n(đã trừ lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(theo diện tích thực tế)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (đã trừ lộ giới) (m²)\n(đã trừ quy hoạch lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích thông thuỷ (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích thông thủy(m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+        "diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn (thông thủy) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+
+
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
@@ -234,7 +273,7 @@ def normalize_att(attr):
         "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-
+        "giá rao bán (đồng) (không có vat):":"giá rao bán (đồng)",
     }
     return replacements.get(attr, attr)
 
@@ -372,3 +411,72 @@ def get_info_unit_price(info):
         except ValueError:
             return np.nan
     return np.nan
+
+
+def get_max_width(width):
+    if not isinstance(width, str):
+        return float(width)  # nếu là số thì trả về luôn
+
+    # Loại bỏ dấu phẩy kiểu '24,33' thành '24.33'
+    width = width.replace(',', '.')
+
+    # Regex để tìm giá trị sau cụm "nở hậu"
+    match = re.search(r"nở hậu\s*([0-9.]+)", width, flags=re.IGNORECASE)
+    if match:
+        try:
+            return float(match.group(1))
+        except ValueError:
+            return None
+
+    # Nếu không có "nở hậu", cố gắng lấy giá trị đầu tiên làm max_width luôn
+    match_fallback = re.search(r"([0-9.]+)", width)
+    if match_fallback:
+        try:
+            return float(match_fallback.group(1))
+        except ValueError:
+            return None
+
+    return None
+
+
+def get_facade_info(width_raw, location_info):
+    width_str = str(width_raw).strip().lower()
+    location_str = str(location_info).strip().lower()
+
+    # Các trường hợp không có mặt tiền
+    if any(kw in width_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]):
+        return {"has_facade": False, "value": np.nan}
+    if any(kw in location_str for kw in ["hẻm", "mặt hậu", "không có mặt tiền", "không tiếp giáp"]):
+        return {"has_facade": False, "value": np.nan}
+
+    # Ưu tiên: nếu trong vị trí có từ "mặt tiền", thì coi là có mặt tiền
+    if "mặt tiền" in location_str:
+        try:
+            width_val = float(width_str.replace(',', '.'))
+            return {"has_facade": True, "value": width_val}
+        except ValueError:
+            pass  # fallback sang parsing regex nếu fail
+
+    # Nếu không có "mặt tiền" trong vị trí, cố gắng bóc mặt tiền từ width_str
+    # Ưu tiên các đoạn như "1,96m mặt tiền"
+    match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
+    if match:
+        try:
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
+        except ValueError:
+            pass
+
+    # Nếu không có match đặc biệt, lấy số đầu tiên (nếu có)
+    match = re.search(r'([\d,\.]+)\s*m', width_str)
+    if match:
+        try:
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
+        except ValueError:
+            pass
+
+    # Không xác định được mặt tiền
+    return {"has_facade": False, "value": np.nan}
+
+
