@@ -448,40 +448,41 @@ def get_facade_info(width_raw, location_info):
     width_str = str(width_raw).strip().lower()
     location_str = str(location_info).strip().lower()
 
-    # Các trường hợp không có mặt tiền
+    # Các từ khóa chỉ không có mặt tiền
     if any(kw in width_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]):
         return {"has_facade": False, "value": np.nan}
-    if any(kw in location_str for kw in ["hẻm", "mặt hậu", "không có mặt tiền", "không tiếp giáp"]):
+    if any(kw in location_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp"]):
         return {"has_facade": False, "value": np.nan}
 
-    # Ưu tiên: nếu trong vị trí có từ "mặt tiền", thì coi là có mặt tiền
-    if "mặt tiền" in location_str:
+    # Ưu tiên tìm mặt tiền cụ thể trong width_str: "1,96m mặt tiền"
+    matches = re.findall(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
+    if matches:
         try:
-            width_val = float(width_str.replace(',', '.'))
-            return {"has_facade": True, "value": width_val}
-        except ValueError:
-            pass  # fallback sang parsing regex nếu fail
-
-    # Nếu không có "mặt tiền" trong vị trí, cố gắng bóc mặt tiền từ width_str
-    # Ưu tiên các đoạn như "1,96m mặt tiền"
-    match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
-    if match:
-        try:
-            value = float(match.group(1).replace(',', '.'))
-            return {"has_facade": True, "value": value}
+            val = float(matches[0][0].replace(',', '.'))
+            return {"has_facade": True, "value": val}
         except ValueError:
             pass
 
-    # Nếu không có match đặc biệt, lấy số đầu tiên (nếu có)
+    # Nếu location_info có "mặt tiền", dùng số đầu tiên trong width_str (nhưng không dùng toàn bộ raw)
+    if "mặt tiền" in location_str:
+        match = re.search(r'([\d,\.]+)', width_str)
+        if match:
+            try:
+                val = float(match.group(1).replace(',', '.'))
+                return {"has_facade": True, "value": val}
+            except ValueError:
+                pass
+
+    # Fallback: cố gắng bóc giá trị bất kỳ (không ưu tiên mặt tiền)
     match = re.search(r'([\d,\.]+)\s*m', width_str)
     if match:
         try:
-            value = float(match.group(1).replace(',', '.'))
-            return {"has_facade": True, "value": value}
+            val = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": val}
         except ValueError:
             pass
 
-    # Không xác định được mặt tiền
+    # Nếu không bóc được gì
     return {"has_facade": False, "value": np.nan}
 
 
