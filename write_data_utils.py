@@ -215,12 +215,14 @@ def normalize_att(attr):
         'dân cư, kinh doanh': "dân cư",
         "chiều dài (m)": "chiều dài",
         "chiều rộng (m)": "chiều rộng",
-        "chiều rộng giáp mặt tiền đường (m)":"chiều rộng (m)",
-        "chiều rộng tiếp giáp mặt tiền đường (m)": "chiều rộng (m)",
-        "chiều rộng mặt tiền tiếp giáp đường(m)":"chiều rộng (m)" ,
-        "chiều rộng mặt tiền tiếp giáp đường (m)":"chiều rộng (m)",
+        
+        "chiều rộng giáp mặt đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng tiếp giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng mặt tiền tiếp giáp đường(m)": "độ rộng mặt tiền (m)",
+        "chiều rộng mặt tiền tiếp giáp đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng tiếp giáp mặt tiền (m)": "độ rộng mặt tiền (m)",
 
-        "chiều rộng giáp mặt đường (m)":"chiều rộng (m)",
         # raw table
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
@@ -453,7 +455,7 @@ def get_facade_info(width_raw, location_info):
     if "mặt tiền" in location_str:
         try:
             width_val = float(width_str.replace(',', '.'))
-            return {"has_facade": True, "value": width_val}
+            return {"has_facade": True, "value": np.nan}
         except ValueError:
             pass  # fallback sang parsing regex nếu fail
 

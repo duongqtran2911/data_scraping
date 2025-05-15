@@ -321,7 +321,7 @@ for file_path, sheet_list in sheet_map.items():
 
 
                 # ---- STEP 3: BUILD DATA STRUCTURES ----
-
+    
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
                     return {
@@ -338,7 +338,7 @@ for file_path, sheet_list in sheet_map.items():
                             "width": float(entry.get(normalize_att("Chiều rộng (m)"))),
                             "max_width": get_max_width(float(entry.get(normalize_att("Chiều rộng (m)")))),
                             "facade": get_facade_info(
-                                        entry.get(normalize_att("Chiều rộng (m)")),
+                                        entry.get(normalize_att("Độ rộng mặt tiền (m)")),
                                         entry.get(normalize_att("Vị trí"))
                                     ),
                             "height": float(entry.get(normalize_att("Chiều dài (m)"))),
