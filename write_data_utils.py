@@ -237,8 +237,12 @@ def normalize_att(attr):
         "quy mô diên tích cln (m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
 
+        "quy mô diện tích (m²)\n(chưa trừ đất thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diện tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích (m²)\n(đã trừ lộ giới quy hoạch)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
 
-        "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
+
+    "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
