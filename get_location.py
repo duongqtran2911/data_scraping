@@ -70,45 +70,12 @@ time.sleep(5)
 
 time.sleep(2)  # Chờ trang tải
 
-# print("Tiêu đề trang:", driver.title)
+print("Tiêu đề trang:", driver.title)
 
-# if "Bảng giá" in driver.title:
-#     print("✅ Truy cập trang Guland thành công!")
-# else:
-#     print("❌ Không truy cập được trang Guland.")
-
-
-
-# # Gửi request lấy dữ liệu tọa độ
-
-# # Duyệt các request mà trình duyệt đã gửi
-# check_plan_url = None
-# for request in driver.requests:
-#     if "check-plan" in request.url and request.response:
-#         check_plan_url = request.url
-#         break
-
-# # Nếu có URL rồi thì fetch như bình thường
-# if check_plan_url:
-#     print("✅ Tìm thấy URL:", check_plan_url)
-
-#     response = requests.get(check_plan_url)
-#     if response.status_code == 200:
-#         data = response.json()
-#         if data["status"] == 1:
-#             for i, item in enumerate(data["data"]):
-#                 print(f"\n🏷️ Mảnh đất {i+1}: {item['title']}")
-#                 print(f"  📍 Tọa độ: lat = {item['lat']}, lng = {item['lng']}")
-#         else:
-#             print("❌ API lỗi: status != 1")
-#     else:
-#         print("❌ Request lỗi:", response.status_code)
-# else:
-#     print("❌ Không tìm thấy request check-plan.")
-
-# # Đóng trình duyệt
-# driver.quit()
-
+if "Bảng giá" in driver.title:
+    print("✅ Truy cập trang Guland thành công!")
+else:
+    print("❌ Không truy cập được trang Guland.")
 
 # === Step 5: Intercept check-plan POST request ===
 lat, lng = None, None
