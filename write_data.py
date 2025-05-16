@@ -7,10 +7,10 @@ from datetime import datetime
 import numpy as np
 import json
 
-from data_scraping.write_data_utils import get_max_width, get_facade_info
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
-        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number
+        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
+        get_max_width, get_facade_info
 import os
 import re
 from pymongo import MongoClient
@@ -23,14 +23,14 @@ import logging
 # EXCEL_FILE = "DV_Can Giuoc.xlsx"
 # EXCEL_FILE = "DV_Le Trong Tan.xlsx"
 MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSet=rs0&directConnection=true&authSource=assets-valuemind"
-
+collection_name = "test"
 
 # ---- GLOBAL PARAMETERS ----
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "7"
+year = 2025
+month = "01"
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -444,7 +444,7 @@ for file_path, sheet_list in sheet_map.items():
                 client = MongoClient(MONGO_URI)
                 # Use the correct database and collection
                 db = client["assets-valuemind"]
-                collection = db["Danh"]
+                collection = db[collection_name]
 
                 # Insert data into MongoDB
                 insert_excel_data = collection.insert_one(new_data)

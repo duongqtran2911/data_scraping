@@ -10,8 +10,6 @@ import re
 import unicodedata
 
 
-
-
 # Find the first row index containing a specific keyword in any column
 def find_row_index_containing(df, keyword):
     norm_keyword = normalize_string(keyword)
@@ -254,7 +252,7 @@ def normalize_att(attr):
         "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
+        "quy mô diên tích tim tường (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
 
         "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
@@ -266,6 +264,7 @@ def normalize_att(attr):
         "đơn giá đất (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất odt(đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
@@ -441,26 +440,36 @@ def get_max_width(width):
     return None
 
 
+def normalize_unicode(text):
+    return unicodedata.normalize("NFKC", str(text)).strip().lower()
+
+
+import unicodedata
+import re
+import numpy as np
+
+def normalize_unicode(text):
+    if not isinstance(text, str):
+        text = str(text)
+    return unicodedata.normalize("NFKC", text).strip().lower()
+
 def get_facade_info(width_raw, location_info):
-    width_str = str(width_raw).strip().lower()
-    location_str = str(location_info).strip().lower()
+    width_str = normalize_unicode(width_raw)
+    location_str = normalize_unicode(location_info)
 
-    # Các trường hợp không có mặt tiền
-    if any(kw in width_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]):
+    # Keywords indicating no facade
+    deny_keywords = ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]
+
+    if any(kw in width_str for kw in deny_keywords):
         return {"has_facade": False, "value": np.nan}
-    if any(kw in location_str for kw in ["hẻm", "mặt hậu", "không có mặt tiền", "không tiếp giáp"]):
+    if any(kw in location_str for kw in deny_keywords):
         return {"has_facade": False, "value": np.nan}
 
-    # Ưu tiên: nếu trong vị trí có từ "mặt tiền", thì coi là có mặt tiền
-    if "mặt tiền" in location_str:
-        try:
-            width_val = float(width_str.replace(',', '.'))
-            return {"has_facade": True, "value": np.nan}
-        except ValueError:
-            pass  # fallback sang parsing regex nếu fail
+    # Strong positive detection via normalized 'mặt tiền'
+    if re.search(r"\bmặt\s*tiền\b", location_str):
+        return {"has_facade": True, "value": np.nan}
 
-    # Nếu không có "mặt tiền" trong vị trí, cố gắng bóc mặt tiền từ width_str
-    # Ưu tiên các đoạn như "1,96m mặt tiền"
+    # Try to extract facade dimension from width string
     match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
     if match:
         try:
@@ -469,7 +478,6 @@ def get_facade_info(width_raw, location_info):
         except ValueError:
             pass
 
-    # Nếu không có match đặc biệt, lấy số đầu tiên (nếu có)
     match = re.search(r'([\d,\.]+)\s*m', width_str)
     if match:
         try:
@@ -478,7 +486,6 @@ def get_facade_info(width_raw, location_info):
         except ValueError:
             pass
 
-    # Không xác định được mặt tiền
     return {"has_facade": False, "value": np.nan}
 
 
