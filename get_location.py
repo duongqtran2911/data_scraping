@@ -5,11 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import json
-import requests
 import io
 import gzip
 
-i = 0
 
 def setup_driver(headless=True):
     options = webdriver.ChromeOptions()
@@ -22,16 +20,22 @@ def setup_driver(headless=True):
 
 def open_guland_page(driver):
     driver.get("https://guland.vn/ban-do-gia")
-    WebDriverWait(driver, 1).until(
-        EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a'))
-    ).click()
-    time.sleep(1)
+    WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.ID, "to-thua-search")))
+    time.sleep(1)  # giữ lại chút thời gian để trang load ổn định
+
 
 def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
     # mở lại form tờ thửa
+    wait = WebDriverWait(driver, 5)
 
-
-    wait = WebDriverWait(driver, 1)
+    # 0. Nhấn mở lại form "Tờ thửa"
+    try:
+        to_thua_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a')))
+        to_thua_button.click()
+        time.sleep(1)
+    except Exception as e:
+        print(f"❌ Không thể mở lại form tờ thửa: {e}")
+        return False
 
     # 1. Xóa số thửa và số tờ cũ (nếu có) rồi nhập mới
     input_thua = driver.find_element(By.XPATH, '//*[@id="form-to-thua"]/div[1]/div/div/div/div[2]/div/div/input[1]')
@@ -72,15 +76,19 @@ def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
 
     # 5. Nhấn tìm kiếm
     time.sleep(1)
-    driver.find_element(By.XPATH, '//*[@id="TabContent-SqhSearch-3"]/div/div[2]/button').click()
+    search_button = driver.find_element(By.XPATH, '//*[@id="TabContent-SqhSearch-3"]/div/div[2]/button')
+    search_button.click()
     time.sleep(3)
 
+    return True
 
 
 def extract_coordinates_from_requests(driver):
     correct_url = "https://guland.vn/post/check-plan?screen=ban-do-gia"
     lat, lng = None, None
+    polygon_points = []
 
+    # Get only the most recent requests
     for request in driver.requests:
         if request.method == "POST" and correct_url in request.url and request.response:
             try:
@@ -98,7 +106,8 @@ def extract_coordinates_from_requests(driver):
 
                 if "points" in response_data["data"]:
                     print("🧭 Polygon boundary:")
-                    for pt in response_data["data"]["points"]:
+                    polygon_points = response_data["data"]["points"]
+                    for pt in polygon_points:
                         print(f"  {pt}")
 
             except Exception as e:
@@ -107,7 +116,8 @@ def extract_coordinates_from_requests(driver):
 
     if lat is None or lng is None:
         print("❌ Could not find coordinates.")
-    return lat, lng
+
+    return lat, lng, polygon_points
 
 
 def interactive_loop(driver):
@@ -130,11 +140,20 @@ def interactive_loop(driver):
         if xa.lower() == 'exit': break
 
         try:
-            fill_form(driver, so_thua, so_to, tinh, huyen, xa)
-            extract_coordinates_from_requests(driver)
+            # Clear existing requests before each search
+            del driver.requests
+
+            success = fill_form(driver, so_thua, so_to, tinh, huyen, xa)
+
+            if success:
+                lat, lng, points = extract_coordinates_from_requests(driver)
+                # You could save these coordinates to a file or database here
+            else:
+                print("❌ Không thể điền form tìm kiếm.")
 
         except Exception as e:
             print(f"❌ Lỗi: {e}")
+
 
 def main():
     # === Actions ===
