@@ -7,37 +7,55 @@ from datetime import datetime
 import numpy as np
 import json
 
-from data_scraping.write_data_utils import get_max_width, get_facade_info
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
-        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number
+        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
+        get_max_width, get_facade_info, assign_dimensions
 import os
 import re
 from pymongo import MongoClient
 import traceback
 import logging
-
+import argparse
 
 
 # ---- CONFIGURATION ----
 # EXCEL_FILE = "DV_Can Giuoc.xlsx"
 # EXCEL_FILE = "DV_Le Trong Tan.xlsx"
 MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSet=rs0&directConnection=true&authSource=assets-valuemind"
-
+collection_name = "test-dim"
+LOG_MISSING = False
 
 # ---- GLOBAL PARAMETERS ----
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "7"
+
+
+# ---- ARGUMENT PARSER ----
+parser = argparse.ArgumentParser(description="Real estate data ingestion")
+parser.add_argument("-y", type=int, required=True, help="Year of the dataset (e.g., 2024)")
+parser.add_argument("-m", type=str, required=True, help="Month of the dataset (e.g., '1' or '01')")
+
+args = parser.parse_args()
+
+# Use args.year and args.month in your script
+year = args.y
+month_ = args.m
+
+# Normalize month string based on year rule
+if year in [2022, 2025]:
+    month = f"{int(month_):02d}"  # zero-padded: "01", "02", ...
+else:
+    month = str(int(month_)) 
+
+
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
 #     excel_paths = [line.strip() for line in f if line.strip()]
 # open(log_file_path", "w", encoding="utf-8").close()
 # total_sheets = 0
-
 
 # ---- LOAD EXCEL PATHS AND SHEETS ----
 comparison_file_path = f"comparison_files_{month}_{year}.txt"
@@ -64,6 +82,7 @@ open(log_file_path, "w", encoding="utf-8").close()
 
 found = 0
 missing = 0
+succeed = 0
 
 # ---- PROCESS EACH FILE AND SHEET ----
 for file_path, sheet_list in sheet_map.items():
@@ -321,27 +340,36 @@ for file_path, sheet_list in sheet_map.items():
 
 
                 # ---- STEP 3: BUILD DATA STRUCTURES ----
-
+                
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
+                    width = smart_parse_float(entry.get(normalize_att("Chiều rộng (m)")), log_missing=LOG_MISSING)
+                    height = smart_parse_float(entry.get(normalize_att("Chiều dài (m)")), log_missing=LOG_MISSING)
+                    depth = smart_parse_float(entry.get(normalize_att("Chiều sâu (m)")), log_missing=LOG_MISSING)
+                    location = str(entry.get(normalize_att("Vị trí"), ""))
+
+                    facade = get_facade_info(
+                                entry.get(normalize_att("Độ rộng mặt tiền (m)")),
+                                entry.get(normalize_att("Vị trí"))
+                            )
+                    has_facade = facade.get("has_facade", False)
+                    width, height = assign_dimensions(width, height, depth, has_facade)
+
                     return {
                         "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"))),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
-                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "")),
+                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "no_name")),
                             },
                             "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                             "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
                             "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "area": float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)"))),
-                            "location": str(entry.get(normalize_att("Vị trí"), "")),
-                            "width": float(entry.get(normalize_att("Chiều rộng (m)"))),
-                            "max_width": get_max_width(float(entry.get(normalize_att("Chiều rộng (m)")))),
-                            "facade": get_facade_info(
-                                        entry.get(normalize_att("Chiều rộng (m)")),
-                                        entry.get(normalize_att("Vị trí"))
-                                    ),
-                            "height": float(entry.get(normalize_att("Chiều dài (m)"))),
+                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)")), log_missing=LOG_MISSING),
+                            "location": location,
+                            "width": width,
+                            "max_width": get_max_width(width),
+                            "facade": facade,
+                            "height": height,
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
                             "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
                             "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
@@ -444,7 +472,7 @@ for file_path, sheet_list in sheet_map.items():
                 client = MongoClient(MONGO_URI)
                 # Use the correct database and collection
                 db = client["assets-valuemind"]
-                collection = db["Danh"]
+                collection = db[collection_name]
 
                 # Insert data into MongoDB
                 insert_excel_data = collection.insert_one(new_data)
@@ -453,6 +481,7 @@ for file_path, sheet_list in sheet_map.items():
                 with open(log_file_path, "a", encoding="utf-8") as log_file:
                     log_file.write(f"✅ Inserted excel data with ID: {insert_id}\n")
                     log_file.write("----------------------------------------------------------------------------------------------\n")
+                succeed += 1
 
                     
             except Exception as e:
@@ -486,4 +515,5 @@ total_sheets = sum(len(sheets) for sheets in sheet_map.values())
 print(f"Total number of sheets: {found + missing}")
 with open(log_file_path, "a", encoding="utf-8") as log_file:
     log_file.write(f"Total number of sheets: {found + missing}\n")
+print(f"Total number of success: {succeed}")
 # print("x:", x)

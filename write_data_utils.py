@@ -10,8 +10,6 @@ import re
 import unicodedata
 
 
-
-
 # Find the first row index containing a specific keyword in any column
 def find_row_index_containing(df, keyword):
     norm_keyword = normalize_string(keyword)
@@ -142,50 +140,64 @@ def parse_human_number(text):
 
 
 # Convert a string to a float, handling various formats
-def smart_parse_float(s):
+def smart_parse_float(s, log_missing=False):
     """
-    Extract and convert the first numeric value found in a string to float.
-    Supports formats like: 
-        - 1,234.56 (US)
-        - 1.234,56 (EU)
-        - '4.84 (Vạt góc 2.34)'
-        - 'Giá từ CDT 26.5ty' (combined with ty_parser if needed)
-    """
-    if not isinstance(s, str):
-        return s  # Already a float or None
+    Extract and convert a float from a string or raw input.
+    
+    If `log_missing=True`, raise ValueError when:
+    - The field is missing (None)
+    - A number cannot be parsed from the input
 
-    s = s.strip().lower()
+    :param s: input value (string or float-like)
+    :param field_name: optional field label for error context
+    :param entry_id: optional ID for traceability
+    :param log_missing: if True, raise error instead of returning None or NaN
+    :return: float value, np.nan, or raises error if log_missing is True
+    """
+    # If truly missing (field not present)
+    if s is None or pd.isna(s):
+        if log_missing:
+            raise ValueError(f"[MISSING] Required field is missing.\n")
+        return np.nan
+
+    # If already numeric (float/int), return directly
+    if isinstance(s, (int, float)):
+        return float(s)
+
+    s = str(s).strip().lower()
+
     if "chưa biết" in s:
-        return np.nan  # Handle "unknown" cases
+        return np.nan
 
-    # Match number patterns: optional thousand separators, one decimal separator
-    # Capture first number only
+    # Match the first valid number in a messy string
     number_pattern = r"(\d{1,3}(?:[\.,]\d{3})*(?:[\.,]\d+)?|\d+)"
     match = re.search(number_pattern, s)
+
     if not match:
-        return None
+        if log_missing:
+            raise ValueError(f"[UNPARSABLE] Cannot extract number from '{s}' in field.\n")
+        return np.nan
 
     number_str = match.group(1)
 
-    # Normalize to float: detect format (dot/comma as decimal)
+    # Normalize based on decimal/thousand separator
     if "," in number_str and "." in number_str:
-        # Decide based on last separator position
         if number_str.rfind(",") > number_str.rfind("."):
             number_str = number_str.replace(".", "").replace(",", ".")
         else:
             number_str = number_str.replace(",", "")
-    elif number_str.count(",") == 1 and number_str.count(".") == 0:
-        # Likely European format
+    elif "," in number_str and "." not in number_str:
         number_str = number_str.replace(",", ".")
     else:
-        # Remove commas (thousand separator)
         number_str = number_str.replace(",", "")
 
     try:
         return float(number_str)
-    except:
-        # raise ValueError(f"Cannot convert '{s}' to float.")
-        return None
+    except Exception:
+        if log_missing:
+            raise ValueError(f"[ERROR] Failed to convert '{s}' to float.\n")
+        return np.nan
+
 
 
 # Normalize a string by removing accents and collapsing whitespace
@@ -213,15 +225,21 @@ def normalize_att(attr):
         'giá thị trường \n(giá trước điều chỉnh) \n(đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'dân cư, kinh doanh': "dân cư",
-        "chiều dài (m)": "chiều dài",
-        "chiều rộng (m)": "chiều rộng",
-        "chiều rộng giáp mặt tiền đường (m)":"chiều rộng (m)",
-        "chiều rộng tiếp giáp mặt tiền đường (m)": "chiều rộng (m)",
-        "chiều rộng mặt tiền tiếp giáp đường(m)":"chiều rộng (m)" ,
-        "chiều rộng mặt tiền tiếp giáp đường (m)":"chiều rộng (m)",
+        "chiều dài": "chiều dài (m)",
+        "chiều rộng": "chiều rộng (m)",
 
-        "chiều rộng giáp mặt đường (m)":"chiều rộng (m)",
+        "chiều sâu": "chiều sâu (m)",
+        
+        "chiều rộng giáp mặt đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng tiếp giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng mặt tiền tiếp giáp đường(m)": "độ rộng mặt tiền (m)",
+        "chiều rộng mặt tiền tiếp giáp đường (m)": "độ rộng mặt tiền (m)",
+        "chiều rộng tiếp giáp mặt tiền (m)": "độ rộng mặt tiền (m)",
+
         # raw table
+        "địa chỉ": "địa chỉ tài sản",
+        
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
@@ -252,9 +270,9 @@ def normalize_att(attr):
         "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        "quy mô diên tích tim tường (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
 
-
-    "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
+        "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
         "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
@@ -264,6 +282,7 @@ def normalize_att(attr):
         "đơn giá đất (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất odt(đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
@@ -273,7 +292,9 @@ def normalize_att(attr):
         "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-        "giá rao bán (đồng) (không có vat):":"giá rao bán (đồng)",
+        "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
+
+        "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
     }
     return replacements.get(attr, attr)
 
@@ -414,6 +435,10 @@ def get_info_unit_price(info):
 
 
 def get_max_width(width):
+    
+    if pd.isna(width):
+        return np.nan
+    
     if not isinstance(width, str):
         return float(width)  # nếu là số thì trả về luôn
 
@@ -434,55 +459,74 @@ def get_max_width(width):
         try:
             return float(match_fallback.group(1))
         except ValueError:
-            return None
+            return np.nan
 
-    return None
+    return np.nan
 
-import re
-import numpy as np
 
-import numpy as np
-import re
+def normalize_unicode(text):
+    if not isinstance(text, str):
+        text = str(text)
+    return unicodedata.normalize("NFKC", text).strip().lower()
 
 def get_facade_info(width_raw, location_info):
-    width_str = str(width_raw).strip().lower()
-    location_str = str(location_info).strip().lower()
+    width_str = normalize_unicode(width_raw)
+    location_str = normalize_unicode(location_info)
 
-    # Các từ khóa chỉ không có mặt tiền
-    if any(kw in width_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]):
-        return {"has_facade": False, "value": np.nan}
-    if any(kw in location_str for kw in ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp"]):
+    # Denial keywords → explicitly no facade
+    deny_keywords = ["không có mặt tiền", "hẻm", "mặt hậu", "không tiếp giáp", "nở hậu"]
+    if any(kw in width_str for kw in deny_keywords) or any(kw in location_str for kw in deny_keywords):
         return {"has_facade": False, "value": np.nan}
 
-    # Ưu tiên tìm mặt tiền cụ thể trong width_str: "1,96m mặt tiền"
-    matches = re.findall(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
-    if matches:
+    # Positive facade signals — expanded
+    strong_positive_patterns = [
+        r"\bmặt\s*tiền\b",
+        r"\bmặt\s*đường\b",
+        r"\bmặt\s*tiền\s*đường\b",
+        r"\bmặt\s*phố\b",
+        r"\bgiáp\s*đường\b",
+        r"\btrục\s*đường\b",
+        r"\bđường\s*lớn\b",
+        r"\bquốc\s*lộ\b"
+    ]
+
+    for pattern in strong_positive_patterns:
+        if re.search(pattern, location_str):
+            return {"has_facade": True, "value": np.nan}
+
+    # Regex match from width_str: '1.96m mặt tiền'
+    match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
+    if match:
         try:
-            val = float(matches[0][0].replace(',', '.'))
-            return {"has_facade": True, "value": val}
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
         except ValueError:
             pass
 
-    # Nếu location_info có "mặt tiền", dùng số đầu tiên trong width_str (nhưng không dùng toàn bộ raw)
-    if "mặt tiền" in location_str:
-        match = re.search(r'([\d,\.]+)', width_str)
-        if match:
-            try:
-                val = float(match.group(1).replace(',', '.'))
-                return {"has_facade": True, "value": val}
-            except ValueError:
-                pass
-
-    # Fallback: cố gắng bóc giá trị bất kỳ (không ưu tiên mặt tiền)
+    # Fallback: get first number if nothing else matched
     match = re.search(r'([\d,\.]+)\s*m', width_str)
     if match:
         try:
-            val = float(match.group(1).replace(',', '.'))
-            return {"has_facade": True, "value": val}
+            value = float(match.group(1).replace(',', '.'))
+            return {"has_facade": True, "value": value}
         except ValueError:
             pass
 
-    # Nếu không bóc được gì
+    # Default: can't detect
     return {"has_facade": False, "value": np.nan}
+
+# function to dynamically assign 'chiều sâu' to missing field
+def assign_dimensions(width, height, depth, has_facade):
+    if width and height:
+        return width, height
+    if not width and height and depth:
+        return depth, height
+    if width and not height and depth:
+        return width, depth
+    if not width and not height and depth:
+        return None, depth
+    if not width and has_facade and depth:
+        return None, depth
+    return width, height
 
 
