@@ -1,10 +1,23 @@
 import os
 import pandas as pd
+import argparse
 
-# 🔧 CONFIGURATION
-year = 2024
-month = "12"
-# month = month.zfill(2)
+# ---- ARGUMENT PARSER ----
+parser = argparse.ArgumentParser(description="Real estate data ingestion")
+parser.add_argument("-y", type=int, required=True, help="Year of the dataset (e.g., 2024)")
+parser.add_argument("-m", type=str, required=True, help="Month of the dataset (e.g., '1' or '01')")
+
+args = parser.parse_args()
+
+# Use args.year and args.month in your script
+year = args.y
+month_ = args.m
+
+# Normalize month string based on year rule
+if year in [2022, 2025]:
+    month = f"{int(month_):02d}"  # zero-padded: "01", "02", ...
+else:
+    month = str(int(month_)) 
 
 root_dir = rf"\\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\{year}\THANG {month}"
 
