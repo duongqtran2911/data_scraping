@@ -9,6 +9,9 @@ import json
 import re
 import unicodedata
 
+from get_location import setup_driver, open_guland_page, interactive_loop, fill_form, \
+    extract_coordinates_from_requests
+
 
 # Find the first row index containing a specific keyword in any column
 def find_row_index_containing(df, keyword):
@@ -342,7 +345,7 @@ def convert_dms_to_decimal(dms_str):
     return decimal
 
 # Function to get the location from the info string
-def get_info_location(info):
+def get_info_location(info, location=None):
     if pd.isna(info) or info is None or str(info).strip() == "":
         return None
 
@@ -373,7 +376,42 @@ def get_info_location(info):
         except Exception:
             return None
 
+    if location and str(location).strip() != "":
+        print("Không có địa chỉ trong excel")
+        print("địa chỉ để lấy tọa độ:" + location)
+        convert_address_to_coordinates(location)
+
     return None
+
+
+def convert_address_to_coordinates(location):
+    print("Đã vào được hàm convert")
+    driver = setup_driver(headless=True)
+    try:
+        driver = setup_driver(headless=True)
+        open_guland_page(driver)
+
+        # parse `location` thành các phần: số thửa, số tờ, tỉnh, huyện, xã
+        so_thua = "2"
+        so_to = "14"
+        tinh = "long an"
+        huyen = "huyện cần giuộc"
+        xa = "xã long hậu"
+
+        del driver.requests  # xóa request cũ nếu có
+
+        if fill_form(driver, so_thua, so_to, tinh, huyen, xa):
+            lat, lng, points = extract_coordinates_from_requests(driver)
+            if lat is not None and lng is not None:
+                return {
+                    "type": "Point",
+                    "coordinates": [lng, lat]
+                }
+    except Exception as e:
+        print(f"❌ Selenium error: {e}")
+
+    finally:
+        driver.quit()
 
 
 # Function to get the purpose and area from the info string

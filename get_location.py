@@ -155,7 +155,7 @@ def interactive_loop(driver):
             print(f"❌ Lỗi: {e}")
 
 
-def main():
+def action_open_guland():
     # === Actions ===
     driver = setup_driver(headless=True)
     try:
@@ -166,6 +166,9 @@ def main():
 
     finally:
         driver.quit()
+
+def main():
+    action_open_guland()
 
 
 if __name__ == "__main__":

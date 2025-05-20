@@ -7,6 +7,8 @@ from datetime import datetime
 import numpy as np
 import json
 
+from get_location import setup_driver, open_guland_page
+
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
@@ -23,7 +25,7 @@ import argparse
 # EXCEL_FILE = "DV_Can Giuoc.xlsx"
 # EXCEL_FILE = "DV_Le Trong Tan.xlsx"
 MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSet=rs0&directConnection=true&authSource=assets-valuemind"
-collection_name = "test-dim"
+collection_name = "Danh2"
 LOG_MISSING = False
 
 # ---- GLOBAL PARAMETERS ----
@@ -49,7 +51,9 @@ if year in [2022, 2025]:
 else:
     month = str(int(month_)) 
 
-
+# === Setup driver 1 lần ở đầu chương trình ===
+driver = setup_driver(headless=True)
+open_guland_page(driver)
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
