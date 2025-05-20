@@ -155,10 +155,10 @@ def smart_parse_float(s, log_missing=False):
     :return: float value, np.nan, or raises error if log_missing is True
     """
     # If truly missing (field not present)
-    if s is None:
+    if s is None or pd.isna(s):
         if log_missing:
             raise ValueError(f"[MISSING] Required field is missing.\n")
-        return None
+        return np.nan
 
     # If already numeric (float/int), return directly
     if isinstance(s, (int, float)):
@@ -238,6 +238,8 @@ def normalize_att(attr):
         "chiều rộng tiếp giáp mặt tiền (m)": "độ rộng mặt tiền (m)",
 
         # raw table
+        "địa chỉ": "địa chỉ tài sản",
+        
         "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
         "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
@@ -290,7 +292,9 @@ def normalize_att(attr):
         "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-        "giá rao bán (đồng) (không có vat):":"giá rao bán (đồng)",
+        "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
+
+        "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
     }
     return replacements.get(attr, attr)
 
@@ -432,8 +436,8 @@ def get_info_unit_price(info):
 
 def get_max_width(width):
     
-    if width is None:
-        return None
+    if pd.isna(width):
+        return np.nan
     
     if not isinstance(width, str):
         return float(width)  # nếu là số thì trả về luôn
@@ -455,9 +459,9 @@ def get_max_width(width):
         try:
             return float(match_fallback.group(1))
         except ValueError:
-            return None
+            return np.nan
 
-    return None
+    return np.nan
 
 
 def normalize_unicode(text):

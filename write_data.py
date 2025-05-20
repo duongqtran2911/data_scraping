@@ -16,7 +16,7 @@ import re
 from pymongo import MongoClient
 import traceback
 import logging
-
+import argparse
 
 
 # ---- CONFIGURATION ----
@@ -30,15 +30,32 @@ LOG_MISSING = False
 sheet_idx = 0
 raw_col_length = 11
 pct_col_length = 6
-year = 2024
-month = "1"
+
+
+# ---- ARGUMENT PARSER ----
+parser = argparse.ArgumentParser(description="Real estate data ingestion")
+parser.add_argument("-y", type=int, required=True, help="Year of the dataset (e.g., 2024)")
+parser.add_argument("-m", type=str, required=True, help="Month of the dataset (e.g., '1' or '01')")
+
+args = parser.parse_args()
+
+# Use args.year and args.month in your script
+year = args.y
+month_ = args.m
+
+# Normalize month string based on year rule
+if year in [2022, 2025]:
+    month = f"{int(month_):02d}"  # zero-padded: "01", "02", ...
+else:
+    month = str(int(month_)) 
+
+
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
 #     excel_paths = [line.strip() for line in f if line.strip()]
 # open(log_file_path", "w", encoding="utf-8").close()
 # total_sheets = 0
-
 
 # ---- LOAD EXCEL PATHS AND SHEETS ----
 comparison_file_path = f"comparison_files_{month}_{year}.txt"
@@ -342,7 +359,7 @@ for file_path, sheet_list in sheet_map.items():
                         "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"))),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
-                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "")),
+                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "no_name")),
                             },
                             "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                             "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
