@@ -8,10 +8,24 @@ import numpy as np
 import json
 import re
 import unicodedata
+import logging
 
-from get_location import setup_driver, open_guland_page, interactive_loop, fill_form, \
-    extract_coordinates_from_requests
+from get_location_test_API import action_open_guland_driver
 
+
+# Tạo logger riêng cho ứng dụng
+app_logger = logging.getLogger("app_logger")
+app_logger.setLevel(logging.INFO)
+
+# Đảm bảo logger này không bị ảnh hưởng bởi các logger khác
+app_logger.propagate = False
+
+# Thêm handler nếu chưa có
+if not app_logger.handlers:
+    file_handler = logging.FileHandler("my_app.log", mode="a", encoding="utf-8")
+    formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    app_logger.addHandler(file_handler)
 
 # Find the first row index containing a specific keyword in any column
 def find_row_index_containing(df, keyword):
@@ -345,73 +359,89 @@ def convert_dms_to_decimal(dms_str):
     return decimal
 
 # Function to get the location from the info string
-def get_info_location(info, location=None):
-    if pd.isna(info) or info is None or str(info).strip() == "":
-        return None
+# Hàm chính để lấy thông tin vị trí (cải tiến)
+def get_info_location(info, address, driver, file_path):
+    """
+    Hàm lấy thông tin vị trí từ tọa độ hoặc địa chỉ
 
-    info_str = str(info).strip()
+    Args:
+        info: Thông tin tọa độ (chuỗi)
+        location: Địa chỉ (phòng hờ khi không có tọa độ)
 
-    # Case 1: standard lat, lon format (e.g. 10.97, 108.22)
-    if "," in info_str and all(char not in info_str for char in "°'\""):
-        try:
-            lat, lon = info_str.split(",")
-            return {
-                "type": "Point",
-                "coordinates": [float(lon.strip()), float(lat.strip())]  # MongoDB expects [longitude, latitude]
-            }
-        except Exception:
-            return None
+    Returns:
+        Đối tượng GeoJSON Point hoặc None
+    """
+    # Kiểm tra tọa độ đầu vào trước
+    if pd.notna(info) and info is not None and str(info).strip() != "":
+        info_str = str(info).strip()
 
-    # Case 2: DMS format (e.g. 10°58'10.4"N 108°13'46.8"E)
-    if "°" in info_str:
-        try:
-            dms_parts = info_str.split()
-            if len(dms_parts) == 2:
-                lat_decimal = convert_dms_to_decimal(dms_parts[0])
-                lon_decimal = convert_dms_to_decimal(dms_parts[1])
+        # Trường hợp 1: định dạng lat, lon tiêu chuẩn (VD: 10.97, 108.22)
+        if "," in info_str and all(char not in info_str for char in "°'\""):
+            try:
+                lat, lon = info_str.split(",")
                 return {
                     "type": "Point",
-                    "coordinates": [lon_decimal, lat_decimal]
+                    "coordinates": [float(lon.strip()), float(lat.strip())]  # MongoDB cần [longitude, latitude]
                 }
-        except Exception:
-            return None
+            except Exception as e:
+                print(f"❌ Lỗi khi phân tích tọa độ tiêu chuẩn: {e}")
 
-    if location and str(location).strip() != "":
-        print("Không có địa chỉ trong excel")
-        print("địa chỉ để lấy tọa độ:" + location)
-        convert_address_to_coordinates(location)
+        # Trường hợp 2: định dạng DMS (VD: 10°58'10.4"N 108°13'46.8"E)
+        if "°" in info_str:
+            try:
+                dms_parts = info_str.split()
+                if len(dms_parts) == 2:
+                    lat_decimal = convert_dms_to_decimal(dms_parts[0])
+                    lon_decimal = convert_dms_to_decimal(dms_parts[1])
+                    return {
+                        "type": "Point",
+                        "coordinates": [lon_decimal, lat_decimal]
+                    }
+            except Exception as e:
+                print(f"❌ Lỗi khi phân tích tọa độ DMS: {e}")
 
+    # # Trường hợp 3: Nếu không có tọa độ trực tiếp, thử dùng địa chỉ
+    # if address and str(address).strip() != "":
+    #     log_message = f"ℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ: {address}"
+    #     print("\nℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ:" + address)
+    #     app_logger.info(file_path)
+    #     app_logger.info(log_message)
+    #     app_logger.info(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+    #     # address_infor = parse_location_info(address)
+    #     return action_open_guland_driver(address,driver,file_path)
+
+    # Nếu tất cả các phương pháp thất bại
     return None
 
 
-def convert_address_to_coordinates(location):
-    print("Đã vào được hàm convert")
-    driver = setup_driver(headless=True)
-    try:
-        driver = setup_driver(headless=True)
-        open_guland_page(driver)
-
-        # parse `location` thành các phần: số thửa, số tờ, tỉnh, huyện, xã
-        so_thua = "2"
-        so_to = "14"
-        tinh = "long an"
-        huyen = "huyện cần giuộc"
-        xa = "xã long hậu"
-
-        del driver.requests  # xóa request cũ nếu có
-
-        if fill_form(driver, so_thua, so_to, tinh, huyen, xa):
-            lat, lng, points = extract_coordinates_from_requests(driver)
-            if lat is not None and lng is not None:
-                return {
-                    "type": "Point",
-                    "coordinates": [lng, lat]
-                }
-    except Exception as e:
-        print(f"❌ Selenium error: {e}")
-
-    finally:
-        driver.quit()
+# def convert_address_to_coordinates(location):
+#     print("Đã vào được hàm convert")
+#     driver = setup_driver(headless=True)
+#     try:
+#         driver = setup_driver(headless=True)
+#         open_guland_page(driver)
+#
+#         # parse `location` thành các phần: số thửa, số tờ, tỉnh, huyện, xã
+#         so_thua = "2"
+#         so_to = "14"
+#         tinh = "long an"
+#         huyen = "huyện cần giuộc"
+#         xa = "xã long hậu"
+#
+#         del driver.requests  # xóa request cũ nếu có
+#
+#         if fill_form(driver, so_thua, so_to, tinh, huyen, xa):
+#             lat, lng, points = extract_coordinates_from_requests(driver)
+#             if lat is not None and lng is not None:
+#                 return {
+#                     "type": "Point",
+#                     "coordinates": [lng, lat]
+#                 }
+#     except Exception as e:
+#         print(f"❌ Selenium error: {e}")
+#
+#     finally:
+#         driver.quit()
 
 
 # Function to get the purpose and area from the info string

@@ -7,8 +7,7 @@ from datetime import datetime
 import numpy as np
 import json
 
-from get_location import setup_driver, open_guland_page
-
+from get_location_test_API import setup_driver, open_guland_page
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
@@ -51,9 +50,12 @@ if year in [2022, 2025]:
 else:
     month = str(int(month_)) 
 
-# === Setup driver 1 lần ở đầu chương trình ===
 driver = setup_driver(headless=True)
-open_guland_page(driver)
+try:
+    open_guland_page(driver)
+    print("✅ Trang Guland đã sẵn sàng.")
+except:
+    print("❌ Fail to open Guland.")
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:
@@ -360,7 +362,7 @@ for file_path, sheet_list in sheet_map.items():
                     width, height = assign_dimensions(width, height, depth, has_facade)
 
                     return {
-                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí"))),
+                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver,file_path),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
                                 "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "no_name")),

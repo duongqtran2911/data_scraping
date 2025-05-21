@@ -1,0 +1,1223 @@
+2025-05-21 15:44:37,861 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\03. HDB CU CHI_MY HANH AN, LA\DV_MY HANH AN, LA .xlsx
+2025-05-21 15:44:37,861 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'xã mỹ hạnh nam'}
+2025-05-21 15:44:37,861 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:37,861 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:44,686 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\03. HDB CU CHI_MY HANH AN, LA\DV_MY HANH AN, LA .xlsx
+2025-05-21 15:44:44,686 - INFO - {'so_thua': '546', 'so_to': '8', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'xã mỹ hạnh nam'}
+2025-05-21 15:44:44,686 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:44:44,686 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:46,791 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\03. HDB CU CHI_MY HANH AN, LA\DV_MY HANH AN, LA .xlsx
+2025-05-21 15:44:46,791 - INFO - {'so_thua': '818', 'so_to': '8', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'xã mỹ hạnh nam'}
+2025-05-21 15:44:46,791 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:44:46,791 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:47,331 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\05. HDB GIA DINH_BINH TAN, HCM\DV_Sinco.xlsx
+2025-05-21 15:44:47,331 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'quận bình tân', 'xa': 'phường bình trị đông b'}
+2025-05-21 15:44:47,331 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:47,331 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:47,332 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\05. HDB GIA DINH_BINH TAN, HCM\DV_Sinco.xlsx
+2025-05-21 15:44:47,332 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'quận bình tân', 'xa': 'phường bình trị đông b'}
+2025-05-21 15:44:47,332 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:47,332 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,119 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\09. HDB CU CHI_CHON THANH, BP\DV_DAT_Minh Lap, tx Chon Thanh, BP.xlsx
+2025-05-21 15:44:57,119 - INFO - {'so_thua': '104', 'so_to': '06', 'tinh': 'bình phước', 'huyen': 'thị xã chơn thành', 'xa': 'xã minh lập'}
+2025-05-21 15:44:57,119 - INFO - ✅ Lấy tọa độ thành công.
+2025-05-21 15:44:57,119 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,411 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\10. HDB_110A, CHU MANH TRINH, VT- The Maris\DV_BRVT - 110A Chu Manh Trinh .xlsx
+2025-05-21 15:44:57,411 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:57,411 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,411 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,411 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\10. HDB_110A, CHU MANH TRINH, VT- The Maris\DV_BRVT - 110A Chu Manh Trinh .xlsx
+2025-05-21 15:44:57,411 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:57,411 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,411 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,539 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\10. HDB_110A, CHU MANH TRINH, VT- The Maris\DV_BRVT - 110A Chu Manh Trinh .xlsx
+2025-05-21 15:44:57,539 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:57,539 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,539 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,541 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\10. HDB_110A, CHU MANH TRINH, VT- The Maris\DV_BRVT - 110A Chu Manh Trinh .xlsx
+2025-05-21 15:44:57,541 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:57,541 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,541 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,803 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\12. HDB_40.8A LE HONG PHONG, BRVT- The Maris\DV_P4 VT.xlsx
+2025-05-21 15:44:57,803 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 7'}
+2025-05-21 15:44:57,803 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,803 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,804 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\12. HDB_40.8A LE HONG PHONG, BRVT- The Maris\DV_P4 VT.xlsx
+2025-05-21 15:44:57,804 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 7'}
+2025-05-21 15:44:57,804 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,804 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:57,804 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\12. HDB_40.8A LE HONG PHONG, BRVT- The Maris\DV_P4 VT.xlsx
+2025-05-21 15:44:57,804 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 7'}
+2025-05-21 15:44:57,804 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:57,804 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,062 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\14. HDB_BA CU, BRVT- The Maris\DV_DAT_hem 97 Ba Cu, Tp. Vung Tau.xlsx
+2025-05-21 15:44:58,062 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 3', 'xa': 'phường 3'}
+2025-05-21 15:44:58,062 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,062 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,294 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\15. HDB_112 CHU MANH TRINH, BRVT- The Maris\DV_BRVT - The Maris .xlsx
+2025-05-21 15:44:58,294 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:58,294 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,294 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,294 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\15. HDB_112 CHU MANH TRINH, BRVT- The Maris\DV_BRVT - The Maris .xlsx
+2025-05-21 15:44:58,294 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'phường 8', 'xa': 'phường 8'}
+2025-05-21 15:44:58,294 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,294 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,585 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\16. HDB_122 BA CU, BRVT- The Maris\DV_DAT_122 Ba Cu, Tp. Vung Tau.xlsx
+2025-05-21 15:44:58,585 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 1', 'xa': 'phường 1'}
+2025-05-21 15:44:58,585 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,585 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,586 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\16. HDB_122 BA CU, BRVT- The Maris\DV_DAT_122 Ba Cu, Tp. Vung Tau.xlsx
+2025-05-21 15:44:58,586 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 4', 'xa': 'phường 4'}
+2025-05-21 15:44:58,586 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,586 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,690 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\16. HDB_122 BA CU, BRVT- The Maris\DV_DAT_122 Ba Cu, Tp. Vung Tau.xlsx
+2025-05-21 15:44:58,690 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 1', 'xa': 'phường 1'}
+2025-05-21 15:44:58,690 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,690 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:58,691 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\16. HDB_122 BA CU, BRVT- The Maris\DV_DAT_122 Ba Cu, Tp. Vung Tau.xlsx
+2025-05-21 15:44:58,691 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 4', 'xa': 'phường 4'}
+2025-05-21 15:44:58,691 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:58,691 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:59,502 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\17. HDB_136 DIEN HONG, BRVT- The Maris\Bang tinh_136 Dien Hong.xlsx
+2025-05-21 15:44:59,502 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận bình thạnh', 'xa': 'phường 1'}
+2025-05-21 15:44:59,502 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:59,502 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:59,503 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\17. HDB_136 DIEN HONG, BRVT- The Maris\Bang tinh_136 Dien Hong.xlsx
+2025-05-21 15:44:59,503 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận bình thạnh', 'xa': 'phường 1'}
+2025-05-21 15:44:59,503 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:59,503 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:59,503 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\17. HDB_136 DIEN HONG, BRVT- The Maris\Bang tinh_136 Dien Hong.xlsx
+2025-05-21 15:44:59,503 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận bình thạnh', 'xa': 'phường 1'}
+2025-05-21 15:44:59,503 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:59,503 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:59,732 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\18. HDB_PHUONG 4, BRVT- The Maris\DV_DAT_241 Ba Cu, Tp. VTau.xlsx
+2025-05-21 15:44:59,732 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 1', 'xa': 'phường 1'}
+2025-05-21 15:44:59,732 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:59,732 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:44:59,733 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\18. HDB_PHUONG 4, BRVT- The Maris\DV_DAT_241 Ba Cu, Tp. VTau.xlsx
+2025-05-21 15:44:59,733 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'phường 4', 'xa': 'phường 4'}
+2025-05-21 15:44:59,733 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:44:59,733 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:00,331 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\19. HDB_PHUONG 2, BRVT- The Maris\DV_phuong 2.xlsx
+2025-05-21 15:45:00,331 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 2'}
+2025-05-21 15:45:00,331 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:00,331 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:00,332 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\19. HDB_PHUONG 2, BRVT- The Maris\DV_phuong 2.xlsx
+2025-05-21 15:45:00,332 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 2'}
+2025-05-21 15:45:00,332 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:00,332 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:00,744 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\22. HDB_NGUYEN BAO, BRVT- The Maris\DV_Nguyen Bao, BRVT .xlsx
+2025-05-21 15:45:00,744 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'tp. vũng tàu', 'xa': 'phường thắng nhì'}
+2025-05-21 15:45:00,744 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:00,744 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:00,745 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\22. HDB_NGUYEN BAO, BRVT- The Maris\DV_Nguyen Bao, BRVT .xlsx
+2025-05-21 15:45:00,745 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. vũng tàu', 'huyen': 'tp. vũng tàu', 'xa': 'phường thắng nhì'}
+2025-05-21 15:45:00,745 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:00,745 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,012 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\23. HDB_370 PHUONG 2, BRVT- The Maris\DV_Thang Tam.xlsx
+2025-05-21 15:45:01,012 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 3'}
+2025-05-21 15:45:01,012 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,012 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,013 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\23. HDB_370 PHUONG 2, BRVT- The Maris\DV_Thang Tam.xlsx
+2025-05-21 15:45:01,013 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 3'}
+2025-05-21 15:45:01,013 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,013 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,015 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\23. HDB_370 PHUONG 2, BRVT- The Maris\DV_Thang Tam.xlsx
+2025-05-21 15:45:01,015 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'vũng tàu', 'huyen': 'thành phố vũng tàu', 'xa': 'phường 3'}
+2025-05-21 15:45:01,015 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,015 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,251 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\24. HDB SA DEC_SA DEC, DONG THAP\DV_HDB SA DEC_SA DEC, DONG THAP.xlsx
+2025-05-21 15:45:01,251 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'sa đéc', 'huyen': 'phường tân quy đông', 'xa': 'phường tân quy đông'}
+2025-05-21 15:45:01,251 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,251 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,251 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\24. HDB SA DEC_SA DEC, DONG THAP\DV_HDB SA DEC_SA DEC, DONG THAP.xlsx
+2025-05-21 15:45:01,251 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'sa đéc', 'huyen': 'phường tân quy đông', 'xa': 'phường tân quy đông'}
+2025-05-21 15:45:01,251 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,251 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,252 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\24. HDB SA DEC_SA DEC, DONG THAP\DV_HDB SA DEC_SA DEC, DONG THAP.xlsx
+2025-05-21 15:45:01,252 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'sa đéc', 'huyen': 'phường tân quy đông', 'xa': 'phường tân quy đông'}
+2025-05-21 15:45:01,252 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,252 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,733 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\26. HDB CAN THO_CAI KHE, NINH KIEU, CAN THO\DV_TDC CAN THO.xlsx
+2025-05-21 15:45:01,733 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:01,733 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,733 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,852 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\26. HDB CAN THO_CAI KHE, NINH KIEU, CAN THO\DV_TDC CAN THO.xlsx
+2025-05-21 15:45:01,852 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. cần thơ', 'huyen': 'quận ninh kiều', 'xa': 'phường cái khế'}
+2025-05-21 15:45:01,852 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,852 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,853 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\26. HDB CAN THO_CAI KHE, NINH KIEU, CAN THO\DV_TDC CAN THO.xlsx
+2025-05-21 15:45:01,853 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. cần thơ', 'huyen': 'quận ninh kiều', 'xa': 'phường cái khế'}
+2025-05-21 15:45:01,853 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,853 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,854 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\26. HDB CAN THO_CAI KHE, NINH KIEU, CAN THO\DV_TDC CAN THO.xlsx
+2025-05-21 15:45:01,854 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. cần thơ', 'huyen': 'quận ninh kiều', 'xa': 'phường cái khế'}
+2025-05-21 15:45:01,854 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,854 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:01,954 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\26. HDB CAN THO_CAI KHE, NINH KIEU, CAN THO\DV_TDC CAN THO.xlsx
+2025-05-21 15:45:01,954 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:01,954 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:01,954 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:02,452 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\27. HDB HO_DU AN KN PARADISE CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:02,452 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:02,452 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:02,452 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:02,453 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\27. HDB HO_DU AN KN PARADISE CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:02,453 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:02,453 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:02,453 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:02,456 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\27. HDB HO_DU AN KN PARADISE CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:02,456 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:02,456 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:02,456 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:02,459 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\27. HDB HO_DU AN KN PARADISE CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:02,459 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:02,459 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:02,459 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:03,121 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\28. HDB NDC_TAN DINH, Q1\DV_Q1_TPHCM.xlsx
+2025-05-21 15:45:03,121 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:03,121 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:03,121 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:03,278 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\28. HDB NDC_TAN DINH, Q1\DV_Q1_TPHCM.xlsx
+2025-05-21 15:45:03,278 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:03,278 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:03,278 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:04,129 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\33. HDB CU CHI_CHAU THANH, TAY NINH\DV_CHAU THANH.xlsx
+2025-05-21 15:45:04,129 - INFO - {'so_thua': '', 'so_to': '3', 'tinh': 'tây ninh', 'huyen': 'huyện tân châu', 'xa': 'xã tân hội'}
+2025-05-21 15:45:04,129 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:04,129 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:12,415 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\34. HDB CU CHI_PHU HOA DONG, CU CHI\DV_PHU HOA DONG, CU CHI.xlsx
+2025-05-21 15:45:12,415 - INFO - {'so_thua': '85', 'so_to': '24', 'tinh': '. hcm', 'huyen': 'huyện củ chi', 'xa': 'xã phú hòa đông'}
+2025-05-21 15:45:12,415 - INFO - ✅ Lấy tọa độ thành công.
+2025-05-21 15:45:12,415 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:12,768 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\35. HDB CU CHI_AN LAC A, BINH TAN\DV_BINH TAN_TPHCM.xlsx
+2025-05-21 15:45:12,768 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:12,768 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:12,768 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:12,955 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\35. HDB CU CHI_AN LAC A, BINH TAN\DV_BINH TAN_TPHCM.xlsx
+2025-05-21 15:45:12,955 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:12,955 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:12,955 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:13,359 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\36. HDB PHU NHUAN_BEN LUC, LA\DV_BEN LUC.xlsx
+2025-05-21 15:45:13,359 - INFO - {'so_thua': '', 'so_to': '18', 'tinh': 'tây ninh', 'huyen': 'huyện châu thành', 'xa': 'xã thành long'}
+2025-05-21 15:45:13,359 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:13,359 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:13,705 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\37. HDB THAO DIEN_BINH AN, THU THUA, LA\DV_THU THUA, LONG AN.xlsx
+2025-05-21 15:45:13,705 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:13,705 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:13,705 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:13,807 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\37. HDB THAO DIEN_BINH AN, THU THUA, LA\DV_THU THUA, LONG AN.xlsx
+2025-05-21 15:45:13,807 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện thủ thừa', 'xa': 'xã bình an'}
+2025-05-21 15:45:13,807 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:13,807 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:13,808 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\37. HDB THAO DIEN_BINH AN, THU THUA, LA\DV_THU THUA, LONG AN.xlsx
+2025-05-21 15:45:13,808 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện thủ thừa', 'xa': 'xã bình an'}
+2025-05-21 15:45:13,808 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:13,808 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:13,917 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\37. HDB THAO DIEN_BINH AN, THU THUA, LA\DV_THU THUA, LONG AN.xlsx
+2025-05-21 15:45:13,917 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:13,917 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:13,917 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:14,353 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\39. HDB NINH KIEU_THOT NOT, CAN THO\DV_THOT NOT, CAN THO.xlsx
+2025-05-21 15:45:14,353 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'cần thơ', 'huyen': 'quận thốt nốt', 'xa': 'phường trung kiên'}
+2025-05-21 15:45:14,353 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:14,353 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:15,050 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\41. HDB PHU NHUAN_DUC HOA, LA\DV_HIEP HOA.xlsx
+2025-05-21 15:45:15,050 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'thửa đất thuộc khu dân cư thị trấn hiệp hòa'}
+2025-05-21 15:45:15,050 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:15,050 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:15,172 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\41. HDB PHU NHUAN_DUC HOA, LA\DV_HIEP HOA.xlsx
+2025-05-21 15:45:15,172 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'thửa đất thuộc khu dân cư thị trấn hiệp hòa'}
+2025-05-21 15:45:15,172 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:15,172 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:15,535 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\42. HDB PHU NHUAN_DONG THANH, LA\DV_Dong Thanh.xlsx
+2025-05-21 15:45:15,535 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện đức huệ', 'xa': 'thị trấn đông thành'}
+2025-05-21 15:45:15,535 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:15,535 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:22,132 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\42. HDB PHU NHUAN_DONG THANH, LA\DV_Dong Thanh.xlsx
+2025-05-21 15:45:22,132 - INFO - {'so_thua': '277', 'so_to': '3', 'tinh': 'long an', 'huyen': 'huyện đức huệ', 'xa': 'thị trấn đông thành'}
+2025-05-21 15:45:22,132 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:45:22,132 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:23,637 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\43. HDB_CTY NGOC THUY\TDS 124, TBDS 43, PHAN DINH PHUNG\DV_Phan Dinh Phung.xlsx
+2025-05-21 15:45:23,637 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'kon tum', 'huyen': 'thị xã kon tum', 'xa': 'phường duy tân'}
+2025-05-21 15:45:23,637 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:23,637 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:24,950 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\43. HDB_CTY NGOC THUY\TDS 57, TBDS 73, PHAM VAN DONG\DV_PVD.xlsx
+2025-05-21 15:45:24,950 - INFO - {'so_thua': '236', 'so_to': '4', 'tinh': 'kon tum', 'huyen': 'thành phố kon tum', 'xa': 'phường lê lợi'}
+2025-05-21 15:45:24,950 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:45:24,950 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:25,200 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\44. HDB DONG NAI_TAN CHAU DI LINH, LD\DV_DAT_Tan Chau, Di Linh, Lam Dong.xlsx
+2025-05-21 15:45:25,200 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:45:25,200 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:25,200 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:25,467 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\45. HDB_HYUNDAI PHU LAM\DV_Phu Lam.xlsx
+2025-05-21 15:45:25,467 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'huyện bình chánh', 'xa': 'thị trấn tân túc'}
+2025-05-21 15:45:25,467 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:25,467 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:25,789 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\46. HDB THANH DONG_KRONG NANG, DAKLAK\DV_krong nang_daklak.xlsx
+2025-05-21 15:45:25,789 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:25,789 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:25,789 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:25,883 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\46. HDB THANH DONG_KRONG NANG, DAKLAK\DV_krong nang_daklak.xlsx
+2025-05-21 15:45:25,883 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đăk lăk', 'huyen': 'huyện krông năng', 'xa': 'xã đliê ya'}
+2025-05-21 15:45:25,883 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:25,883 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:25,884 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\46. HDB THANH DONG_KRONG NANG, DAKLAK\DV_krong nang_daklak.xlsx
+2025-05-21 15:45:25,884 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đăk lăk', 'huyen': 'huyện krông năng', 'xa': 'xã đliê ya'}
+2025-05-21 15:45:25,884 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:25,884 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:26,054 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\46. HDB THANH DONG_KRONG NANG, DAKLAK\DV_krong nang_daklak.xlsx
+2025-05-21 15:45:26,054 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:45:26,054 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:26,054 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:26,284 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\47. HDB DONG NAI_XUAN TAM, XUAN LOC, DONG NAI\DV_XUAN TAM, XUAN LOC, DONG NAI.xlsx
+2025-05-21 15:45:26,284 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện xuân lộc', 'xa': 'xã xuân tâm'}
+2025-05-21 15:45:26,284 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:26,284 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:33,065 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\48. HDB CU CHI_TAN THANH TAY, CU CHI, HCM\DV_TAN THANH TAY, CU CHI.xlsx
+2025-05-21 15:45:33,065 - INFO - {'so_thua': '631', 'so_to': '4', 'tinh': '. hcm', 'huyen': 'huyện củ chi', 'xa': 'xã tân thạnh tây'}
+2025-05-21 15:45:33,066 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:45:33,066 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:34,803 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\50. HDB NSG_DUC HOA, LA\DV_DUC HOA.xlsx
+2025-05-21 15:45:34,803 - INFO - {'so_thua': '', 'so_to': '25', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'xã đức hòa thượng'}
+2025-05-21 15:45:34,803 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:34,803 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:34,804 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\50. HDB NSG_DUC HOA, LA\DV_DUC HOA.xlsx
+2025-05-21 15:45:34,804 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'long an', 'huyen': 'huyện đức hòa', 'xa': 'xã đức hòa thượng'}
+2025-05-21 15:45:34,804 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:34,804 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,482 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:37,482 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,482 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,482 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,484 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:37,484 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:37,484 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,484 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,486 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:37,486 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,486 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,486 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,488 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH.xlsx
+2025-05-21 15:45:37,488 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,488 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,488 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,971 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05 - Copy.xlsx
+2025-05-21 15:45:37,971 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,971 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,971 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,972 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05 - Copy.xlsx
+2025-05-21 15:45:37,972 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:37,972 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,972 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,975 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05 - Copy.xlsx
+2025-05-21 15:45:37,975 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,975 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,975 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:37,976 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05 - Copy.xlsx
+2025-05-21 15:45:37,976 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:37,976 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:37,976 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,478 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:45:38,478 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,478 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,478 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,480 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:45:38,480 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:38,480 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,480 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,482 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:45:38,482 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,482 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,482 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,484 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:45:38,484 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,484 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,484 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,974 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:45:38,974 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,974 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,974 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,976 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:45:38,976 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:38,976 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,976 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,977 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:45:38,977 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,977 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,977 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:38,979 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:45:38,979 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:38,979 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:38,979 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:39,807 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_TONG.xlsx
+2025-05-21 15:45:39,807 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:39,807 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:39,807 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:39,809 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_TONG.xlsx
+2025-05-21 15:45:39,809 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:45:39,809 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:39,809 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:39,810 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_TONG.xlsx
+2025-05-21 15:45:39,810 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:39,810 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:39,810 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:39,812 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\59. HDB PHU NHUAN_KN PARADISE, CAM RANH\DV_KN PARADISE CAM RANH_TONG.xlsx
+2025-05-21 15:45:39,812 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:45:39,812 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:39,812 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:41,164 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\60. HDB CAN THO_LE THANH TON, CT\DV_DAT_MT Le Thanh Ton, Q. Ninh Kieu.xlsx
+2025-05-21 15:45:41,164 - INFO - {'so_thua': '297', 'so_to': '05', 'tinh': '. cần thơ', 'huyen': 'q. ninh kiều', 'xa': 'p. tân an'}
+2025-05-21 15:45:41,164 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:45:41,164 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:48,439 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:48,439 - INFO - {'so_thua': '256', 'so_to': '13', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:45:48,439 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:45:48,439 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:49,474 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:49,474 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:45:49,474 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:49,474 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:49,477 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:49,477 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:45:49,477 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:49,477 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:49,478 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:49,478 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:45:49,478 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:49,478 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:50,646 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:50,646 - INFO - {'so_thua': '1681', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:45:50,646 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:45:50,646 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:57,199 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:57,199 - INFO - {'so_thua': '1002', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:45:57,199 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:45:57,199 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:58,233 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:58,233 - INFO - {'so_thua': '', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'tờ bản đồ số 13; xã tân trường'}
+2025-05-21 15:45:58,233 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:45:58,233 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:45:59,307 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\03. DV\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:45:59,307 - INFO - {'so_thua': '1283', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:45:59,307 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:45:59,307 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:06,206 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:06,206 - INFO - {'so_thua': '256', 'so_to': '13', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:46:06,206 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:46:06,206 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:07,238 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:07,238 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:46:07,239 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:07,239 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:07,241 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:07,241 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:46:07,241 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:07,241 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:07,243 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:07,243 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hưng yên', 'huyen': 'huyện văn lâm', 'xa': 'xã lạc hồng'}
+2025-05-21 15:46:07,243 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:07,243 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:08,418 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:08,418 - INFO - {'so_thua': '1681', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:46:08,419 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:46:08,419 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:14,981 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:14,981 - INFO - {'so_thua': '1002', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:46:14,981 - INFO - 🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...
+2025-05-21 15:46:14,981 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:16,015 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:16,015 - INFO - {'so_thua': '', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'tờ bản đồ số 13; xã tân trường'}
+2025-05-21 15:46:16,015 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:16,015 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:17,152 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\62. CN HA NOI_CAM GIANG\2.Tan Truong- Cam Giang-HD\2.Tan Truong- Cam Giang-HD\04. CAL+CER+REP\PL-Tan Truong-Cam Giang-HD F1.xlsx
+2025-05-21 15:46:17,152 - INFO - {'so_thua': '1283', 'so_to': '13', 'tinh': 'hải dương', 'huyen': 'huyện cẩm giàng', 'xa': 'xã tân trường'}
+2025-05-21 15:46:17,152 - INFO - ❌ Lỗi: Message: element not interactable
+  (Session info: chrome=136.0.7103.114)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6013ECF65+75717]
+	GetHandleVerifier [0x00007FF6013ECFC0+75808]
+	(No symbol) [0x00007FF6011B8DCC]
+	(No symbol) [0x00007FF601204825]
+	(No symbol) [0x00007FF60123737A]
+	(No symbol) [0x00007FF601201C46]
+	(No symbol) [0x00007FF601237590]
+	(No symbol) [0x00007FF60125F39C]
+	(No symbol) [0x00007FF601237153]
+	(No symbol) [0x00007FF601200421]
+	(No symbol) [0x00007FF6012011B3]
+	GetHandleVerifier [0x00007FF6016ED74D+3223469]
+	GetHandleVerifier [0x00007FF6016E7CF2+3200338]
+	GetHandleVerifier [0x00007FF601705B23+3322755]
+	GetHandleVerifier [0x00007FF601406A3A+180890]
+	GetHandleVerifier [0x00007FF60140E13F+211359]
+	GetHandleVerifier [0x00007FF6013F52B4+109332]
+	GetHandleVerifier [0x00007FF6013F5462+109762]
+	GetHandleVerifier [0x00007FF6013DBA79+4825]
+	BaseThreadInitThunk [0x00007FFEF0F0E8D7+23]
+	RtlUserThreadStart [0x00007FFEF261C5DC+44]
+
+2025-05-21 15:46:17,152 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:17,591 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\66. HDB CAN THO_CHAU THANH A, HG\DV_DAT_Truong Long A, Chau Thanh A.xlsx
+2025-05-21 15:46:17,591 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hậu giang', 'huyen': 'huyện châu thành a', 'xa': 'xã trường long a'}
+2025-05-21 15:46:17,591 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:17,591 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:17,823 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\67. HDB_LAM HOANH, BINH TAN, HCM\DV_LAM HOANH.xlsx
+2025-05-21 15:46:17,823 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận bình tân', 'xa': 'phường an lạc'}
+2025-05-21 15:46:17,823 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:17,823 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:19,940 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\73. HDB CU CHI_VINH LOC A, BINH CHANH\DV_Vinh Loc A, Binh Chanh .xlsx
+2025-05-21 15:46:19,940 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'huyện bình chánh', 'xa': 'xã vĩnh lộc a'}
+2025-05-21 15:46:19,940 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:19,940 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:19,941 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\73. HDB CU CHI_VINH LOC A, BINH CHANH\DV_Vinh Loc A, Binh Chanh .xlsx
+2025-05-21 15:46:19,941 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'huyện bình chánh', 'xa': 'xã vĩnh lộc a'}
+2025-05-21 15:46:19,941 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:19,941 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:19,941 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\73. HDB CU CHI_VINH LOC A, BINH CHANH\DV_Vinh Loc A, Binh Chanh .xlsx
+2025-05-21 15:46:19,941 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'huyện bình chánh', 'xa': 'xã vĩnh lộc a'}
+2025-05-21 15:46:19,941 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:19,941 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:20,416 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\75. HDB_CTY HOANG CHAU\New Microsoft Excel Worksheet.xlsx
+2025-05-21 15:46:20,416 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:20,416 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:20,416 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:20,672 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\75. HDB_CTY HOANG CHAU\New Microsoft Excel Worksheet.xlsx
+2025-05-21 15:46:20,672 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 9', 'xa': 'phường tân phú'}
+2025-05-21 15:46:20,672 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:20,672 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:21,168 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\75. HDB_CTY HOANG CHAU\HOANG HUU NAM - Q9\DV_LONG THANH MY Q9.xlsx
+2025-05-21 15:46:21,168 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 9', 'xa': 'phường tân phú'}
+2025-05-21 15:46:21,168 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:21,168 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:21,548 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\75. HDB_CTY HOANG CHAU\LOC NINH, BINH PHUOC\Copy of DV_DAT_Loc Ninh.xlsx
+2025-05-21 15:46:21,548 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:21,548 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:21,548 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:21,802 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\75. HDB_CTY HOANG CHAU\LOC NINH, BINH PHUOC\DV_DAT_Loc Ninh.xlsx
+2025-05-21 15:46:21,802 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:21,802 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:21,802 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:22,555 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\77. HDB PHU NHUAN_PHAM THE HIEN, Q8, HCM\DV_PHAM THE HIEN Q8.xlsx
+2025-05-21 15:46:22,555 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 8', 'xa': 'phường 6'}
+2025-05-21 15:46:22,555 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:22,555 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:22,556 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\77. HDB PHU NHUAN_PHAM THE HIEN, Q8, HCM\DV_PHAM THE HIEN Q8.xlsx
+2025-05-21 15:46:22,556 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 8', 'xa': 'phường 4'}
+2025-05-21 15:46:22,556 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:22,556 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:22,648 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\77. HDB PHU NHUAN_PHAM THE HIEN, Q8, HCM\DV_PHAM THE HIEN Q8.xlsx
+2025-05-21 15:46:22,648 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 8', 'xa': 'phường 6'}
+2025-05-21 15:46:22,648 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:22,648 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:22,649 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\77. HDB PHU NHUAN_PHAM THE HIEN, Q8, HCM\DV_PHAM THE HIEN Q8.xlsx
+2025-05-21 15:46:22,649 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '. hcm', 'huyen': 'quận 8', 'xa': 'phường 4'}
+2025-05-21 15:46:22,649 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:22,649 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:23,101 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\80. HDB NSG_PHU GIAO, BD\DV_Phu Giao, Binh Duong.xlsx
+2025-05-21 15:46:23,101 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'bình dương', 'huyen': 'huyện phú giáo', 'xa': 'xã tân hiệp'}
+2025-05-21 15:46:23,101 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:23,101 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:23,102 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\80. HDB NSG_PHU GIAO, BD\DV_Phu Giao, Binh Duong.xlsx
+2025-05-21 15:46:23,102 - INFO - {'so_thua': '264', 'so_to': '', 'tinh': 'bình dương', 'huyen': 'huyện phú giáo', 'xa': 'xã an linh'}
+2025-05-21 15:46:23,102 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:23,102 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:23,553 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\00. HDBANK\83. HDB HO_MAC DINH CHI, BEN NGHE, Q1\DV_MAC DINH CHI, BEN NGHE, Q1.xlsx
+2025-05-21 15:46:23,553 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 1', 'xa': 'phường đa kao'}
+2025-05-21 15:46:23,553 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:23,553 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,686 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,686 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': 'phường phú trinh'}
+2025-05-21 15:46:24,686 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,686 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,687 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,687 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': 'phường phú trinh'}
+2025-05-21 15:46:24,687 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,687 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,808 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,808 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': 'phường phú trinh'}
+2025-05-21 15:46:24,808 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,808 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,809 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,809 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': 'phường phú trinh'}
+2025-05-21 15:46:24,809 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,809 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,923 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,923 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': ''}
+2025-05-21 15:46:24,923 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,923 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:24,924 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\01. AGRIBANK\1. AGB BINH THUAN_ PHU TRINH, TP. PHAN THIET, BINH THUAN\03. DV\DV_PHU TRINH, PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:24,924 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': ''}
+2025-05-21 15:46:24,924 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:24,924 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:28,453 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\1. TAN PHU, HCM\DV_LUY BAN BICH, TAN PHU, HCM.xlsx
+2025-05-21 15:46:28,453 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:46:28,453 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:28,453 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:28,565 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\1. TAN PHU, HCM\DV_LUY BAN BICH, TAN PHU, HCM.xlsx
+2025-05-21 15:46:28,565 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:28,565 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:28,565 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:28,694 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\1. TAN PHU, HCM\DV_LUY BAN BICH, TAN PHU, HCM.xlsx
+2025-05-21 15:46:28,694 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'lộ 10 phường bình trị đông b', 'huyen': 'quận bình tân', 'xa': 'tỉnh lộ 10 phường bình trị đông b'}
+2025-05-21 15:46:28,694 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:28,694 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:29,212 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\3. PHO CO DIEU\DV_Pho Co Dieu.xlsx
+2025-05-21 15:46:29,212 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'quận 11', 'xa': 'phường 6'}
+2025-05-21 15:46:29,212 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:29,212 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:29,213 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\3. PHO CO DIEU\DV_Pho Co Dieu.xlsx
+2025-05-21 15:46:29,213 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'quận 11', 'xa': 'phường 6'}
+2025-05-21 15:46:29,213 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:29,213 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:29,213 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\3. PHO CO DIEU\DV_Pho Co Dieu.xlsx
+2025-05-21 15:46:29,214 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'hồ chí minh', 'huyen': 'quận 11', 'xa': 'phường 6'}
+2025-05-21 15:46:29,214 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:29,214 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:29,544 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\6. INVESTCO\DV_INVESTCO.xlsx
+2025-05-21 15:46:29,544 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'huyện bình chánh', 'xa': 'xã tân kiên'}
+2025-05-21 15:46:29,544 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:29,544 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:29,545 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\03. KHAC\6. INVESTCO\DV_INVESTCO.xlsx
+2025-05-21 15:46:29,545 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'huyện bình chánh', 'xa': 'xã tân kiên'}
+2025-05-21 15:46:29,545 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:29,545 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,417 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,417 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,417 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,417 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,417 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,417 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,418 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,418 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,418 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,418 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,418 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,418 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,511 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,511 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,511 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,511 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,512 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,512 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,512 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,512 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,512 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\1. VTB HA GIANG_HAI BA TRUNG, Q3, HCM\DV_HAI BA TRUNG, Q3, HCM.xlsx
+2025-05-21 15:46:30,512 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 3', 'xa': 'phường võ thị sáu'}
+2025-05-21 15:46:30,512 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,512 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:30,749 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\10. VTB HIEP BINH_DI AN, BINH DUONG\DV_BINH DUONG.xlsx
+2025-05-21 15:46:30,749 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'dĩ an', 'huyen': 'thành phố dĩ an', 'xa': 'phường bình an'}
+2025-05-21 15:46:30,749 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:30,749 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,028 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\11. VTB HIEP BINH_BA DIEM, HOC MON, HCM\DV_HOCMON.xlsx
+2025-05-21 15:46:31,028 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'huyện hóc môn', 'xa': 'xã bà điểm'}
+2025-05-21 15:46:31,028 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,028 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,282 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\12. VTB HIEP BINH_NOI HOA1, BINH DUONG\DV_BINH DUONG.xlsx
+2025-05-21 15:46:31,282 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'dĩ an', 'huyen': 'thành phố dĩ an', 'xa': 'phường bình an'}
+2025-05-21 15:46:31,282 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,282 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,283 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\12. VTB HIEP BINH_NOI HOA1, BINH DUONG\DV_BINH DUONG.xlsx
+2025-05-21 15:46:31,283 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'dĩ an', 'huyen': 'thành phố dĩ an', 'xa': 'phường bình an'}
+2025-05-21 15:46:31,283 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,283 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,676 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9.xlsx
+2025-05-21 15:46:31,676 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường trường thạnh'}
+2025-05-21 15:46:31,676 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,676 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,677 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9.xlsx
+2025-05-21 15:46:31,677 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường phú hữu'}
+2025-05-21 15:46:31,677 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,677 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:31,677 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9.xlsx
+2025-05-21 15:46:31,677 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường long thạnh mỹ'}
+2025-05-21 15:46:31,677 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:31,677 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,142 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9_42 tỷ.xlsx
+2025-05-21 15:46:32,142 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường trường thạnh'}
+2025-05-21 15:46:32,142 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,142 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,142 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9_42 tỷ.xlsx
+2025-05-21 15:46:32,142 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường phú hữu'}
+2025-05-21 15:46:32,142 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,142 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,143 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\13. VTB CN1_TRUONG THANH, Q9\DV_TRUONG THANH, Q9_42 tỷ.xlsx
+2025-05-21 15:46:32,143 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường long thạnh mỹ'}
+2025-05-21 15:46:32,143 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,143 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,960 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\Copy of DV_TAN BINH, HCM - Copy - mat tien.xlsx
+2025-05-21 15:46:32,960 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:32,960 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,960 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,961 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\Copy of DV_TAN BINH, HCM - Copy - mat tien.xlsx
+2025-05-21 15:46:32,961 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:32,961 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,961 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:32,962 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\Copy of DV_TAN BINH, HCM - Copy - mat tien.xlsx
+2025-05-21 15:46:32,962 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:32,962 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:32,962 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,192 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\Copy of DV_TAN BINH, HCM - Copy - mat tien.xlsx
+2025-05-21 15:46:33,192 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:33,192 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,192 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,543 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,544 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:33,544 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,544 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,545 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,545 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:33,545 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,545 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,546 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,546 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:33,546 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,546 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,714 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,714 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:33,714 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,714 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,714 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,714 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận tân bình', 'xa': 'phường 4'}
+2025-05-21 15:46:33,714 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,714 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:33,715 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\17. VTB CN1_TAN BINH, HCM\TK.xlsx
+2025-05-21 15:46:33,715 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'nan', 'huyen': '', 'xa': ''}
+2025-05-21 15:46:33,715 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:33,715 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:35,808 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\03. DV\DV_Q5, HCM.xlsx
+2025-05-21 15:46:35,808 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:35,808 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:35,808 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:35,808 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\03. DV\DV_Q5, HCM.xlsx
+2025-05-21 15:46:35,808 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:35,808 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:35,808 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:35,809 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\03. DV\DV_Q5, HCM.xlsx
+2025-05-21 15:46:35,809 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:35,809 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:35,809 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,370 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\04 CER+CAL+REP\DV_Q5, HCM.xlsx
+2025-05-21 15:46:36,370 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:36,370 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,371 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,371 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\04 CER+CAL+REP\DV_Q5, HCM.xlsx
+2025-05-21 15:46:36,371 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:36,371 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,371 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,372 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\20. VTB TAN BINH_Q5, HCM\04 CER+CAL+REP\DV_Q5, HCM.xlsx
+2025-05-21 15:46:36,372 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 5', 'xa': 'phường 12'}
+2025-05-21 15:46:36,372 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,372 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,659 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\3. VTB CN1_CHUNG CU SWANBAY\DV_CHUNG CU SWANBAY.xlsx
+2025-05-21 15:46:36,659 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:36,659 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,659 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,660 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\3. VTB CN1_CHUNG CU SWANBAY\DV_CHUNG CU SWANBAY.xlsx
+2025-05-21 15:46:36,660 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:36,660 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,660 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,661 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\3. VTB CN1_CHUNG CU SWANBAY\DV_CHUNG CU SWANBAY.xlsx
+2025-05-21 15:46:36,661 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:36,661 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,661 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:36,661 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\3. VTB CN1_CHUNG CU SWANBAY\DV_CHUNG CU SWANBAY.xlsx
+2025-05-21 15:46:36,661 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:36,661 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:36,661 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,588 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,588 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 5', 'xa': ''}
+2025-05-21 15:46:37,588 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,588 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,588 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,588 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 8', 'xa': ''}
+2025-05-21 15:46:37,588 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,588 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,589 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,589 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:37,589 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,589 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,590 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,590 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 8', 'xa': ''}
+2025-05-21 15:46:37,590 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,590 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,680 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,680 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:37,680 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,680 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,681 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,681 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:37,681 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,681 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,682 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,682 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:37,682 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,682 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:37,682 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\6. VTB CN1_BIET THU SWANBAY\DV_BIET THU SWANBAY.xlsx
+2025-05-21 15:46:37,682 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'đồng nai', 'huyen': 'huyện nhơn trạch', 'xa': 'xã đại phước'}
+2025-05-21 15:46:37,682 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:37,682 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,008 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\7. VTB CN1_DAI PHUOC, NHON TRACH, DN\DV_SWANBAY.xlsx
+2025-05-21 15:46:38,008 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 5', 'xa': ''}
+2025-05-21 15:46:38,008 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,008 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,010 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\7. VTB CN1_DAI PHUOC, NHON TRACH, DN\DV_SWANBAY.xlsx
+2025-05-21 15:46:38,010 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 5', 'xa': ''}
+2025-05-21 15:46:38,010 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,010 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,011 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\7. VTB CN1_DAI PHUOC, NHON TRACH, DN\DV_SWANBAY.xlsx
+2025-05-21 15:46:38,011 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'swanbay', 'huyen': 'biệt thự song lập zone 5', 'xa': ''}
+2025-05-21 15:46:38,011 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,011 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,312 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\8. VTB CN1_TRUONG THANH, Q9, HCM\DV_Q9.xlsx
+2025-05-21 15:46:38,312 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường long trường'}
+2025-05-21 15:46:38,312 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,312 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,313 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\8. VTB CN1_TRUONG THANH, Q9, HCM\DV_Q9.xlsx
+2025-05-21 15:46:38,313 - INFO - {'so_thua': '', 'so_to': '', 'tinh': '.hcm', 'huyen': 'quận 9', 'xa': 'phường long trường'}
+2025-05-21 15:46:38,313 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,313 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:38,645 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\04. VIETINBANK\9. VTB CN1_AN LINH, PHU GIAO, BD\DV_BD.xlsx
+2025-05-21 15:46:38,645 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'bình dương', 'huyen': 'huyện phú giáo', 'xa': 'xã an linh'}
+2025-05-21 15:46:38,645 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:38,645 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:45,928 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.1_ONG NGUYEN BUU AN_TAN NHUAN DONG, DONG THAP\03. DV\DV_.xlsx
+2025-05-21 15:46:45,928 - INFO - {'so_thua': '513', 'so_to': '22', 'tinh': 'đồng tháp', 'huyen': 'huyện châu thành', 'xa': 'tờ bản đồ số 22 xã an nhơn'}
+2025-05-21 15:46:45,928 - INFO - ✅ Lấy tọa độ thành công.
+2025-05-21 15:46:45,928 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:47,963 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:47,963 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:47,963 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:47,963 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:47,964 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:47,964 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:46:47,964 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:47,964 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:47,966 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:47,966 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:47,966 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:47,966 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:47,967 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:47,968 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:47,968 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:47,968 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,395 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:48,396 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,396 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,396 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,397 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:48,397 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:46:48,397 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,397 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,399 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:48,399 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,399 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,399 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,400 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\03. DV\DV_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:48,400 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,400 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,400 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,819 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:48,819 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,819 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,819 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,821 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:48,821 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:46:48,821 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,821 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,822 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:48,822 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,822 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,822 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:48,824 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10A.05.xlsx
+2025-05-21 15:46:48,824 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:48,824 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:48,824 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:49,296 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:49,296 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:49,296 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:49,296 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:49,298 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:49,299 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'nha trang', 'xa': 'vĩnh phước'}
+2025-05-21 15:46:49,299 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:49,299 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:49,300 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:49,300 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:49,300 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:49,300 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:49,302 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.14_CTY THIEN DUC_BAI DAI, CAM RANH, KHANH HOA\04. CAL + CER + REP\CAL_KN PARADISE CAM RANH_10B.04.xlsx
+2025-05-21 15:46:49,302 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'khánh hòa', 'huyen': 'cam ranh', 'xa': 'phường cam nghĩa'}
+2025-05-21 15:46:49,302 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:49,302 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:52,538 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.3_PHAM CHUNG_TDS 178, TBDS 2, KP1, P. PHU TAI, TP. PHAN THIET, T. BINH THUAN\03. DV\DV_PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:52,538 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': ''}
+2025-05-21 15:46:52,538 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:52,538 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:52,539 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.3_PHAM CHUNG_TDS 178, TBDS 2, KP1, P. PHU TAI, TP. PHAN THIET, T. BINH THUAN\03. DV\DV_PHAN THIET, BINH THUAN.xlsx
+2025-05-21 15:46:52,539 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'phan thiết', 'huyen': 'thành phố phan thiết', 'xa': ''}
+2025-05-21 15:46:52,539 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:52,539 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:54,031 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.11_NGUYEN DINH KHOA_286 NKKN, P. VO THI SAU, Q3, HCM\03. DV\Copy of DV_DAT_286 NKKN, Q3 v3.xlsx
+2025-05-21 15:46:54,032 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'quận 3', 'huyen': 'quận 3', 'xa': '449b - 451 - 451/1a hai bà trưng'}
+2025-05-21 15:46:54,032 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:54,032 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+2025-05-21 15:46:54,703 - INFO - \\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\2025\THANG 01\104.2025.11_NGUYEN DINH KHOA_286 NKKN, P. VO THI SAU, Q3, HCM\draft\DV_DAT_286 NKKN, Q3 v2.xlsx
+2025-05-21 15:46:54,703 - INFO - {'so_thua': '', 'so_to': '', 'tinh': 'quận 3', 'huyen': 'quận 3', 'xa': '449b - 451 - 451/1a hai bà trưng'}
+2025-05-21 15:46:54,703 - INFO - ⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.
+2025-05-21 15:46:54,703 - INFO -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+

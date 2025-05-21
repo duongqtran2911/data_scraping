@@ -4,3 +4,5 @@
 /file_detection_202*/all_checked_files_*.txt
 /misc
 /reading_logs_*
+/__pycache__
+*.pyc
