@@ -1,3 +1,5 @@
+import os
+
 import pandas as pd
 import datetime
 from datetime import datetime, timezone
@@ -13,8 +15,15 @@ import logging
 from get_location_test_API import action_open_guland_driver
 
 
+# Tạo thư mục nếu chưa tồn tại
+log_dir = "logs_status_coordinate"
+os.makedirs(log_dir, exist_ok=True)
+
+# Đường dẫn đầy đủ đến file log
+log_path = os.path.join(log_dir, "status_coordinate-1.log")
+
 # Tạo logger riêng cho ứng dụng
-app_logger = logging.getLogger("app_logger")
+app_logger = logging.getLogger("app_logger1")
 app_logger.setLevel(logging.INFO)
 
 # Đảm bảo logger này không bị ảnh hưởng bởi các logger khác
@@ -22,7 +31,7 @@ app_logger.propagate = False
 
 # Thêm handler nếu chưa có
 if not app_logger.handlers:
-    file_handler = logging.FileHandler("my_app.log", mode="a", encoding="utf-8")
+    file_handler = logging.FileHandler(log_path, mode="a", encoding="utf-8")
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
     app_logger.addHandler(file_handler)
@@ -311,7 +320,39 @@ def normalize_att(attr):
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
 
+        "giá đất luc/bhk (đồng/m²)":"giá đất (đồng/m²)",
+        "giá đất tmdv (đồng/m²)":"giá đất (đồng/m²)",
+        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)":"giá đất (đồng/m²)",
+        "giá đất skc (đồng/m²)":"giá đất (đồng/m²)",
+        "đơn giá đất nông nghiệp (đồng/m²)":"giá đất (đồng/m²)",
+        "đơn giá đất ở (đồng/m²)":"giá đất (đồng/m²)",
+
         "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
+
+        #2025
+        "giá trị đất odt (đồng)":"giá trị đất (đồng)",
+        "giá trị đất ont(đồng)":"giá trị đất (đồng)",
+        "giá trị đất ont (đồng)":"giá trị đất (đồng)",
+        "giá trị đất cln (đồng)":"giá trị đất (đồng)",
+        "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
+        "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
+        "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
+        "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
+
+        #2024
+        "giá trị đất nn (đồng)":"giá trị đất (đồng)",
+        "giá trị đất nn vt1 (đồng)":"giá trị đất (đồng)",
+        "giá trị đất luk(đồng)":"giá trị đất (đồng)",
+        "giá trị đất hnk (đồng)":"giá trị đất (đồng)",
+        "giá trị đất odt(đồng)":"giá trị đất (đồng)",
+
+        "giá trị đất luc (đồng)":"giá trị đất (đồng)",
+        "giá trị đất lua (đồng)":"giá trị đất (đồng)",
+
+        "giá trị đất bhk (đồng)":"giá trị đất (đồng)",
+
+        #5/2024
+        "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)":"giá trị đất (đồng)",
     }
     return replacements.get(attr, attr)
 
@@ -406,7 +447,7 @@ def get_info_location(info, address, driver, file_path):
     #     print("\nℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ:" + address)
     #     app_logger.info(file_path)
     #     app_logger.info(log_message)
-    #     app_logger.info(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+    #     # app_logger.info(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
     #     # address_infor = parse_location_info(address)
     #     return action_open_guland_driver(address,driver,file_path)
 

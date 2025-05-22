@@ -384,7 +384,7 @@ for file_path, sheet_list in sheet_map.items():
                             "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"))),
                             "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
                             "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
-                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"), np.nan)),
+                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"))),
                             "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                         },
                         

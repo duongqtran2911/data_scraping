@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 
 from selenium.common import NoSuchElementException, ElementClickInterceptedException
@@ -13,8 +14,14 @@ import io
 import gzip
 
 
+log_dir = "logs_status_coordinate"
+os.makedirs(log_dir, exist_ok=True)
+
+# Đường dẫn đầy đủ đến file log
+log_path = os.path.join(log_dir, "status_coordinate-1.log")
+
 # Tạo logger riêng cho ứng dụng
-app_logger = logging.getLogger("app_logger2")
+app_logger = logging.getLogger("app_logger1")
 app_logger.setLevel(logging.INFO)
 
 # Đảm bảo logger này không bị ảnh hưởng bởi các logger khác
@@ -22,7 +29,7 @@ app_logger.propagate = False
 
 # Thêm handler nếu chưa có
 if not app_logger.handlers:
-    file_handler = logging.FileHandler("my_app2.log", mode="a", encoding="utf-8")
+    file_handler = logging.FileHandler(log_path, mode="a", encoding="utf-8")
     formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(formatter)
     app_logger.addHandler(file_handler)
@@ -121,6 +128,7 @@ def extract_coordinates_from_requests(driver):
                 lng = response_data["data"]["lng"]
 
                 print(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
+                app_logger.info(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
 
                 if "points" in response_data["data"]:
                     print("🧭 Polygon boundary:")
@@ -130,12 +138,32 @@ def extract_coordinates_from_requests(driver):
 
             except Exception as e:
                 print("❌ Failed to parse JSON:", e)
+                app_logger.info("❌ Failed to parse JSON:", e)
             break
 
     if lat is None or lng is None:
         print("❌ Could not find coordinates.")
+        app_logger.info("❌ Could not find coordinates.")
 
     return lat, lng, polygon_points
+
+
+def normalize_tinh_name(tinh):
+    """Chuẩn hóa tên tỉnh"""
+    tinh = tinh.lower().strip()
+    replacements = {
+        "hồ chí minh": "tp. hồ chí minh",
+        "tp hcm": "tp. hồ chí minh",
+        "tp.hcm": "tp. hồ chí minh",
+        "tp ho chi minh": "tp. hồ chí minh",
+        "thành phố hồ chí minh": "tp. hồ chí minh",
+        "ho chi minh": "tp. hồ chí minh",
+        "hcm": "tp. hồ chí minh",
+        ".ct" : "cần thơ",
+        ". ct": "cần thơ",
+        "ct" : "cần thơ"
+    }
+    return replacements.get(tinh, tinh)
 
 # Phân tích địa chỉ thành các thành phần: tỉnh, huyện, xã
 def parse_location_info(location):
@@ -167,6 +195,7 @@ def parse_location_info(location):
                 tinh = part_lower.replace("tỉnh", "").replace("thành phố", "").replace("tp", "").strip()
                 break
 
+        # tinh = normalize_tinh_name(tinh)
         # Tìm phần huyện/quận/thị xã (bao gồm "tx" là viết tắt thị xã)
         for part in parts:
             part_lower = part.lower()
@@ -214,7 +243,7 @@ def interactive_loop(driver, address_info, file_path):
     # Nếu thiếu bất kỳ dữ liệu nào thì bỏ qua
     if not all([so_thua, so_to, tinh, huyen, xa]):
         print("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
-        app_logger.info(file_path)
+        # app_logger.info(file_path)
         app_logger.info(address_info)
         app_logger.info("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
         app_logger.info(
@@ -232,7 +261,7 @@ def interactive_loop(driver, address_info, file_path):
                 close_button = driver.find_element("xpath", '//*[@id="Modal-Sample"]/div/div/button')
                 if close_button.is_displayed():
                     print("🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...")
-                    app_logger.info(file_path)
+                    # app_logger.info(file_path)
                     app_logger.info(address_info)
                     app_logger.info("🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...")
                     app_logger.info(
@@ -248,7 +277,7 @@ def interactive_loop(driver, address_info, file_path):
 
                 # Nếu không có popup lỗi, trích xuất toạ độ
             lat, lng, points = extract_coordinates_from_requests(driver)
-            app_logger.info(file_path)
+            # app_logger.info(file_path)
             app_logger.info(address_info)
             app_logger.info("✅ Lấy tọa độ thành công.")
             app_logger.info(
@@ -259,11 +288,14 @@ def interactive_loop(driver, address_info, file_path):
             }
         else:
             print("❌ Không thể điền form tìm kiếm.")
-
+            app_logger.info(address_info)
+            app_logger.info("❌ Không thể điền form tìm kiếm.")
+            app_logger.info(
+                f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
     except Exception as e:
         print(f"❌ Lỗi: {e}")
-        app_logger.info(file_path)
+        # app_logger.info(file_path)
         app_logger.info(address_info)
         app_logger.info(f"❌ Lỗi: {e}")
         app_logger.info(
