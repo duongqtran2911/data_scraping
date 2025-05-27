@@ -7,7 +7,7 @@ from datetime import datetime
 import numpy as np
 import json
 
-from get_location_test_API import setup_driver, open_guland_page
+from get_location_test_API import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
@@ -361,11 +361,18 @@ for file_path, sheet_list in sheet_map.items():
                     has_facade = facade.get("has_facade", False)
                     width, height = assign_dimensions(width, height, depth, has_facade)
 
+                    location = parse_location_info(entry.get(normalize_att("Địa chỉ tài sản")))\
+
+                    parsed = clean_location_names(location)
+
                     return {
                         "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver,file_path),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
                                 "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "no_name")),
+                                "ward": parsed.get("xa", ""),
+                                "district": parsed.get("huyen", ""),
+                                "province": parsed.get("tinh", ""),
                             },
                             "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
                             "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),

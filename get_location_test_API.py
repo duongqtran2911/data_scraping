@@ -2,7 +2,7 @@ import logging
 import os
 import re
 
-from selenium.common import NoSuchElementException, ElementClickInterceptedException
+from selenium.common import NoSuchElementException, ElementClickInterceptedException, ElementNotInteractableException
 from seleniumwire import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -14,11 +14,11 @@ import io
 import gzip
 
 
-log_dir = "logs_status_coordinate"
+log_dir = "logs_status_coordinate_2024"
 os.makedirs(log_dir, exist_ok=True)
 
 # Đường dẫn đầy đủ đến file log
-log_path = os.path.join(log_dir, "status_coordinate-1.log")
+log_path = os.path.join(log_dir, "status_coordinate-1-2024.log")
 
 # Tạo logger riêng cho ứng dụng
 app_logger = logging.getLogger("app_logger1")
@@ -124,21 +124,32 @@ def extract_coordinates_from_requests(driver):
                     decompressed = raw.decode("utf-8")
 
                 response_data = json.loads(decompressed)
-                lat = response_data["data"]["lat"]
-                lng = response_data["data"]["lng"]
 
-                print(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
-                app_logger.info(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
+                # KIỂM TRA XEM RESPONSE CÓ CHỨA DATA VÀ TỌA ĐỘ KHÔNG
+                if "data" in response_data and response_data["data"]:
+                    data = response_data["data"]
+                    if "lat" in data and "lng" in data and data["lat"] and data["lng"]:
+                        lat = data["lat"]
+                        lng = data["lng"]
 
-                if "points" in response_data["data"]:
-                    print("🧭 Polygon boundary:")
-                    polygon_points = response_data["data"]["points"]
-                    for pt in polygon_points:
-                        print(f"  {pt}")
+                        print(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
+                        app_logger.info(f"✅ Found parcel coordinates: lat = {lat}, lng = {lng}")
+
+                        if "points" in data:
+                            print("🧭 Polygon boundary:")
+                            polygon_points = data["points"]
+                            for pt in polygon_points:
+                                print(f"  {pt}")
+                    else:
+                        print("❌ Response data không chứa tọa độ hợp lệ.")
+                        app_logger.info("❌ Response data không chứa tọa độ hợp lệ.")
+                else:
+                    print("❌ Response không chứa data hợp lệ.")
+                    app_logger.info("❌ Response không chứa data hợp lệ.")
 
             except Exception as e:
                 print("❌ Failed to parse JSON:", e)
-                app_logger.info("❌ Failed to parse JSON:", e)
+                app_logger.info(f"❌ Failed to parse JSON: {e}")
             break
 
     if lat is None or lng is None:
@@ -159,13 +170,24 @@ def normalize_tinh_name(tinh):
         "thành phố hồ chí minh": "tp. hồ chí minh",
         "ho chi minh": "tp. hồ chí minh",
         "hcm": "tp. hồ chí minh",
+        ".hcm": "tp. hồ chí minh",
+        ". hcm": "tp. hồ chí minh",
+        ". hồ chí minh.": "tp. hồ chí minh",
+
         ".ct" : "cần thơ",
         ". ct": "cần thơ",
-        "ct" : "cần thơ"
+        ". cần thơ": "cần thơ",
+        "ct" : "cần thơ",
+
+        ". đà nẵng":"đà nẵng",
+        ".đà nẵng": "đà nẵng",
+        ".đn": "đà nẵng",
+        ". đn": "đà nẵng"
     }
     return replacements.get(tinh, tinh)
 
-# Phân tích địa chỉ thành các thành phần: tỉnh, huyện, xã
+import re
+
 def parse_location_info(location):
     """Phân tích địa chỉ thành các thành phần cho Guland"""
     so_thua = ""
@@ -177,47 +199,64 @@ def parse_location_info(location):
     if location and isinstance(location, str) and location.strip():
         parts = location.split(',')
         parts = [p.strip() for p in parts if p.strip()]
+        parts_lower = [p.lower() for p in parts]
 
-        # Số thửa: "Thửa đất số 104" hoặc "Thửa số 104"
-        thuad_match = re.search(r"(?:[Tt]hửa (?:đất )?số\s*)(\d+)", location)
+        # Số thửa: "Thửa đất số 104", "Thửa số 104", "TĐS 723", "TĐ số 723"
+        thuad_match = re.search(r"(?:[Tt]hửa (?:đất )?số\s*|TĐS\s*|TĐ số\s*)(\d+)", location)
         if thuad_match:
             so_thua = thuad_match.group(1)
 
-        # Số tờ: "Tờ bản đồ 06" hoặc "Tờ bản đồ số 06"
-        tobd_match = re.search(r"[Tt]ờ bản đồ(?: số)?\s*(\d+)", location)
+        # Số tờ: "Tờ bản đồ 06", "Tờ bản đồ số 06", "TBĐ số 06", "TBĐS 06"
+        tobd_match = re.search(r"(?:[Tt]ờ bản đồ(?: số)?\s*|TBĐS\s*|TBĐ số\s*)(\d+)", location)
         if tobd_match:
             so_to = tobd_match.group(1)
 
-        # Tìm phần tỉnh/thành phố
-        for part in parts:
-            part_lower = part.lower()
-            if "tỉnh" in part_lower or "thành phố" in part_lower or "tp" in part_lower:
-                tinh = part_lower.replace("tỉnh", "").replace("thành phố", "").replace("tp", "").strip()
-                break
+        # Tìm tỉnh/thành phố từ cuối danh sách parts
+        for part in reversed(parts):
+            part_lower = part.lower().strip()
+            if any(kw in part_lower for kw in ["tỉnh", "thành phố", "tp"]):
+                if not re.match(r"(đường|quốc lộ|ql|tl|tỉnh lộ)\s*\d+", part_lower):
+                    tinh = re.sub(r"\b(tỉnh|thành phố|tp\.?)\b", "", part_lower).strip()
+                    break
 
-        # tinh = normalize_tinh_name(tinh)
-        # Tìm phần huyện/quận/thị xã (bao gồm "tx" là viết tắt thị xã)
+        # Nếu vẫn chưa có tỉnh, lấy phần cuối nếu không phải là đường
+        if not tinh and parts:
+            last = parts[-1].lower()
+            if not re.match(r"(đường|quốc lộ|ql|tl|tỉnh lộ)\s*\d+", last):
+                tinh = last
+
+        tinh = normalize_tinh_name(tinh)
+
+
+
+        # Huyện/thị xã/quận
         for part in parts:
             part_lower = part.lower()
-            if ("huyện" in part_lower or "quận" in part_lower or
-                "thị xã" in part_lower or part_lower.startswith("tx ")):
+            if any(kw in part_lower for kw in ["huyện", "quận", "thị xã", "tx "]):
                 huyen = part_lower.replace("tx", "thị xã").strip()
                 break
 
-        # Tìm phần xã/phường/thị trấn
-        for part in parts:
-            part_lower = part.lower()
-            if "xã" in part_lower or "phường" in part_lower or "thị trấn" in part_lower:
-                xa = part_lower.strip()
-                break
+        # Xã/phường/thị trấn - ưu tiên regex để tránh dính "tỉnh lộ"
+        xa_match = re.search(r"\b(phường|xã|thị trấn)\s+[a-zA-ZÀ-Ỹà-ỹ0-9\s\-]+", location, re.IGNORECASE)
+        if xa_match:
+            xa = xa_match.group(0).strip().lower()
 
         # Dự phòng nếu vẫn thiếu
-        if not tinh and len(parts) >= 1:
-            tinh = parts[-1].lower().strip()
         if not huyen and len(parts) >= 2:
             huyen = parts[-2].lower().strip()
         if not xa and len(parts) >= 3:
             xa = parts[-3].lower().strip()
+
+
+    location_info = {
+        "so_thua": so_thua,
+        "so_to": so_to,
+        "tinh": tinh,
+        "huyen": huyen,
+        "xa": xa
+    }
+
+    app_logger.info(f"📍 Địa chỉ sau khi lọc và chuẩn hóa: {location_info}")
 
     return {
         "so_thua": so_thua,
@@ -244,7 +283,7 @@ def interactive_loop(driver, address_info, file_path):
     if not all([so_thua, so_to, tinh, huyen, xa]):
         print("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
         # app_logger.info(file_path)
-        app_logger.info(address_info)
+        #app_logger.info(address_info)
         app_logger.info("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
         app_logger.info(
             f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
@@ -262,7 +301,7 @@ def interactive_loop(driver, address_info, file_path):
                 if close_button.is_displayed():
                     print("🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...")
                     # app_logger.info(file_path)
-                    app_logger.info(address_info)
+                    ##app_logger.info(address_info)
                     app_logger.info("🚫 Không tìm thấy khu vực theo tờ thửa. Đang đóng popup...")
                     app_logger.info(
                         f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
@@ -275,33 +314,148 @@ def interactive_loop(driver, address_info, file_path):
                 print("❌ Không thể click để đóng popup.")
                 return None
 
-                # Nếu không có popup lỗi, trích xuất toạ độ
+            # Nếu không có popup lỗi, trích xuất toạ độ
             lat, lng, points = extract_coordinates_from_requests(driver)
-            # app_logger.info(file_path)
-            app_logger.info(address_info)
-            app_logger.info("✅ Lấy tọa độ thành công.")
-            app_logger.info(
-                f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
-            return {
-                "type": "Point",
-                "coordinates": [lng, lat]
-            }
+
+            # KIỂM TRA XEM CÓ THẬT SỰ LẤY ĐƯỢC TỌA ĐỘ KHÔNG
+            if lat is not None and lng is not None:
+                # app_logger.info(file_path)
+                #app_logger.info(address_info)
+                app_logger.info("✅ Lấy tọa độ thành công.")
+                app_logger.info(
+                    f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+                return {
+                    "type": "Point",
+                    "coordinates": [lng, lat]
+                }
+            else:
+                print("❌ Không lấy được tọa độ từ response.")
+                # app_logger.info(file_path)
+                #app_logger.info(address_info)
+                app_logger.info("❌ Không lấy được tọa độ từ response.")
+                app_logger.info(
+                    f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+
+                # ĐÓNG TẤT CẢ POPUP/MODAL TRƯỚC KHI RETURN
+                cleanup_popups_and_modals(driver)
+                return None
+
         else:
             print("❌ Không thể điền form tìm kiếm.")
-            app_logger.info(address_info)
+            # app_logger.info(file_path)
+            #app_logger.info(address_info)
             app_logger.info("❌ Không thể điền form tìm kiếm.")
             app_logger.info(
                 f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
+            # ĐÓNG TẤT CẢ POPUP/MODAL TRƯỚC KHI RETURN
+            cleanup_popups_and_modals(driver)
+            return None
+
     except Exception as e:
         print(f"❌ Lỗi: {e}")
         # app_logger.info(file_path)
-        app_logger.info(address_info)
+        #app_logger.info(address_info)
         app_logger.info(f"❌ Lỗi: {e}")
         app_logger.info(
             f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
 
-    return None
+        # ĐÓNG TẤT CẢ POPUP/MODAL TRƯỚC KHI RETURN
+        cleanup_popups_and_modals(driver)
+        return None
+
+def clean_location_names(parsed_location):
+    """
+    Làm sạch địa chỉ:
+    - Giữ lại "phường 1", "quận 5" nếu sau là số.
+    - Loại bỏ tiền tố nếu sau là chữ.
+    - Giữ lại so_thua và so_to.
+    """
+
+    def remove_prefix_smart(value, prefixes, keep_if_number=True):
+        if not value:
+            return ""
+        value = value.strip().lower()
+
+        for prefix in prefixes:
+            pattern = fr"^{prefix}[\.]?\s+(.*)$"
+            match = re.match(pattern, value)
+            if match:
+                after = match.group(1).strip()
+                if keep_if_number and re.match(r"^\d+$", after):  # Giữ nguyên nếu sau prefix là số
+                    return value
+                else:
+                    value = after
+                    break
+
+        # Xoá dấu chấm/dấu phẩy và khoảng trắng dư ở đầu
+        value = re.sub(r"^[\.\,\s]+", "", value)
+        return value
+
+    return {
+        "so_thua": parsed_location.get("so_thua", ""),
+        "so_to": parsed_location.get("so_to", ""),
+        "xa": remove_prefix_smart(parsed_location.get("xa", ""), ["xã", "phường", "thị trấn"]),
+        "huyen": remove_prefix_smart(parsed_location.get("huyen", ""), ["huyện", "quận", "thị xã", "tx", "thành phố"], keep_if_number=True),
+        "tinh": remove_prefix_smart(parsed_location.get("tinh", ""), ["tp", "tp.", "tỉnh", "thành phố"], keep_if_number=False)
+    }
+
+def cleanup_popups_and_modals(driver):
+    """Đóng tất cả popup và modal có thể còn mở"""
+    try:
+        # Thử đóng modal chính (Modal-Sample)
+        try:
+            close_button = driver.find_element("xpath", '//*[@id="Modal-Sample"]/div/div/button')
+            if close_button.is_displayed():
+                print("🧹 Đang đóng Modal-Sample...")
+                close_button.click()
+                time.sleep(0.5)
+        except (NoSuchElementException, ElementNotInteractableException):
+            pass
+
+        # Thử đóng các modal khác có thể xuất hiện
+        modal_selectors = [
+            "//button[contains(@class, 'close') or contains(@class, 'btn-close')]",
+            "//button[contains(text(), 'Đóng') or contains(text(), 'Close') or contains(text(), '×')]",
+            "//*[@class='modal-header']//button",
+            "//*[contains(@class, 'modal')]//button[contains(@class, 'close')]"
+        ]
+
+        for selector in modal_selectors:
+            try:
+                buttons = driver.find_elements("xpath", selector)
+                for button in buttons:
+                    if button.is_displayed() and button.is_enabled():
+                        print(f"🧹 Đang đóng modal với selector: {selector}")
+                        button.click()
+                        time.sleep(0.3)
+                        break
+            except Exception:
+                continue
+
+        # Thử nhấn ESC để đóng modal
+        try:
+            from selenium.webdriver.common.keys import Keys
+            driver.find_element("tag name", "body").send_keys(Keys.ESCAPE)
+            time.sleep(0.3)
+        except Exception:
+            pass
+
+        # Kiểm tra xem có overlay nào đang che màn hình không
+        try:
+            overlays = driver.find_elements("xpath", "//*[contains(@class, 'overlay') or contains(@class, 'backdrop')]")
+            for overlay in overlays:
+                if overlay.is_displayed():
+                    print("🧹 Đang click để đóng overlay...")
+                    overlay.click()
+                    time.sleep(0.3)
+        except Exception:
+            pass
+
+        print("🧹 Hoàn thành cleanup popup/modal.")
+
+    except Exception as e:
+        print(f"⚠️ Lỗi khi cleanup popup/modal: {e}")
 
 def action_open_guland_driver(address, driver, file_path):
     # === Actions ===

@@ -20,7 +20,7 @@ log_dir = "logs_status_coordinate"
 os.makedirs(log_dir, exist_ok=True)
 
 # Đường dẫn đầy đủ đến file log
-log_path = os.path.join(log_dir, "status_coordinate-1.log")
+log_path = os.path.join(log_dir, "status_coordinate-2-2025-(2).log")
 
 # Tạo logger riêng cho ứng dụng
 app_logger = logging.getLogger("app_logger1")
@@ -441,7 +441,7 @@ def get_info_location(info, address, driver, file_path):
             except Exception as e:
                 print(f"❌ Lỗi khi phân tích tọa độ DMS: {e}")
 
-    # # Trường hợp 3: Nếu không có tọa độ trực tiếp, thử dùng địa chỉ
+    # Trường hợp 3: Nếu không có tọa độ trực tiếp, thử dùng địa chỉ
     # if address and str(address).strip() != "":
     #     log_message = f"ℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ: {address}"
     #     print("\nℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ:" + address)
@@ -453,36 +453,6 @@ def get_info_location(info, address, driver, file_path):
 
     # Nếu tất cả các phương pháp thất bại
     return None
-
-
-# def convert_address_to_coordinates(location):
-#     print("Đã vào được hàm convert")
-#     driver = setup_driver(headless=True)
-#     try:
-#         driver = setup_driver(headless=True)
-#         open_guland_page(driver)
-#
-#         # parse `location` thành các phần: số thửa, số tờ, tỉnh, huyện, xã
-#         so_thua = "2"
-#         so_to = "14"
-#         tinh = "long an"
-#         huyen = "huyện cần giuộc"
-#         xa = "xã long hậu"
-#
-#         del driver.requests  # xóa request cũ nếu có
-#
-#         if fill_form(driver, so_thua, so_to, tinh, huyen, xa):
-#             lat, lng, points = extract_coordinates_from_requests(driver)
-#             if lat is not None and lng is not None:
-#                 return {
-#                     "type": "Point",
-#                     "coordinates": [lng, lat]
-#                 }
-#     except Exception as e:
-#         print(f"❌ Selenium error: {e}")
-#
-#     finally:
-#         driver.quit()
 
 
 # Function to get the purpose and area from the info string
