@@ -293,6 +293,40 @@ def normalize_att(attr):
         "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
         "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
         "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
+        
+        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất luc/bhk (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất tmdv (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
+        "giá đất skc (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất nông nghiệp (đồng/m²)": "giá đất (đồng/m²)",
+        "đơn giá đất ở (đồng/m²)": "giá đất (đồng/m²)",
+
+
+        #2025
+        "giá trị đất odt (đồng)": "giá trị đất (đồng)",
+        "giá trị đất ont(đồng)": "giá trị đất (đồng)",
+        "giá trị đất ont (đồng)": "giá trị đất (đồng)",
+        "giá trị đất cln (đồng)": "giá trị đất (đồng)",
+        "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
+        "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
+        "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
+        "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
+
+        #2024
+        "giá trị đất nn (đồng)": "giá trị đất (đồng)",
+        "giá trị đất nn vt1 (đồng)": "giá trị đất (đồng)",
+        "giá trị đất luk(đồng)": "giá trị đất (đồng)",
+        "giá trị đất hnk (đồng)": "giá trị đất (đồng)",
+        "giá trị đất odt(đồng)": "giá trị đất (đồng)",
+
+        "giá trị đất luc (đồng)": "giá trị đất (đồng)",
+        "giá trị đất lua (đồng)": "giá trị đất (đồng)",
+
+        "giá trị đất bhk (đồng)": "giá trị đất (đồng)",
+
+        #5/2024
+        "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)": "giá trị đất (đồng)",
 
         "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
     }
@@ -471,6 +505,8 @@ def normalize_unicode(text):
 
 def get_facade_info(width_raw, location_info):
     width_str = normalize_unicode(width_raw)
+    if pd.isna(width_str) or width_str == "" or width_str == "nan":
+        return {"has_facade": False, "value": np.nan}
     location_str = normalize_unicode(location_info)
 
     # Denial keywords → explicitly no facade
@@ -492,14 +528,14 @@ def get_facade_info(width_raw, location_info):
 
     for pattern in strong_positive_patterns:
         if re.search(pattern, location_str):
-            return {"has_facade": True, "value": np.nan}
+            return {"hasFacade": True, "value": np.nan}
 
     # Regex match from width_str: '1.96m mặt tiền'
     match = re.search(r'([\d,\.]+)\s*m[^,\n]*?(mặt\s*tiền)', width_str)
     if match:
         try:
             value = float(match.group(1).replace(',', '.'))
-            return {"has_facade": True, "value": value}
+            return {"hasFacade": True, "value": value}
         except ValueError:
             pass
 
@@ -508,12 +544,12 @@ def get_facade_info(width_raw, location_info):
     if match:
         try:
             value = float(match.group(1).replace(',', '.'))
-            return {"has_facade": True, "value": value}
+            return {"hasFacade": True, "value": value}
         except ValueError:
             pass
 
     # Default: can't detect
-    return {"has_facade": False, "value": np.nan}
+    return {"hasFacade": False, "value": np.nan}
 
 # function to dynamically assign 'chiều sâu' to missing field
 def assign_dimensions(width, height, depth, has_facade):
