@@ -8,11 +8,18 @@ class SmartAttributeNormalizer:
         # Chỉ giữ lại các mapping chuẩn quan trọng
         self.standard_attributes = {
 
-            # Địa chỉ và vị trí
-            "địa chỉ tài sản": ["địa chỉ", "address", "location"],
-            "tọa độ vị trí": ["tọa độ", "coordinates", "vị trí"],
+            "tọa độ vị trí": ["tọa độ","tọa độ vị trí" ,"coordinates"],
 
-            # Diện tích
+            "địa chỉ tài sản": ["địa chỉ", "address", "location"],
+
+            "giá đất (đồng/m²)": [
+                "đơn giá", "đơn giá đất", "giá đất", "unit price"
+            ],
+
+            "mục đích sử dụng đất": [
+                "mục đích sử dụng", "land use purpose"
+            ],
+
             "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)": [
                 "quy mô diện tích", "diện tích", "area", "diện tích sàn"
             ],
@@ -21,26 +28,50 @@ class SmartAttributeNormalizer:
             "chiều dài (m)": ["chiều dài", "length"],
             "chiều rộng (m)": ["chiều rộng", "width"],
             "chiều sâu (m)": ["chiều sâu", "depth"],
+
             "độ rộng mặt tiền (m)": [
                 "chiều rộng giáp mặt đường", "chiều rộng mặt tiền",
-                "chiều rộng tiếp giáp mặt tiền", "mặt tiền"
+                "chiều rộng tiếp giáp mặt tiền", "mặt tiền","chiều rộng mặt tiền tiếp giáp đường"
             ],
 
-            # Giá cả
-            "giá đất (đồng/m²)": [
-                "đơn giá", "đơn giá đất", "giá đất", "unit price"
+            "chất lượng còn lại (%)": [
+                "chất lượng", "quality remaining"
             ],
+
+            "đơn giá xây dựng mới (đồng/m²)":[
+                "đơn giá xây dựng", "đơn giá xây dựng mới"
+            ],
+
+            "giá trị công trình xây dựng (đồng)":[
+                "giá trị công trình xây dựng"
+            ],
+
+            "giá rao bán (đồng)": [
+                "giá rao bán", "selling price", "asking price"
+            ],
+
+            "giá thương lượng (đồng)":[
+                "giá thương lượng"
+            ],
+
+            "chi phí chuyển mục đích sử dụng đất/ chênh lệch tiền chuyển mục đích sử dụng đất (đồng)":[
+                "chi phí chuyển mục đích sử dụng đất/ chênh lệch tiền chuyển mục đích sử dụng đất",
+                "chi phí chuyển mục đích sử dụng đất"
+            ],
+
+            "giá trị phần đất thuộc lộ giới (đồng)":[
+                "giá trị phần đất thuộc lộ giới"
+            ],
+
             "giá trị đất (đồng)": [
-                "giá trị đất", "land value", "total land value"
-            ],
-            "giá rao bán (đồng)": ["giá rao bán", "selling price", "asking price"],
-            "giá thị trường (giá trước điều chỉnh) (đồng/m²)": [
-                "giá thị trường", "market price"
+                "giá trị đất",
+                "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)"
             ],
 
-            # Khác
-            "mục đích sử dụng đất": ["mục đích sử dụng", "land use purpose"],
-            "chất lượng còn lại (%)": ["chất lượng", "quality remaining"],
+            "giá thị trường (giá trước điều chỉnh) (đồng/m²)": [
+                "giá thị trường"
+            ],
+
             "yếu tố khác": ["yếu tố khác", "other factors"],
         }
 
@@ -91,24 +122,59 @@ class SmartAttributeNormalizer:
         return best_match
 
     def _pattern_based_normalization(self, attr: str) -> str:
-        """Chuẩn hóa dựa trên pattern"""
+        """Chuẩn hóa dựa trên pattern với độ ưu tiên cao đến thấp"""
         cleaned = self._clean_text(attr)
 
-        # Pattern cho diện tích
-        if any(keyword in cleaned for keyword in ['diện tích', 'quy mô', 'area']):
+        # Ưu tiên 1: Pattern cụ thể và dài (tránh nhầm lẫn)
+        # Chi phí chuyển mục đích sử dụng đất (pattern dài nhất)
+        if all(keyword in cleaned for keyword in ['chi phí', 'chuyển', 'mục đích sử dụng đất']):
+            return "chi phí chuyển mục đích sử dụng đất/ chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"
+
+        # Giá trị công trình xây dựng
+        if all(keyword in cleaned for keyword in ['giá trị', 'công trình', 'xây dựng']):
+            return "giá trị công trình xây dựng (đồng)"
+
+        # Đơn giá xây dựng mới
+        if all(keyword in cleaned for keyword in ['đơn giá', 'xây dựng']):
+            return "đơn giá xây dựng mới (đồng/m²)"
+
+        # Giá trị phần đất thuộc lộ giới
+        if all(keyword in cleaned for keyword in ['giá trị', 'đất', 'lộ giới']):
+            return "giá trị phần đất thuộc lộ giới (đồng)"
+
+        # Giá thương lượng
+        if all(keyword in cleaned for keyword in ['giá', 'thương lượng']):
+            return "giá thương lượng (đồng)"
+
+        # Giá rao bán
+        if all(keyword in cleaned for keyword in ['giá', 'rao bán']):
+            return "giá rao bán (đồng)"
+
+        # Giá thị trường
+        if all(keyword in cleaned for keyword in ['giá', 'thị trường']):
+            if 'đồng/m²' in cleaned or 'đồng/m2' in cleaned:
+                return "giá thị trường (giá trước điều chỉnh) (đồng/m²)"
+
+        # Ưu tiên 2: Pattern cho diện tích
+        if any(keyword in cleaned for keyword in ['diện tích', 'quy mô']) and 'chi phí' not in cleaned:
             if any(keyword in cleaned for keyword in ['trừ', 'lộ giới', 'quy hoạch']):
                 return "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)"
-            elif 'm²' in cleaned or 'm2' in cleaned:
-                return "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)"
+            elif 'm²' in cleaned or 'm2' in cleaned or 'area' in cleaned:
+                return "quy mô diện tích (m²)\n(đá trừ đất thuộc quy hoạch lộ giới)"
 
-        # Pattern cho giá đất
-        if any(keyword in cleaned for keyword in ['giá đất', 'đơn giá']):
+        # Ưu tiên 3: Pattern cho giá đất và giá trị đất
+        if any(keyword in cleaned for keyword in ['giá đất', 'đơn giá đất']) and 'chi phí' not in cleaned:
             if 'đồng/m²' in cleaned or 'đồng/m2' in cleaned:
                 return "giá đất (đồng/m²)"
-            elif 'đồng' in cleaned and ('m²' not in cleaned and 'm2' not in cleaned):
-                return "giá trị đất (đồng)"
 
-        # Pattern cho kích thước
+        if 'giá trị đất' in cleaned and 'lộ giới' not in cleaned and 'chi phí' not in cleaned:
+            return "giá trị đất (đồng)"
+
+        # Ưu tiên 4: Mục đích sử dụng đất (chỉ khi không có "chi phí")
+        if 'mục đích sử dụng đất' in cleaned and 'chi phí' not in cleaned and 'chuyển' not in cleaned:
+            return "mục đích sử dụng đất"
+
+        # Ưu tiên 5: Pattern cho kích thước
         if 'chiều' in cleaned:
             if 'dài' in cleaned:
                 return "chiều dài (m)"
@@ -119,6 +185,19 @@ class SmartAttributeNormalizer:
                     return "chiều rộng (m)"
             elif 'sâu' in cleaned or 'sau' in cleaned:
                 return "chiều sâu (m)"
+
+        # Ưu tiên 6: Các pattern đơn giản khác
+        if 'chất lượng' in cleaned and '%' in cleaned:
+            return "chất lượng còn lại (%)"
+
+        if 'tọa độ' in cleaned:
+            return "tọa độ vị trí"
+
+        if 'địa chỉ' in cleaned and 'tài sản' not in cleaned:
+            return "địa chỉ tài sản"
+
+        if 'yếu tố khác' in cleaned:
+            return "yếu tố khác"
 
         return attr  # Trả về original nếu không match pattern nào
 
@@ -173,7 +252,7 @@ class SmartAttributeNormalizer:
 
 
 # Hàm helper để sử dụng dễ dàng
-def normalize_att(attr: str, threshold: float = 0.7) -> str:
+def normalize_att_2(attr: str, threshold: float = 0.7) -> str:
     """
     Hàm chuẩn hóa attribute thông minh
 
@@ -184,10 +263,10 @@ def normalize_att(attr: str, threshold: float = 0.7) -> str:
     Returns:
         Attribute đã chuẩn hóa
     """
-    if not hasattr(normalize_att, '_normalizer'):
-        normalize_att._normalizer = SmartAttributeNormalizer()
+    if not hasattr(normalize_att_2, '_normalizer'):
+        normalize_att_2._normalizer = SmartAttributeNormalizer()
 
-    return normalize_att._normalizer.normalize_attribute(attr, threshold)
+    return normalize_att_2._normalizer.normalize_attribute(attr, threshold)
 
 
 # Example usage và test
@@ -212,10 +291,11 @@ if __name__ == "__main__":
 
             # Test cases
             test_cases = [test_string]
-
+            print("\n=== Test case ===")
+            print(test_cases)
             print("\n=== Test Results ===")
             for test in test_cases:
-                result = normalize_att(test)
+                result = normalize_att_2(test)
                 print(f"'{test}' -> '{result}'")
 
             print("\n=== Similarity Report ===")

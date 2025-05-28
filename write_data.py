@@ -7,7 +7,8 @@ from datetime import datetime
 import numpy as np
 import json
 
-from get_location_test_API import setup_driver, open_guland_page, parse_location_info, clean_location_names
+from normalize_API import SmartAttributeNormalizer
+from get_coorinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
         get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
@@ -56,6 +57,8 @@ try:
     print("✅ Trang Guland đã sẵn sàng.")
 except:
     print("❌ Fail to open Guland.")
+
+normalizer = SmartAttributeNormalizer() #kích hoạt hàm normalize
 
 # Read list of Excel paths
 # with open(f"comparison_files_{month}_{year}.txt", "r", encoding="utf-8") as f:

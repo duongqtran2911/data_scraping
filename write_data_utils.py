@@ -12,7 +12,7 @@ import re
 import unicodedata
 import logging
 
-from get_location_test_API import action_open_guland_driver
+from get_coorinate_guland import action_open_guland_driver
 
 
 # Tạo thư mục nếu chưa tồn tại
@@ -244,16 +244,18 @@ def normalize_att(attr):
     replacements = {
         # comparison table
         "yếu tố khác (nếu có)": "yếu tố khác",
-        "yếu tố khác": "yếu tố khác",  
+        "yếu tố khác": "yếu tố khác",
+
         'giá thị trường (giá trước điều chỉnh) (đồng/m²/năm)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường \n(giá trước điều chỉnh) (đồng/m²)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường \n(giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường \n(giá trước điều chỉnh) \n(đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
+
         'dân cư, kinh doanh': "dân cư",
+
         "chiều dài": "chiều dài (m)",
         "chiều rộng": "chiều rộng (m)",
-
         "chiều sâu": "chiều sâu (m)",
         
         "chiều rộng giáp mặt đường (m)": "độ rộng mặt tiền (m)",
