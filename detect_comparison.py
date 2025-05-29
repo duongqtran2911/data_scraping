@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 # 🔧 CONFIGURATION
-year = 2023
-month = "7"
+year = 2022
+month = "02"
 # month = month.zfill(2)
 
 root_dir = rf"\\192.168.1.250\department\03. APPRAISAL\03. REAL ESTATE\03. PROJECT\09. IMM\03. BAO GIA\01. IMM_VV\{year}\THANG {month}"

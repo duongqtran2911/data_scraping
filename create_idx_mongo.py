@@ -7,6 +7,6 @@ client = MongoClient(mongo_uri)
 
 # Use the correct database and collection
 db = client["assets-valuemind"]
-collection = db["Danh"]
+collection = db["data-24-25"]
 
 collection.create_index([("assetsCompareManagements.assetsManagement.geoJsonPoint", "2dsphere")])

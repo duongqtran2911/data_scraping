@@ -138,6 +138,8 @@ def parse_human_number(text):
     """
 
     if not isinstance(text, str):
+        if isinstance(text, float) or isinstance(text, int):
+            return text
         return None
 
     text = text.lower().replace(',', '').replace('đồng', '')
@@ -330,7 +332,7 @@ def normalize_att(attr):
         "đơn giá đất ở (đồng/m²)":"giá đất (đồng/m²)",
 
         "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
-
+        "giá rao bán (đồng) (có vat)":"giá rao bán (đồng)",
         #2025
         "giá trị đất odt (đồng)":"giá trị đất (đồng)",
         "giá trị đất ont(đồng)":"giá trị đất (đồng)",
@@ -355,6 +357,15 @@ def normalize_att(attr):
 
         #5/2024
         "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)":"giá trị đất (đồng)",
+
+        #2023
+        "giá trị đất ont + cln (đồng)":"giá trị đất (đồng)",
+        "giá trị đất skc (đồng)":"giá trị đất (đồng)",
+        "giá trị đất bhk(đồng)":"giá trị đất (đồng)",
+        "giá trị đất nn(đồng)":"giá trị đất (đồng)",
+        "giá trị đất  (đồng)":"giá trị đất (đồng)",
+        "Đơn giá đất ONT (đồng/m²) (Bao gồm 100 % diện tích đất ở PHQH và 50 % diện tích đất ở không PHQH)":"giá đất (đồng/m²)",
+
     }
     return replacements.get(attr, attr)
 

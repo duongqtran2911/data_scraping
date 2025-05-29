@@ -7,7 +7,7 @@ from datetime import datetime
 import numpy as np
 import json
 
-from normalize_API import SmartAttributeNormalizer
+from normalize_API import SmartAttributeNormalizer, normalize_att_2
 from get_coorinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
         find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
@@ -25,7 +25,7 @@ import argparse
 # EXCEL_FILE = "DV_Can Giuoc.xlsx"
 # EXCEL_FILE = "DV_Le Trong Tan.xlsx"
 MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSet=rs0&directConnection=true&authSource=assets-valuemind"
-collection_name = "Danh2"
+collection_name = "Danh"
 LOG_MISSING = False
 
 # ---- GLOBAL PARAMETERS ----
@@ -352,50 +352,50 @@ for file_path, sheet_list in sheet_map.items():
                 
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
-                    width = smart_parse_float(entry.get(normalize_att("Chiều rộng (m)")), log_missing=LOG_MISSING)
-                    height = smart_parse_float(entry.get(normalize_att("Chiều dài (m)")), log_missing=LOG_MISSING)
-                    depth = smart_parse_float(entry.get(normalize_att("Chiều sâu (m)")), log_missing=LOG_MISSING)
-                    location = str(entry.get(normalize_att("Vị trí"), ""))
+                    width = smart_parse_float(entry.get(normalize_att_2("Chiều rộng (m)")), log_missing=LOG_MISSING)
+                    height = smart_parse_float(entry.get(normalize_att_2("Chiều dài (m)")), log_missing=LOG_MISSING)
+                    depth = smart_parse_float(entry.get(normalize_att_2("Chiều sâu (m)")), log_missing=LOG_MISSING)
+                    location = str(entry.get(normalize_att_2("Vị trí"), ""))
 
                     facade = get_facade_info(
-                                entry.get(normalize_att("Độ rộng mặt tiền (m)")),
-                                entry.get(normalize_att("Vị trí"))
+                                entry.get(normalize_att_2("Độ rộng mặt tiền (m)")),
+                                entry.get(normalize_att_2("Vị trí"))
                             )
                     has_facade = facade.get("has_facade", False)
                     width, height = assign_dimensions(width, height, depth, has_facade)
 
-                    location = parse_location_info(entry.get(normalize_att("Địa chỉ tài sản")))\
+                    address_parse = parse_location_info(entry.get(normalize_att("Địa chỉ tài sản")))\
 
-                    parsed = clean_location_names(location)
+                    parsed = clean_location_names(address_parse)
 
                     return {
-                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver,file_path),
+                        "geoJsonPoint": get_info_location(entry.get(normalize_att_2("Tọa độ vị trí")),str(entry.get(normalize_att_2("Địa chỉ tài sản"))),driver,file_path),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
-                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"), "no_name")),
+                                "fullAddress": str(entry.get(normalize_att_2("Địa chỉ tài sản"), "no_name")),
                                 "ward": parsed.get("xa", ""),
                                 "district": parsed.get("huyen", ""),
                                 "province": parsed.get("tinh", ""),
                             },
-                            "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
-                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)")), log_missing=LOG_MISSING),
+                            "totalPrice": smart_parse_float(entry.get(normalize_att_2("Giá đất (đồng/m²)"))),
+                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att_2("Mục đích sử dụng đất ")))),
+                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att_2("Mục đích sử dụng đất ")))),
+                            "area": smart_parse_float(entry.get(normalize_att_2("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)")), log_missing=LOG_MISSING),
                             "location": location,
                             "width": width,
                             "max_width": get_max_width(width),
                             "facade": facade,
                             "height": height,
                             # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
-                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
-                            "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), 0))),
-                            "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), 0)),
-                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"))),
+                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att_2("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
+                            "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att_2("Đơn giá xây dựng mới (đồng/m²)"), 0))),
+                            "constructionValue": float(entry.get(normalize_att_2("Giá trị công trình xây dựng (đồng)"), 0)),
+                            "sellingPrice": float(entry.get(normalize_att_2("Giá rao bán (đồng)"))),
                             "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"))),
                             "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
-                            "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
-                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"))),
-                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
+                            "landRoadBoundary": float(entry.get(normalize_att_2("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
+                            "landValue": float(entry.get(normalize_att_2("Giá trị đất (đồng)"))),
+                            "landPrice": float(entry.get(normalize_att_2("Giá đất (đồng/m²)"))),
                         },
                         
                     }
@@ -531,5 +531,7 @@ total_sheets = sum(len(sheets) for sheets in sheet_map.values())
 print(f"Total number of sheets: {found + missing}")
 with open(log_file_path, "a", encoding="utf-8") as log_file:
     log_file.write(f"Total number of sheets: {found + missing}\n")
+    log_file.write(f"Total number of success: {succeed}")
 print(f"Total number of success: {succeed}")
+
 # print("x:", x)

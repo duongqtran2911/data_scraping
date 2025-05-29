@@ -51,7 +51,7 @@ class SmartAttributeNormalizer:
             ],
 
             "giá thương lượng (đồng)":[
-                "giá thương lượng"
+                "giá thương lượng",
             ],
 
             "chi phí chuyển mục đích sử dụng đất/ chênh lệch tiền chuyển mục đích sử dụng đất (đồng)":[
@@ -60,12 +60,15 @@ class SmartAttributeNormalizer:
             ],
 
             "giá trị phần đất thuộc lộ giới (đồng)":[
-                "giá trị phần đất thuộc lộ giới"
+                "giá trị phần đất thuộc lộ giới",
+
             ],
 
             "giá trị đất (đồng)": [
                 "giá trị đất",
-                "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)"
+                "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)",
+                "giá trị đất phù hợp quy hoạch",
+                "giá trị đất ONT + CLN (đồng)"
             ],
 
             "giá thị trường (giá trước điều chỉnh) (đồng/m²)": [
