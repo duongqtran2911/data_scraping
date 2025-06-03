@@ -110,8 +110,11 @@ def parse_human_number(text):
     - "1 người rao 1ty2" => 1,200,000,000 (first match only)
     - "Giá chào từ CDT 26.5ty" => 26,500,000,000
     """
-
+    
+    
     if not isinstance(text, str):
+        if isinstance(text, float) or isinstance(text, int):
+            return text
         return None
 
     text = text.lower().replace(',', '').replace('đồng', '')
@@ -333,13 +336,13 @@ def normalize_att(attr):
     return replacements.get(attr, attr)
 
 # Get the value of landPrice from raw data table
-def get_land_price_raw(d):
-    val = smart_parse_float(d.get(normalize_att("Giá đất (đồng/m²)"), None))
+def get_land_price_raw(d, field="Giá đất (đồng/m²)"):
+    val = smart_parse_float(d.get(normalize_att(field), None))
     return val
 
 # Get the value of landPrice from comparison data table
-def get_land_price_pct(d):
-    return smart_parse_float(d[('A', normalize_att('Giá thị trường (Giá trước điều chỉnh) (đồng/m²)'))])
+def get_land_price_pct(d, field=('A', normalize_att('Giá thị trường (Giá trước điều chỉnh) (đồng/m²)'))):
+    return smart_parse_float(d[field])
 
 # Match indices of reference percentages to raw data
 def match_idx(ref_pcts, ref_raws):
