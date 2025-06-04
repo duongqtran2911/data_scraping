@@ -13,9 +13,9 @@ from fuzzywuzzy import process
 from normalize_API import SmartAttributeNormalizer, normalize_att_2
 from get_coorinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
-        find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
-        get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
-        get_max_width, get_facade_info, assign_dimensions
+    find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
+    get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
+    get_max_width, get_facade_info, assign_dimensions, fuzzy_get
 import os
 import re
 from pymongo import MongoClient
@@ -355,68 +355,52 @@ for file_path, sheet_list in sheet_map.items():
                 
                 # Function to build the assetsManagement structure
                 def build_assets_management(entry):
-                    width = smart_parse_float(entry.get(normalize_att("Chiều rộng (m)")), log_missing=LOG_MISSING)
-                    height = smart_parse_float(entry.get(normalize_att("Chiều dài (m)")), log_missing=LOG_MISSING)
+                    width = smart_parse_float(fuzzy_get(entry, "Chiều rộng (m)"), log_missing=LOG_MISSING)
+                    height = smart_parse_float(fuzzy_get(entry, "Chiều dài (m)"), log_missing=LOG_MISSING)
                     depth = smart_parse_float(entry.get(normalize_att("Chiều sâu (m)")), log_missing=LOG_MISSING)
-                    location = str(entry.get(normalize_att("Vị trí"), ""))
+                    location = str(fuzzy_get(entry, "Vị trí", ""))
 
                     facade = get_facade_info(
-                                entry.get(normalize_att("Độ rộng mặt tiền (m)")),
-                                entry.get(normalize_att("Vị trí"))
-                            )
+                        entry.get(normalize_att("Độ rộng mặt tiền (m)")),
+                        fuzzy_get(entry, "Vị trí")
+                    )
+
                     has_facade = facade.get("has_facade", False)
                     width, height = assign_dimensions(width, height, depth, has_facade)
 
-                    address_parse = parse_location_info(entry.get(normalize_att("Địa chỉ tài sản")))\
-
+                    address_parse = parse_location_info(fuzzy_get(entry, "Địa chỉ tài sản"))
                     parsed = clean_location_names(address_parse)
-
-                    print("Giá trị đất: ")
-                    print(entry.get("Giá trị đất (đồng)"))
-
-                    target_key = "Giá trị đất"
-                    data_keys = list(entry.keys())
-
-                    match, score = process.extractOne(target_key, data_keys)
-                    print("match: " + match)
-                    print("score:", score)
-                    if score > 70:
-                        print("Giá trị đất 2:", entry.get(match))
-                    else:
-                        print("Không tìm thấy giá trị phù hợp.")
 
                     return {
                         "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver,file_path),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
-                                "fullAddress": str(entry.get(normalize_att("Địa chỉ tài sản"))),
+                                "fullAddress": str(fuzzy_get(entry, "Địa chỉ tài sản")),
                                 "ward": parsed.get("xa", ""),
                                 "district": parsed.get("huyen", ""),
                                 "province": parsed.get("tinh", ""),
                             },
-                            "totalPrice": smart_parse_float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
-                            "landUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "valuationLandUsePurposeInfo": get_info_purpose(str(entry.get(normalize_att("Mục đích sử dụng đất ")))),
-                            "area": smart_parse_float(entry.get(normalize_att("Quy mô diện tích (m²)\n(Đã trừ đất thuộc quy hoạch lộ giới)")), log_missing=LOG_MISSING),
+                            "totalPrice": smart_parse_float(fuzzy_get(entry, "Giá đất (đồng/m²)")),
+                            "landUsePurposeInfo": get_info_purpose(str(fuzzy_get(entry, "Mục đích sử dụng đất"))),
+                            "valuationLandUsePurposeInfo": get_info_purpose(str(fuzzy_get(entry, "Mục đích sử dụng đất"))),
+                            "area": smart_parse_float(fuzzy_get(entry, "Quy mô diện tích (m²)"),log_missing=LOG_MISSING),
                             "location": location,
                             "width": width,
                             "maxWidth": get_max_width(width),
                             "facade": facade,
                             "height": height,
-                            # "percentQuality": float(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) if pd.notna(entry.get(normalize_att("Chất lượng còn lại (%)"), 0)) else np.nan,
-                            "percentQuality": float(val) if pd.notna(val := entry.get(normalize_att("Chất lượng còn lại (%)"))) and str(val).strip() != "" else 1.0,
-                            "newConstructionUnitPrice": get_info_unit_price(str(entry.get(normalize_att("Đơn giá xây dựng mới (đồng/m²)"), np.nan))),
-                            "constructionValue": float(entry.get(normalize_att("Giá trị công trình xây dựng (đồng)"), np.nan)),
-                            "sellingPrice": float(entry.get(normalize_att("Giá rao bán (đồng)"))),
-                            "negotiablePrice": parse_human_number(entry.get(normalize_att("Giá thương lượng (đồng)"))),
-                            "landConversion": parse_human_number(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0)),
+                            "percentQuality": float(val) if pd.notna(val := fuzzy_get(entry, "Chất lượng còn lại (%)")) and str(val).strip() != "" else 1.0,
+                            "newConstructionUnitPrice": get_info_unit_price(str(fuzzy_get(entry, "Đơn giá xây dựng mới (đồng/m²)", np.nan))),
+                            "constructionValue": float(fuzzy_get(entry, "Giá trị công trình xây dựng (đồng)", np.nan)),
+                            "sellingPrice": float(fuzzy_get(entry, "Giá rao bán (đồng)", default=0.0)),
+                            "negotiablePrice": parse_human_number(str(fuzzy_get(entry, "Giá thương lượng (đồng)"))),
+                            "landConversion": parse_human_number(str(entry.get(normalize_att("Chi phí chuyển mục đích sử dụng đất/ Chênh lệch tiền chuyển mục đích sử dụng đất (đồng)"), 0))),
                             "landRoadBoundary": float(entry.get(normalize_att("Giá trị phần đất thuộc lộ giới (đồng)"), np.nan)),
-                            "landValue": float(entry.get(normalize_att("Giá trị đất (đồng)"))),
-                            "landPrice": float(entry.get(normalize_att("Giá đất (đồng/m²)"))),
+                            "landValue": fuzzy_get(entry, "Giá trị đất (đồng)"),
+                            "landPrice": fuzzy_get(entry, "Đơn giá đất (đồng/m²)"),
                         },
-                        
                     }
-                
+
 
                 # Function to build the comparison/percentage fields structure
                 def build_compare_fields(entry):

@@ -11,6 +11,8 @@ import json
 import re
 import unicodedata
 import logging
+from fuzzywuzzy import process
+from sympy.codegen.ast import continue_
 
 from get_coorinate_guland import action_open_guland_driver
 
@@ -132,20 +134,20 @@ def parse_human_number(text):
     Parse a string that might contain informal human-readable numbers like:
     - "2ty" => 2,000,000,000
     - "2ty7" => 2,700,000,000
-    - "2 ty 7" => 2,700,000,000
-    - "1 người rao 1ty2" => 1,200,000,000 (first match only)
-    - "Giá chào từ CDT 26.5ty" => 26,500,000,000
     """
-    
-    
+    if isinstance(text, (int, float)):
+        return text  # số thật, không xử lý thêm
+
     if not isinstance(text, str):
-        if isinstance(text, float) or isinstance(text, int):
-            return text
         return None
 
-    text = text.lower().replace(',', '').replace('đồng', '')
+    text = text.lower().replace(',', '').replace('đồng', '').strip()
 
-    # Match full-form human numbers like '2ty7', '2 ty 7', '2ty', '26.5ty'
+    # Nếu text là chuỗi số rõ ràng, thì chuyển trực tiếp
+    if text.isdigit():
+        return int(text)
+
+    # Match full-form human numbers like '2ty7', '2 ty 7', '26.5ty'
     match = re.search(r'(\d+(?:\.\d+)?)(?:\s*ty\s*(\d)?)?', text)
 
     if match:
@@ -157,7 +159,7 @@ def parse_human_number(text):
             value = int(billion * 1e9)
         return value
 
-    # Try to fallback to extract any number from string
+    # Fallback: extract first number
     match = re.search(r'\d[\d.]*', text)
     if match:
         try:
@@ -166,6 +168,7 @@ def parse_human_number(text):
             return None
 
     return None
+
 
 
 # Convert a string to a float, handling various formats
@@ -255,151 +258,151 @@ def normalize_att(attr):
         'giá thị trường \n(giá trước điều chỉnh) \n(đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
         'giá thị trường (giá trước điều chỉnh) (đồng)': 'giá thị trường (giá trước điều chỉnh) (đồng/m²)',
 
-        'dân cư, kinh doanh': "dân cư",
-
+        # 'dân cư, kinh doanh': "dân cư",
+        #
         "chiều dài": "chiều dài (m)",
         "chiều rộng": "chiều rộng (m)",
         "chiều sâu": "chiều sâu (m)",
-        
+        #
         "chiều rộng giáp mặt đường (m)": "độ rộng mặt tiền (m)",
         "chiều rộng giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
         "chiều rộng tiếp giáp mặt tiền đường (m)": "độ rộng mặt tiền (m)",
         "chiều rộng mặt tiền tiếp giáp đường(m)": "độ rộng mặt tiền (m)",
         "chiều rộng mặt tiền tiếp giáp đường (m)": "độ rộng mặt tiền (m)",
         "chiều rộng tiếp giáp mặt tiền (m)": "độ rộng mặt tiền (m)",
-
-        # raw table
-        "địa chỉ": "địa chỉ tài sản",
-        
-        "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới và quy hoạch cây xanh)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)\n(đã trử lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới đất nn)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
-        "quy mô diên tích (m²)\n(trong gcn qsdđ)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diện tích (m²)\n(đã trừ qhlg)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²) (đã trừ lộ giới)" :"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích(m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích cln (m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
-        "quy mô diện tích (m²)\n(chưa trừ đất thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diện tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)\n(đã trừ lộ giới quy hoạch)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
-        "quy mô diện tích (m²) \n(đã trừ lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (m²)\n(theo diện tích thực tế)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích (đã trừ lộ giới) (m²)\n(đã trừ quy hoạch lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích thông thuỷ (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích thông thủy(m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
-        "diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "diện tích sàn (thông thủy) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-        "quy mô diên tích tim tường (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
-
-        "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
-        "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất odt(đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất ont(đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất cln(đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất luc(đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
-        "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
-        
-        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất luc/bhk (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất tmdv (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
-        "giá đất skc (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất nông nghiệp (đồng/m²)": "giá đất (đồng/m²)",
-        "đơn giá đất ở (đồng/m²)": "giá đất (đồng/m²)",
-
-
-        #2025
-        "giá trị đất odt (đồng)": "giá trị đất (đồng)",
-        "giá trị đất ont(đồng)": "giá trị đất (đồng)",
-        "giá trị đất ont (đồng)": "giá trị đất (đồng)",
-        "giá trị đất cln (đồng)": "giá trị đất (đồng)",
-        "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
-        "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
-        "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
-        "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
-
-        #2024
-        "giá trị đất nn (đồng)": "giá trị đất (đồng)",
-        "giá trị đất nn vt1 (đồng)": "giá trị đất (đồng)",
-        "giá trị đất luk(đồng)": "giá trị đất (đồng)",
-        "giá trị đất hnk (đồng)": "giá trị đất (đồng)",
-        "giá trị đất odt(đồng)": "giá trị đất (đồng)",
-
-        "giá trị đất luc (đồng)": "giá trị đất (đồng)",
-        "giá trị đất lua (đồng)": "giá trị đất (đồng)",
-
-        "giá trị đất bhk (đồng)": "giá trị đất (đồng)",
-
-        #5/2024
-        "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)": "giá trị đất (đồng)",
-
-        "giá đất luc/bhk (đồng/m²)":"giá đất (đồng/m²)",
-        "giá đất tmdv (đồng/m²)":"giá đất (đồng/m²)",
-        "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)":"giá đất (đồng/m²)",
-        "giá đất skc (đồng/m²)":"giá đất (đồng/m²)",
-        "đơn giá đất nông nghiệp (đồng/m²)":"giá đất (đồng/m²)",
-        "đơn giá đất ở (đồng/m²)":"giá đất (đồng/m²)",
-
-        "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
-        "giá rao bán (đồng) (có vat)":"giá rao bán (đồng)",
-        #2025
-        "giá trị đất odt (đồng)":"giá trị đất (đồng)",
-        "giá trị đất ont(đồng)":"giá trị đất (đồng)",
-        "giá trị đất ont (đồng)":"giá trị đất (đồng)",
-        "giá trị đất cln (đồng)":"giá trị đất (đồng)",
-        "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
-        "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
-        "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
-        "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
-
-        #2024
-        "giá trị đất nn (đồng)":"giá trị đất (đồng)",
-        "giá trị đất nn vt1 (đồng)":"giá trị đất (đồng)",
-        "giá trị đất luk(đồng)":"giá trị đất (đồng)",
-        "giá trị đất hnk (đồng)":"giá trị đất (đồng)",
-        "giá trị đất odt(đồng)":"giá trị đất (đồng)",
-
-        "giá trị đất luc (đồng)":"giá trị đất (đồng)",
-        "giá trị đất lua (đồng)":"giá trị đất (đồng)",
-
-        "giá trị đất bhk (đồng)":"giá trị đất (đồng)",
-
-        #5/2024
-        "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)":"giá trị đất (đồng)",
-
-        #2023
-        "giá trị đất ont + cln (đồng)":"giá trị đất (đồng)",
-        "giá trị đất skc (đồng)":"giá trị đất (đồng)",
-        "giá trị đất bhk(đồng)":"giá trị đất (đồng)",
-        "giá trị đất nn(đồng)":"giá trị đất (đồng)",
-        "giá trị đất  (đồng)":"giá trị đất (đồng)",
-        "Đơn giá đất ONT (đồng/m²) (Bao gồm 100 % diện tích đất ở PHQH và 50 % diện tích đất ở không PHQH)":"giá đất (đồng/m²)",
+        #
+        # # raw table
+        # "địa chỉ": "địa chỉ tài sản",
+        #
+        # "quy mô diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới và quy hoạch cây xanh)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)\n(đã trử lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diện tích (m²)\n(đã trừ quy hoạch lộ giới đất nn)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        #
+        # "quy mô diên tích (m²)\n(trong gcn qsdđ)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diện tích (m²)\n(đã trừ qhlg)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²) (đã trừ lộ giới)" :"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích(m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích cln (m²) (đã trừ lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        #
+        # "quy mô diện tích (m²)\n(chưa trừ đất thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diện tích (m²)\n(đã trừ đất nông nghiệp thuộc quy hoạch lộ giới)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)\n(đã trừ lộ giới quy hoạch)":"quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        #
+        # "quy mô diện tích (m²) \n(đã trừ lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (m²)\n(theo diện tích thực tế)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích (đã trừ lộ giới) (m²)\n(đã trừ quy hoạch lộ giới)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích thông thuỷ (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích thông thủy(m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        #
+        # "diện tích (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "diện tích sàn (thông thủy) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "diện tích sàn": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "diện tích sàn sử dụng (tim tường) (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "diện tích sàn sử dụng (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        # "quy mô diên tích tim tường (m²)": "quy mô diện tích (m²)\n(đã trừ đất thuộc quy hoạch lộ giới)",
+        #
+        # "giá đất (đồng/m²/năm)": "giá đất (đồng/m²)",
+        # "giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất cln (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất odt (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất odt(đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất ont (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất luc (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất hnk (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất ont(đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất cln(đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất luc(đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất skc đến ngày 01/01/2046 (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá căn hộ theo diện tích thông thủy (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất nông nghiệp đã trừ phần quy hoạch lộ giới (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất skc, thời hạn đến ngày 20/12/2054 (đồng/m²)": "giá đất (đồng/m²)",
+        #
+        # "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất luc/bhk (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất tmdv (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)": "giá đất (đồng/m²)",
+        # "giá đất skc (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất nông nghiệp (đồng/m²)": "giá đất (đồng/m²)",
+        # "đơn giá đất ở (đồng/m²)": "giá đất (đồng/m²)",
+        #
+        #
+        # #2025
+        # "giá trị đất odt (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất ont(đồng)": "giá trị đất (đồng)",
+        # "giá trị đất ont (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất cln (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
+        # "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
+        # "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
+        #
+        # #2024
+        # "giá trị đất nn (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất nn vt1 (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất luk(đồng)": "giá trị đất (đồng)",
+        # "giá trị đất hnk (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất odt(đồng)": "giá trị đất (đồng)",
+        #
+        # "giá trị đất luc (đồng)": "giá trị đất (đồng)",
+        # "giá trị đất lua (đồng)": "giá trị đất (đồng)",
+        #
+        # "giá trị đất bhk (đồng)": "giá trị đất (đồng)",
+        #
+        # #5/2024
+        # "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)": "giá trị đất (đồng)",
+        #
+        # "giá đất luc/bhk (đồng/m²)":"giá đất (đồng/m²)",
+        # "giá đất tmdv (đồng/m²)":"giá đất (đồng/m²)",
+        # "giá đất tmdv, thời hạn đến ngày 09/01/2067 (đồng/m²)":"giá đất (đồng/m²)",
+        # "giá đất skc (đồng/m²)":"giá đất (đồng/m²)",
+        # "đơn giá đất nông nghiệp (đồng/m²)":"giá đất (đồng/m²)",
+        # "đơn giá đất ở (đồng/m²)":"giá đất (đồng/m²)",
+        #
+        # "giá rao bán (đồng) (không có vat):": "giá rao bán (đồng)",
+        # "giá rao bán (đồng) (có vat)":"giá rao bán (đồng)",
+        # #2025
+        # # "giá trị đất odt (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất ont(đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất ont (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất cln (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất cln(đồng)" : "giá trị đất (đồng)",
+        # # "giá trị đất rsx (đồng)": "giá trị đất (đồng)",
+        # # "giá trị đất rsx(đồng)" : "giá trị đất (đồng)",
+        # # "giá trị đất tmd (đồng)": "giá trị đất (đồng)",
+        # #
+        # # #2024
+        # # "giá trị đất nn (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất nn vt1 (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất luk(đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất hnk (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất odt(đồng)":"giá trị đất (đồng)",
+        # #
+        # # "giá trị đất luc (đồng)":"giá trị đất (đồng)",
+        # # "giá trị đất lua (đồng)":"giá trị đất (đồng)",
+        # #
+        # # "giá trị đất bhk (đồng)":"giá trị đất (đồng)",
+        #
+        # #5/2024
+        # "giá trị đất đã trừ phần quy hoạch lộ giới (đồng)":"giá trị đất (đồng)",
+        #
+        # #2023
+        # "giá trị đất ont + cln (đồng)":"giá trị đất (đồng)",
+        # "giá trị đất skc (đồng)":"giá trị đất (đồng)",
+        # "giá trị đất bhk(đồng)":"giá trị đất (đồng)",
+        # "giá trị đất nn(đồng)":"giá trị đất (đồng)",
+        # "giá trị đất  (đồng)":"giá trị đất (đồng)",
+        # "Đơn giá đất ONT (đồng/m²) (Bao gồm 100 % diện tích đất ở PHQH và 50 % diện tích đất ở không PHQH)":"giá đất (đồng/m²)",
 
     }
     return replacements.get(attr, attr)
@@ -658,4 +661,30 @@ def assign_dimensions(width, height, depth, has_facade):
         return None, depth
     return width, height
 
+
+def fuzzy_get(entry, target_key, default = np.nan, threshold=70):
+    if not entry:
+        return default
+
+    keys = list(entry.keys())
+    match, score = process.extractOne(target_key, keys)
+
+    # In ra thông tin so sánh
+    print(f"🔍 Tìm kiếm: '{target_key}'")
+    print(f"   ➤ Tìm thấy: '{match}' (Độ tương đồng: {score}%)")
+
+    if score >= threshold:
+        value = entry.get(match)
+        if pd.notna(value) and str(value).strip() != "":
+            print(f"   ✅ Giá trị: {value}")
+            print(f"   {'=' * 50}")
+            return value
+        else:
+            print(f"   ⚠️  Giá trị rỗng hoặc NaN")
+            print(f"   {'=' * 50}")
+    else:
+        print(f"   ❌ Độ tương đồng thấp ({score}% < {threshold}%)")
+        print(f"   {'=' * 50}")
+
+    return default
 
