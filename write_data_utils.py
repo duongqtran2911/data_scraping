@@ -14,7 +14,7 @@ import logging
 from fuzzywuzzy import process
 from sympy.codegen.ast import continue_
 
-from get_coorinate_guland import action_open_guland_driver
+from get_coordinate_guland import action_open_guland_driver
 
 
 # Tạo thư mục nếu chưa tồn tại
@@ -493,14 +493,14 @@ def get_info_location(info, address, driver, file_path):
                 print(f"❌ Lỗi khi phân tích tọa độ DMS: {e}")
 
     # Trường hợp 3: Nếu không có tọa độ trực tiếp, thử dùng địa chỉ
-    # if address and str(address).strip() != "":
-    #     log_message = f"ℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ: {address}"
-    #     print("\nℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ:" + address)
-    #     app_logger.info(file_path)
-    #     app_logger.info(log_message)
-    #     # app_logger.info(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
-    #     # address_infor = parse_location_info(address)
-    #     return action_open_guland_driver(address,driver,file_path)
+    if address and str(address).strip() != "":
+        log_message = f"ℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ: {address}"
+        print("\nℹ️ Không có tọa độ trong dữ liệu. Đang sử dụng địa chỉ:" + address)
+        app_logger.info(file_path)
+        app_logger.info(log_message)
+        # app_logger.info(f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
+        # address_infor = parse_location_info(address)
+        return action_open_guland_driver(address,driver,file_path)
 
     # Nếu tất cả các phương pháp thất bại
     return None

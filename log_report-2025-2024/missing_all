@@ -1,0 +1,108 @@
+Total number of records: 21668
+Number of missing values in each column:
+
+x str= 0
+y str= 0
+z str= 4
+t str= 555
+u str= 0
+address: 559,            missing rate: 2.58%
+
+x str= 0
+y str= 0
+z str= 0
+t str= 0
+u str= 0
+isCompare: 0,            missing rate: 0.0%
+
+x= 6
+y= 590
+area: 596,            missing rate: 2.75%
+
+x= 0
+y= 2946
+width: 2946,            missing rate: 13.6%
+
+x= 0
+y= 2946
+maxWidth: 2946,            missing rate: 13.6%
+
+x= 0
+y= 2391
+height: 2391,            missing rate: 11.03%
+
+x str= 0
+y str= 0
+z str= 0
+t str= 0
+u str= 0
+hasFacade: 0,            missing rate: 0.0%
+
+x= 0
+y= 21645
+facade: 21645,            missing rate: 99.89%
+
+x= 266
+y= 0
+percentQuality: 266,            missing rate: 1.23%
+
+x= 807
+y= 3932
+landPrice: 4739,            missing rate: 21.87%
+
+x= 0
+y= 10131
+lat: 10131,            missing rate: 46.76%
+
+x= 0
+y= 10131
+lon: 10131,            missing rate: 46.76%
+
+x str= 0
+y str= 8
+z str= 0
+t str= 176
+u str= 70
+legalStatus: 254,            missing rate: 1.17%
+
+x str= 0
+y str= 88
+z str= 0
+t str= 248
+u str= 1013
+location: 1349,            missing rate: 6.23%
+
+x str= 0
+y str= 240
+z str= 0
+t str= 458
+u str= 1280
+traffic: 1978,            missing rate: 9.13%
+
+x str= 0
+y str= 6208
+z str= 0
+t str= 1002
+u str= 1576
+population: 8786,            missing rate: 40.55%
+
+x str= 0
+y str= 2828
+z str= 0
+t str= 453
+u str= 884
+shape: 4165,            missing rate: 19.22%
+
+x str= 0
+y str= 7544
+z str= 0
+t str= 2799
+u str= 2727
+other: 13070,            missing rate: 60.32%
+
+x str= 0
+y str= 0
+z str= 0
+t str= 0
+u str= 0
+fileRepo: 0,            missing rate: 0.0%

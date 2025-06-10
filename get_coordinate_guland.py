@@ -14,11 +14,11 @@ import io
 import gzip
 
 
-log_dir = "logs_status_coordinate_2024"
+log_dir = "logs_status_coordinate_2025"
 os.makedirs(log_dir, exist_ok=True)
 
 # Đường dẫn đầy đủ đến file log
-log_path = os.path.join(log_dir, "status_coordinate-1-2024.log")
+log_path = os.path.join(log_dir, "status_coordinate-2-2025.log")
 
 # Tạo logger riêng cho ứng dụng
 app_logger = logging.getLogger("app_logger1")
@@ -26,6 +26,8 @@ app_logger.setLevel(logging.INFO)
 
 # Đảm bảo logger này không bị ảnh hưởng bởi các logger khác
 app_logger.propagate = False
+
+address_raw = None
 
 # Thêm handler nếu chưa có
 if not app_logger.handlers:
@@ -80,7 +82,7 @@ def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
     search.send_keys(Keys.ENTER)
 
     # 3. Reset và chọn lại Huyện
-    time.sleep(0.5)
+    time.sleep(2)
     driver.find_element(By.ID, "select2-district_id_4-container").click()
     wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "select2-search__field")))
     search = driver.find_element(By.CLASS_NAME, "select2-search__field")
@@ -90,7 +92,7 @@ def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
     search.send_keys(Keys.ENTER)
 
     # 4. Reset và chọn lại Xã
-    time.sleep(0.5)
+    time.sleep(2)
     driver.find_element(By.ID, "select2-ward_id_4-container").click()
     wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "select2-search__field")))
     search = driver.find_element(By.CLASS_NAME, "select2-search__field")
@@ -100,7 +102,7 @@ def fill_form(driver, so_thua, so_to, tinh, huyen, xa):
     search.send_keys(Keys.ENTER)
 
     # 5. Nhấn tìm kiếm
-    time.sleep(1)
+    time.sleep(1.5)
     search_button = driver.find_element(By.XPATH, '//*[@id="TabContent-SqhSearch-3"]/div/div[2]/button')
     search_button.click()
     time.sleep(3)
@@ -196,6 +198,8 @@ def parse_location_info(location):
     huyen = ""
     xa = ""
 
+    app_logger.info(f"📍 Địa chỉ trước khi lọc và chuẩn hóa: {location}")
+
     if location and isinstance(location, str) and location.strip():
         parts = location.split(',')
         parts = [p.strip() for p in parts if p.strip()]
@@ -281,13 +285,17 @@ def interactive_loop(driver, address_info, file_path):
     print(so_thua, so_to, tinh, huyen, xa)
     # Nếu thiếu bất kỳ dữ liệu nào thì bỏ qua
     if not all([so_thua, so_to, tinh, huyen, xa]):
-        print("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
+        print("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ). Chuyển sang lấy tọa đồ bằng toàn bộ địa chỉ.")
         # app_logger.info(file_path)
         #app_logger.info(address_info)
-        app_logger.info("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ, tỉnh, huyện, xã). Bỏ qua địa chỉ này.")
+        app_logger.info("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ). Chuyển sang lấy tọa đồ bằng toàn bộ địa chỉ.")
         app_logger.info(
             f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
         return None
+
+    to_thua_button = WebDriverWait(driver, 10).until(
+        EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a'))
+    )
 
     try:
         # Clear existing requests before each search
@@ -306,6 +314,9 @@ def interactive_loop(driver, address_info, file_path):
                     app_logger.info(
                         f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
                     close_button.click()
+
+                    to_thua_button.click()
+
                     time.sleep(1)
                     return None  # sau khi đóng popup thì bỏ qua địa chỉ này luôn
             except NoSuchElementException:
@@ -353,6 +364,7 @@ def interactive_loop(driver, address_info, file_path):
             return None
 
     except Exception as e:
+        to_thua_button.click()
         print(f"❌ Lỗi: {e}")
         # app_logger.info(file_path)
         #app_logger.info(address_info)
@@ -460,6 +472,7 @@ def cleanup_popups_and_modals(driver):
 def action_open_guland_driver(address, driver, file_path):
     # === Actions ===
     # driver = setup_driver(headless=True)
+    address_raw = address
     try:
         # open_guland_page(driver)
         # print("✅ Trang Guland đã sẵn sàng.")

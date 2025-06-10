@@ -11,7 +11,7 @@ from fuzzywuzzy import process
 
 
 from normalize_API import SmartAttributeNormalizer, normalize_att_2
-from get_coorinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
+from get_coordinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
     find_comparison_table_start, get_land_price_raw, get_land_price_pct, get_info_location, get_info_purpose, \
     get_info_unit_price, find_meta_data, find_comparison_table_end, find_raw_table_end, match_idx, parse_human_number, \
@@ -54,7 +54,7 @@ if year in [2022, 2025]:
 else:
     month = str(int(month_)) 
 
-driver = setup_driver(headless=True)
+driver = setup_driver(headless=False)
 try:
     open_guland_page(driver)
     print("✅ Trang Guland đã sẵn sàng.")
