@@ -111,11 +111,14 @@ def parse_human_number(text):
     - "Giá chào từ CDT 26.5ty" => 26,500,000,000
     """
     
+    if isinstance(text, float) or isinstance(text, int):
+        return text
     
     if not isinstance(text, str):
-        if isinstance(text, float) or isinstance(text, int):
-            return text
         return None
+
+    if text.isdigit():
+        return int(text)
 
     text = text.lower().replace(',', '').replace('đồng', '')
 

@@ -23,7 +23,7 @@ import argparse
 # EXCEL_FILE = "DV_Can Giuoc.xlsx"
 # EXCEL_FILE = "DV_Le Trong Tan.xlsx"
 MONGO_URI = "mongodb://dev-valuemind:W57mFPVT57lt3wU@10.10.0.42:27021/?replicaSet=rs0&directConnection=true&authSource=assets-valuemind"
-collection_name = "test-dim"
+collection_name = "test"
 LOG_MISSING = False
 
 # ---- GLOBAL PARAMETERS ----
