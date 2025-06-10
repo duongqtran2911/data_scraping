@@ -13,9 +13,6 @@ import json
 import io
 import gzip
 
-from get_coordinate_guland import extract_coordinates_from_requests
-
-
 def setup_driver_address2(headless=True):
     options = webdriver.ChromeOptions()
     if headless:
@@ -33,7 +30,7 @@ def setup_driver_address2(headless=True):
     return driver
 
 
-def open_guland_page(driver):
+def open_guland_page_2(driver):
     driver.get("https://guland.vn")
     # Tìm và nhấn nút sign in
     try:
@@ -123,7 +120,7 @@ def click_dia_diem_tab(driver, adress):
         dia_diem_tab.click()
         # print("✅ Đã nhấn vào tab 'Địa điểm'")
 
-        enter_address(driver,adress)
+        return enter_address(driver,adress)
 
     except Exception as e:
         print(f"❌ Lỗi khi nhấn tab 'Địa điểm': {e}")
@@ -141,7 +138,7 @@ def enter_address(driver, address_text):
         print(f"✅ Đã nhập địa chỉ: {address_text}")
 
         time.sleep(4)
-        select_first_address_suggestion(driver)
+        return select_first_address_suggestion(driver)
 
     except Exception as e:
         print(f"❌ Lỗi khi nhập địa chỉ: {e}")
@@ -339,7 +336,7 @@ def action_open_guland_driver():
     driver = setup_driver_address2(headless=False)
 
     try:
-        open_guland_page(driver)
+        open_guland_page_2(driver)
 
         while True:
             address = input("\n🔍 Nhập địa chỉ để tìm (hoặc nhập 'exit' để thoát): ").strip()

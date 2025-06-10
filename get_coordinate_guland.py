@@ -13,12 +13,13 @@ import json
 import io
 import gzip
 
+from get_coordinate_guland_address import click_dia_diem_tab
 
 log_dir = "logs_status_coordinate_2025"
 os.makedirs(log_dir, exist_ok=True)
 
 # Đường dẫn đầy đủ đến file log
-log_path = os.path.join(log_dir, "status_coordinate-2-2025.log")
+log_path = os.path.join(log_dir, "status_coordinate-1-2025.log")
 
 # Tạo logger riêng cho ứng dụng
 app_logger = logging.getLogger("app_logger1")
@@ -271,7 +272,7 @@ def parse_location_info(location):
     }
 
 
-def interactive_loop(driver, address_info, file_path):
+def interactive_loop(driver, driver2,address_info, file_path, address_raw):
     print("Dữ liệu đã lọc được:")
     print(address_info)
 
@@ -291,7 +292,14 @@ def interactive_loop(driver, address_info, file_path):
         app_logger.info("⚠️ Thiếu dữ liệu bắt buộc (số thửa, số tờ). Chuyển sang lấy tọa đồ bằng toàn bộ địa chỉ.")
         app_logger.info(
             f" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n")
-        return None
+        result = click_dia_diem_tab(driver2, address_raw)
+        print(result)
+        if result is not None:
+            app_logger.info("✅ Lấy tọa độ thành công từ chi tiết địa chỉ.")
+            return result
+        else:
+            print("❌ Lỗi khi lấy tọa độ từ chi tiết địa chỉ.")
+            return None
 
     to_thua_button = WebDriverWait(driver, 10).until(
         EC.element_to_be_clickable((By.XPATH, '//*[@id="to-thua-search"]/a'))
@@ -469,17 +477,17 @@ def cleanup_popups_and_modals(driver):
     except Exception as e:
         print(f"⚠️ Lỗi khi cleanup popup/modal: {e}")
 
-def action_open_guland_driver(address, driver, file_path):
+def action_open_guland_driver(address, driver1, driver2 ,file_path):
     # === Actions ===
     # driver = setup_driver(headless=True)
-    address_raw = address
+    # address_raw = address
     try:
         # open_guland_page(driver)
         # print("✅ Trang Guland đã sẵn sàng.")
 
         address_parse = parse_location_info(address)
 
-        return interactive_loop(driver,address_parse, file_path)
+        return interactive_loop(driver1, driver2 ,address_parse, file_path, address)
     except:
         print("❌ Fail to open Guland 2")
 

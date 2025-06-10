@@ -9,7 +9,7 @@ import json
 
 from fuzzywuzzy import process
 
-
+from get_coordinate_guland_address import setup_driver_address2, open_guland_page_2
 from normalize_API import SmartAttributeNormalizer, normalize_att_2
 from get_coordinate_guland import setup_driver, open_guland_page, parse_location_info, clean_location_names
 from write_data_utils import normalize_att, find_row_index_containing, smart_parse_float, \
@@ -54,10 +54,18 @@ if year in [2022, 2025]:
 else:
     month = str(int(month_)) 
 
-driver = setup_driver(headless=False)
+driver_address_1 = setup_driver(headless=False)
 try:
-    open_guland_page(driver)
-    print("✅ Trang Guland đã sẵn sàng.")
+    open_guland_page(driver_address_1)
+    print("✅ Trang Guland 1 đã sẵn sàng.")
+except:
+    print("❌ Fail to open Guland.")
+
+
+driver_address_2 = setup_driver_address2(headless=False)
+try:
+    open_guland_page_2(driver_address_2)
+    print("✅ Trang Guland 2 đã sẵn sàng.")
 except:
     print("❌ Fail to open Guland.")
 
@@ -372,7 +380,7 @@ for file_path, sheet_list in sheet_map.items():
                     parsed = clean_location_names(address_parse)
 
                     return {
-                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver,file_path),
+                        "geoJsonPoint": get_info_location(entry.get(normalize_att("Tọa độ vị trí")),str(entry.get(normalize_att("Địa chỉ tài sản"))),driver_address_1,driver_address_2,file_path),
                         "basicAssetsInfo": {
                             "basicAddressInfo": {
                                 "fullAddress": str(fuzzy_get(entry, "Địa chỉ tài sản")),
